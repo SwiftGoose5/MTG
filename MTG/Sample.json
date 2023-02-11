@@ -1,0 +1,66 @@
+{
+    "object": "card",
+    "id": "b2b91418-5cbd-443d-9963-7e590dd0b6fc",
+    "tcgplayer_id": 37518,
+    "name": "Shambling Strider",
+    "lang": "en",
+    "released_at": "2000-10-01",
+    "image_uris": {
+        "small": "https://cards.scryfall.io/small/front/b/2/b2b91418-5cbd-443d-9963-7e590dd0b6fc.jpg?1562932684",
+        "normal": "https://cards.scryfall.io/normal/front/b/2/b2b91418-5cbd-443d-9963-7e590dd0b6fc.jpg?1562932684",
+        "large": "https://cards.scryfall.io/large/front/b/2/b2b91418-5cbd-443d-9963-7e590dd0b6fc.jpg?1562932684",
+        "png": "https://cards.scryfall.io/png/front/b/2/b2b91418-5cbd-443d-9963-7e590dd0b6fc.png?1562932684",
+        "art_crop": "https://cards.scryfall.io/art_crop/front/b/2/b2b91418-5cbd-443d-9963-7e590dd0b6fc.jpg?1562932684",
+        "border_crop": "https://cards.scryfall.io/border_crop/front/b/2/b2b91418-5cbd-443d-9963-7e590dd0b6fc.jpg?1562932684"
+    },
+    "mana_cost": "{4}{G}{G}",
+    "cmc": 6.0,
+    "type_line": "Creature — Yeti",
+    "oracle_text": "{R}{G}: Shambling Strider gets +1/-1 until end of turn.",
+    "power": "5",
+    "toughness": "5",
+    "colors": [
+        "G"
+    ],
+    "color_identity": [
+        "G",
+        "R"
+    ],
+    "keywords": [
+        "paper"
+    ],
+    "reserved": false,
+    "foil": false,
+    "nonfoil": true,
+    "reprint": true,
+    "set_id": "cdc88d15-c4de-4210-a7e4-dcc366de845f",
+    "set": "btd",
+    "set_name": "Beatdown Box Set",
+    "set_type": "box",
+    "rarity": "common",
+    "flavor_text": "Freyalise forbid that any stranger should wander into the striders' territory.",
+    "card_back_id": "0aeebaf5-8c7d-4636-9e82-8c27447861f7",
+    "artist": "Douglas Shuler",
+    "artist_ids": [
+        "a9ddb513-51c7-455c-ab8f-5b90aae9f75b"
+    ],
+    "illustration_id": "5040e28c-d7a8-4de3-ab71-27aaf38a4fb1",
+    "border_color": "white",
+    "frame": "1997",
+    "full_art": false,
+    "textless": false,
+    "booster": false,
+    "prices": {
+        "usd": "0.15",
+        "usd_foil": null,
+        "usd_etched": null,
+        "eur": "0.25",
+        "eur_foil": null,
+        "tix": null
+    },
+    "purchase_uris": {
+        "tcgplayer": "https://www.tcgplayer.com/product/37518?page=1&utm_campaign=affiliate&utm_medium=api&utm_source=scryfall",
+        "cardmarket": "https://www.cardmarket.com/en/Magic/Products/Search?referrer=scryfall&searchString=Shambling+Strider&utm_campaign=card_prices&utm_medium=text&utm_source=scryfall",
+        "cardhoarder": "https://www.cardhoarder.com/cards?affiliate_id=scryfall&data%5Bsearch%5D=Shambling+Strider&ref=card-profile&utm_campaign=affiliate&utm_medium=card&utm_source=scryfall"
+    }
+}
