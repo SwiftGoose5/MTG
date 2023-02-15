@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="UIMenu" message="Requires Xcode 11 or later." minToolsVersion="11.0" requiredIntegratedClassName="UICommandDiff"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AdvancedCardSearchCardTypeTableViewCell" rowHeight="214" id="auu-hd-b3s" customClass="AdvancedCardSearchCardTypeTableViewCell" customModule="MTG" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="577" height="214"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="auu-hd-b3s" id="KNg-Km-8rM">
+                <rect key="frame" x="0.0" y="0.0" width="577" height="214"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jlc-Wl-wv0">
+                        <rect key="frame" x="16.000000000000004" y="16" width="41.333333333333343" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="32" id="can-p2-Cjh"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" changesSelectionAsPrimaryAction="YES" role="primary" translatesAutoresizingMaskIntoConstraints="NO" id="13X-qh-Wz4">
+                        <rect key="frame" x="16" y="64" width="77.333333333333329" height="35.666666666666657"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="77.329999999999998" id="awd-ry-CLD"/>
+                        </constraints>
+                        <menu key="menu" id="mPc-iA-MhQ">
+                            <menuOptions key="menuOptions" singleSelection="YES"/>
+                            <children>
+                                <command title="IS" id="6jB-KW-O7X" userLabel="IS"/>
+                                <command title="OR" id="JNA-if-VKd" userLabel="OR"/>
+                                <command title="NOT" menuElementState="on" id="laX-ak-HTX" userLabel="NOT"/>
+                            </children>
+                        </menu>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="filled" title="Button"/>
+                    </button>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" pagingEnabled="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="OMY-yS-KGj">
+                        <rect key="frame" x="16" y="115.66666666666669" width="545" height="82.333333333333314"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="4" minimumInteritemSpacing="4" id="TfA-HO-6tT">
+                            <size key="itemSize" width="128" height="22"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                    </collectionView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="374-S6-X2g">
+                        <rect key="frame" x="73.333333333333329" y="16" width="63.999999999999986" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="64" id="yXT-z3-Ft9"/>
+                        </constraints>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" title="Clear">
+                            <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                        </buttonConfiguration>
+                        <connections>
+                            <action selector="clearButtonPressed:" destination="auu-hd-b3s" eventType="touchUpInside" id="GbB-U1-b2L"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="fill" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aaN-BT-U87">
+                        <rect key="frame" x="109.33333333333334" y="64" width="451.66666666666663" height="35.666666666666657"/>
+                        <buttonConfiguration key="configuration" style="filled" imagePlacement="trailing" title="Enter Type, Supertype" imagePadding="5">
+                            <imageReference key="image" image="chevron.down" catalog="system" symbolScale="small"/>
+                            <fontDescription key="titleFontDescription" type="system" pointSize="18"/>
+                        </buttonConfiguration>
+                        <connections>
+                            <action selector="dropdownButtonPressed:" destination="auu-hd-b3s" eventType="touchUpInside" id="gbj-lY-faX"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="OMY-yS-KGj" firstAttribute="leading" secondItem="KNg-Km-8rM" secondAttribute="leading" constant="16" id="0S7-CY-Ian"/>
+                    <constraint firstItem="Jlc-Wl-wv0" firstAttribute="top" secondItem="KNg-Km-8rM" secondAttribute="top" constant="16" id="9ar-4w-hJT"/>
+                    <constraint firstItem="374-S6-X2g" firstAttribute="leading" secondItem="Jlc-Wl-wv0" secondAttribute="trailing" constant="16" id="J6r-yc-0M2"/>
+                    <constraint firstAttribute="bottom" secondItem="OMY-yS-KGj" secondAttribute="bottom" constant="16" id="MhN-gk-Scf"/>
+                    <constraint firstAttribute="trailing" secondItem="aaN-BT-U87" secondAttribute="trailing" constant="16" id="N7d-gv-sd3"/>
+                    <constraint firstItem="374-S6-X2g" firstAttribute="top" secondItem="KNg-Km-8rM" secondAttribute="top" constant="16" id="O64-1S-LWj"/>
+                    <constraint firstItem="13X-qh-Wz4" firstAttribute="top" secondItem="Jlc-Wl-wv0" secondAttribute="bottom" constant="16" id="R2e-qO-JEV"/>
+                    <constraint firstItem="Jlc-Wl-wv0" firstAttribute="leading" secondItem="KNg-Km-8rM" secondAttribute="leading" constant="16" id="TDh-f6-oER"/>
+                    <constraint firstItem="aaN-BT-U87" firstAttribute="top" secondItem="374-S6-X2g" secondAttribute="bottom" constant="16" id="X2h-lV-uHR"/>
+                    <constraint firstItem="OMY-yS-KGj" firstAttribute="top" secondItem="13X-qh-Wz4" secondAttribute="bottom" constant="16" id="ZWY-Py-QQh"/>
+                    <constraint firstItem="13X-qh-Wz4" firstAttribute="leading" secondItem="KNg-Km-8rM" secondAttribute="leading" constant="16" id="cLQ-td-xJu"/>
+                    <constraint firstItem="OMY-yS-KGj" firstAttribute="top" secondItem="aaN-BT-U87" secondAttribute="bottom" constant="16" id="oJp-fT-Hip"/>
+                    <constraint firstItem="aaN-BT-U87" firstAttribute="leading" secondItem="13X-qh-Wz4" secondAttribute="trailing" constant="16" id="oyL-DF-KWZ"/>
+                    <constraint firstAttribute="trailing" secondItem="OMY-yS-KGj" secondAttribute="trailing" constant="16" id="ytk-1B-wTR"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="beP-NP-kv6"/>
+            <connections>
+                <outlet property="clearButton" destination="374-S6-X2g" id="GGc-Hi-9bb"/>
+                <outlet property="collectionView" destination="OMY-yS-KGj" id="Ldv-zt-raY"/>
+                <outlet property="dropdownButton" destination="aaN-BT-U87" id="U7P-CT-iVM"/>
+                <outlet property="filterButton" destination="13X-qh-Wz4" id="TTi-0W-cNS"/>
+                <outlet property="titleLabel" destination="Jlc-Wl-wv0" id="PF0-sP-pVn"/>
+            </connections>
+            <point key="canvasLocation" x="81.679389312977094" y="59.859154929577471"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="chevron.down" catalog="system" width="128" height="70"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -89,3 +89,89 @@ struct ScryfallInteractor {
         return manaImages
     }
 }
+
+extension ScryfallInteractor {
+    static func getCreatureTypes() async -> [String] {
+        let result = await ScryfallAPI.getCreatureTypes()
+        
+        switch result {
+        case .success(let subtype):
+            guard let subtypes = subtype.data else { return [] }
+            return subtypes
+            
+        case .failure(let error):
+            print("Creature Type Error: \(error.localizedDescription)")
+            return []
+        }
+    }
+    
+    static func getPlaneswalkerTypes() async -> [String] {
+        let result = await ScryfallAPI.getPlaneswalkerTypes()
+        
+        switch result {
+        case .success(let subtype):
+            guard let subtypes = subtype.data else { return [] }
+            return subtypes
+            
+        case .failure(let error):
+            print("Creature Type Error: \(error.localizedDescription)")
+            return []
+        }
+    }
+    
+    static func getLandTypes() async -> [String] {
+        let result = await ScryfallAPI.getLandTypes()
+        
+        switch result {
+        case .success(let subtype):
+            guard let subtypes = subtype.data else { return [] }
+            return subtypes
+            
+        case .failure(let error):
+            print("Creature Type Error: \(error.localizedDescription)")
+            return []
+        }
+    }
+    
+    static func getArtifactTypes() async -> [String] {
+        let result = await ScryfallAPI.getArtifactTypes()
+        
+        switch result {
+        case .success(let subtype):
+            guard let subtypes = subtype.data else { return [] }
+            return subtypes
+            
+        case .failure(let error):
+            print("Creature Type Error: \(error.localizedDescription)")
+            return []
+        }
+    }
+    
+    static func getEnchantmentTypes() async -> [String] {
+        let result = await ScryfallAPI.getEnchantmentTypes()
+        
+        switch result {
+        case .success(let subtype):
+            guard let subtypes = subtype.data else { return [] }
+            return subtypes
+            
+        case .failure(let error):
+            print("Creature Type Error: \(error.localizedDescription)")
+            return []
+        }
+    }
+    
+    static func getSpellTypes() async -> [String] {
+        let result = await ScryfallAPI.getSpellTypes()
+        
+        switch result {
+        case .success(let subtype):
+            guard let subtypes = subtype.data else { return [] }
+            return subtypes
+            
+        case .failure(let error):
+            print("Creature Type Error: \(error.localizedDescription)")
+            return []
+        }
+    }
+}

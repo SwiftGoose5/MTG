@@ -18,8 +18,17 @@ let SVG_URL = "https://svgs.scryfall.io"
 enum CardPaths: String {
     case RandomCard = "/cards/random"
     case CardsNamed = "/cards/named?fuzzy="
+    
     case Symbols = "/symbology/"
     case CardSymbols = "/card-symbols/"
+    
+    case Catalog = "/catalog"
+    case CreatureTypes = "/creature-types"
+    case PlaneswalkerTypes = "/planeswalker-types"
+    case LandTypes = "/land-types"
+    case ArtifactTypes = "/artifact-types"
+    case EnchantmentTypes = "/enchantment-types"
+    case SpellTypes = "/spell-types"
     
 }
 
@@ -119,6 +128,88 @@ public struct ScryfallAPI {
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
             let symbols = try JSONDecoder().decode(Symbols.self, from: data)
+            return .success(symbols)
+        } catch {
+            print("ERROR: \(error.localizedDescription)")
+            return .failure(APIError.failedToCreateData)
+        }
+    }
+}
+
+
+// MARK: - Types API Calls
+extension ScryfallAPI {
+    static func getCreatureTypes() async -> Result<Subtype, Error> {
+        guard let url = URL(string: BASE_URL + CardPaths.Catalog.rawValue + CardPaths.CreatureTypes.rawValue) else { return .failure(APIError.failedToCreateURL) }
+        
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            let symbols = try JSONDecoder().decode(Subtype.self, from: data)
+            return .success(symbols)
+        } catch {
+            print("ERROR: \(error.localizedDescription)")
+            return .failure(APIError.failedToCreateData)
+        }
+    }
+    
+    static func getPlaneswalkerTypes() async -> Result<Subtype, Error> {
+        guard let url = URL(string: BASE_URL + CardPaths.Catalog.rawValue + CardPaths.PlaneswalkerTypes.rawValue) else { return .failure(APIError.failedToCreateURL) }
+        
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            let symbols = try JSONDecoder().decode(Subtype.self, from: data)
+            return .success(symbols)
+        } catch {
+            print("ERROR: \(error.localizedDescription)")
+            return .failure(APIError.failedToCreateData)
+        }
+    }
+    
+    static func getLandTypes() async -> Result<Subtype, Error> {
+        guard let url = URL(string: BASE_URL + CardPaths.Catalog.rawValue + CardPaths.LandTypes.rawValue) else { return .failure(APIError.failedToCreateURL) }
+        
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            let symbols = try JSONDecoder().decode(Subtype.self, from: data)
+            return .success(symbols)
+        } catch {
+            print("ERROR: \(error.localizedDescription)")
+            return .failure(APIError.failedToCreateData)
+        }
+    }
+    
+    static func getArtifactTypes() async -> Result<Subtype, Error> {
+        guard let url = URL(string: BASE_URL + CardPaths.Catalog.rawValue + CardPaths.ArtifactTypes.rawValue) else { return .failure(APIError.failedToCreateURL) }
+        
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            let symbols = try JSONDecoder().decode(Subtype.self, from: data)
+            return .success(symbols)
+        } catch {
+            print("ERROR: \(error.localizedDescription)")
+            return .failure(APIError.failedToCreateData)
+        }
+    }
+    
+    static func getEnchantmentTypes() async -> Result<Subtype, Error> {
+        guard let url = URL(string: BASE_URL + CardPaths.Catalog.rawValue + CardPaths.EnchantmentTypes.rawValue) else { return .failure(APIError.failedToCreateURL) }
+        
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            let symbols = try JSONDecoder().decode(Subtype.self, from: data)
+            return .success(symbols)
+        } catch {
+            print("ERROR: \(error.localizedDescription)")
+            return .failure(APIError.failedToCreateData)
+        }
+    }
+    
+    static func getSpellTypes() async -> Result<Subtype, Error> {
+        guard let url = URL(string: BASE_URL + CardPaths.Catalog.rawValue + CardPaths.SpellTypes.rawValue) else { return .failure(APIError.failedToCreateURL) }
+        
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            let symbols = try JSONDecoder().decode(Subtype.self, from: data)
             return .success(symbols)
         } catch {
             print("ERROR: \(error.localizedDescription)")

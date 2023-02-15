@@ -11,15 +11,25 @@
 import UIKit
 
 enum SearchFilters: String {
-    case IS = "Is"
-    case OR = "Or"
-    case NOT = "Not"
+    case IS = "IS"
+    case OR = "OR"
+    case NOT = "NOT"
 }
 
-struct AdvancedCardSearchCollectionViewModel {
+class AdvancedCardSearchCollectionViewModel {
     var tag: Int!
     var searchFilter: String!
     var searchTerm: String!
+    
+    init(tag: Int!, searchFilter: String!, searchTerm: String!) {
+        self.tag = tag
+        self.searchFilter = searchFilter
+        self.searchTerm = searchTerm
+    }
+    
+    func adjustTag(to index: Int) {
+        tag = index
+    }
 }
 
 class AdvancedCardSearchTableViewCell: UITableViewCell {
@@ -46,22 +56,24 @@ class AdvancedCardSearchTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        clearButton.isHidden = true
         
         collectionView.dataSource = self
         collectionView.delegate = self
+        textField.delegate = self
         
-        let flowLayout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        let flowLayout = LeftAlignedCollectionViewFlowLayout()
         flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        collectionView.collectionViewLayout = flowLayout
         
         collectionView.register(AdvancedCardSearchCollectionViewCell.nib(), forCellWithReuseIdentifier: AdvancedCardSearchCollectionViewCell.identifier)
         
         let menu = UIMenu(title: "", options: [.displayInline, .destructive], children: [
-            UIAction(title: "IS", image: nil, identifier: nil, discoverabilityTitle: nil, state: .off) { _ in
+            UIAction(title: "IS", image: nil, identifier: nil, discoverabilityTitle: nil, state: .on) { _ in
             },
             UIAction(title: "OR", image: nil, identifier: nil, discoverabilityTitle: nil, state: .off) { _ in
             },
-            UIAction(title: "NOT", image: nil, identifier: nil, discoverabilityTitle: nil, state: .on) { _ in
+            UIAction(title: "NOT", image: nil, identifier: nil, discoverabilityTitle: nil, state: .off) { _ in
             }
         ])
         
@@ -70,19 +82,33 @@ class AdvancedCardSearchTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     @IBAction func clearButtonPressed(_ sender: Any) {
-        searchTerms.removeAll()
-    }
-    
-    @IBAction func textFieldSearchPressed(_ sender: Any) {
+        searchViewModels.removeAll()
         
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
     }
     
     @IBAction func addButtonPressed(_ sender: Any) {
+        addSearchQuery()
+    }
+    
+}
+
+extension AdvancedCardSearchTableViewCell: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        
+        addSearchQuery()
+        
+        return true
+    }
+    
+    func addSearchQuery() {
         guard let searchTerm = textField.text else { return }
         
         let searchModel = AdvancedCardSearchCollectionViewModel(tag: searchViewModels.count, searchFilter: filterButton.currentTitle, searchTerm: searchTerm)
@@ -93,7 +119,6 @@ class AdvancedCardSearchTableViewCell: UITableViewCell {
             self.collectionView.reloadData()
         }
     }
-    
 }
 
 extension AdvancedCardSearchTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
@@ -103,28 +128,21 @@ extension AdvancedCardSearchTableViewCell: UICollectionViewDataSource, UICollect
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AdvancedCardSearchCollectionViewCell.identifier, for: indexPath) as! AdvancedCardSearchCollectionViewCell
-        
         cell.viewModel = searchViewModels[indexPath.row]
         cell.configure()
         cell.delegate = self
         
         return cell
     }
-
-    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let cell = AdvancedCardSearchCollectionViewCell()
-//
-//        let desiredWidth = cell.contentView.frame.width
-//        let size = cell.contentView.systemLayoutSizeFitting(CGSize(width: desiredWidth, height: 0), withHorizontalFittingPriority: .required, verticalFittingPriority: .fittingSizeLevel)
-//        return CGSize(width: ceil(size.width), height: 22)
-//    }
-
 }
 
 extension AdvancedCardSearchTableViewCell: AdvancedCardSearchCollectionViewCellDelegate {
     func collectionViewCellCloseButtonPressed(from index: Int) {
         searchViewModels.remove(at: index)
+        
+        for (i, model) in searchViewModels.enumerated() {
+            model.adjustTag(to: i)
+        }
         
         DispatchQueue.main.async {
             self.collectionView.reloadData()
