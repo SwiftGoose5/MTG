@@ -27,71 +27,7 @@ class CardListViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
     }
-    
-//    func fetchOneRandomCard() {
-//        Task {
-//            let card = await ScryfallInteractor.getRandomCard()
-//
-//            cards.append(card!)
-//        }
-//    }
-//
-//    func fetchRandomCard() {
-//        Task {
-//            let result = await ScryfallAPI.getRandomCard()
-//
-//            switch result {
-//            case .success(let card):
-//                cards.append(card)
-//                cardsManaCost.append(card.manaCost)
-//
-//                for cost in cardsManaCost {
-//                    if let cost = cost {
-//                        print("cost: \(cost)")
-//                        let costParsed = cost.parseManaSymbols()
-//                        print("costParsed: \(costParsed)")
-//
-//                        for symbol in costParsed {
-//                            let result = await ScryfallAPI.getOneSymbol(symbol: String(symbol))
-//
-//                            switch result {
-//                            case .success(let image):
-//                                cardsManaSymbols.append(image)
-//
-//                            case .failure(let error):
-//                                print(error.localizedDescription)
-//                            }
-//                        }
-//                    }
-//                }
-//
-//                DispatchQueue.main.async {
-//                    self.tableView.reloadData()
-//                }
-//
-//            case .failure(let error):
-//                print(error.localizedDescription)
-//            }
-//        }
-//    }
-//
-//    func fetchCardsFromSearch(_ search: String) {
-//        Task {
-//            let result = await ScryfallAPI.getCardsNamed(search)
-//
-//            switch result {
-//            case .success(let card):
-//                cards.append(card)
-//
-//                DispatchQueue.main.async {
-//                    self.tableView.reloadData()
-//                }
-//
-//            case .failure(let error):
-//                print(error.localizedDescription)
-//            }
-//        }
-//    }
+
 }
 
 extension CardListViewController: UITableViewDelegate, UITableViewDataSource {

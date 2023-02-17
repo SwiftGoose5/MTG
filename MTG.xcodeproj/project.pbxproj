@@ -31,7 +31,7 @@
 		8B9849312995A03000819DAC /* AdvancedCardSearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B98492F2995A03000819DAC /* AdvancedCardSearchTableViewCell.xib */; };
 		8B9849342995A25600819DAC /* AdvancedCardSearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9849322995A25600819DAC /* AdvancedCardSearchCollectionViewCell.swift */; };
 		8B9849352995A25600819DAC /* AdvancedCardSearchCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B9849332995A25600819DAC /* AdvancedCardSearchCollectionViewCell.xib */; };
-		8B984957299AA5AD00819DAC /* LeftAlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B984956299AA5AC00819DAC /* LeftAlignedCollectionViewFlowLayout.swift */; };
+		8B984957299AA5AD00819DAC /* UICollectionViewFlowLayout+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B984956299AA5AC00819DAC /* UICollectionViewFlowLayout+Extension.swift */; };
 		8B98495A299AD29300819DAC /* AdvancedCardSearchCardTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B984958299AD29300819DAC /* AdvancedCardSearchCardTypeTableViewCell.swift */; };
 		8B98495B299AD29300819DAC /* AdvancedCardSearchCardTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B984959299AD29300819DAC /* AdvancedCardSearchCardTypeTableViewCell.xib */; };
 		8B98495D299AE96200819DAC /* AdvancedCardSearchModalFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B98495C299AE96200819DAC /* AdvancedCardSearchModalFilterViewController.swift */; };
@@ -42,6 +42,7 @@
 		8BC5F3CC29941C4E0040F49C /* CardSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC5F3CB29941C4E0040F49C /* CardSearchViewController.swift */; };
 		8BCC0715299C126700F4CF43 /* ColorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCC0713299C126700F4CF43 /* ColorCollectionViewCell.swift */; };
 		8BCC0716299C126700F4CF43 /* ColorCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BCC0714299C126700F4CF43 /* ColorCollectionViewCell.xib */; };
+		8BCC0718299D397200F4CF43 /* CardColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCC0717299D397200F4CF43 /* CardColors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,7 +73,7 @@
 		8B98492F2995A03000819DAC /* AdvancedCardSearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdvancedCardSearchTableViewCell.xib; sourceTree = "<group>"; };
 		8B9849322995A25600819DAC /* AdvancedCardSearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedCardSearchCollectionViewCell.swift; sourceTree = "<group>"; };
 		8B9849332995A25600819DAC /* AdvancedCardSearchCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdvancedCardSearchCollectionViewCell.xib; sourceTree = "<group>"; };
-		8B984956299AA5AC00819DAC /* LeftAlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		8B984956299AA5AC00819DAC /* UICollectionViewFlowLayout+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewFlowLayout+Extension.swift"; sourceTree = "<group>"; };
 		8B984958299AD29300819DAC /* AdvancedCardSearchCardTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedCardSearchCardTypeTableViewCell.swift; sourceTree = "<group>"; };
 		8B984959299AD29300819DAC /* AdvancedCardSearchCardTypeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdvancedCardSearchCardTypeTableViewCell.xib; sourceTree = "<group>"; };
 		8B98495C299AE96200819DAC /* AdvancedCardSearchModalFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedCardSearchModalFilterViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +84,7 @@
 		8BC5F3CB29941C4E0040F49C /* CardSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSearchViewController.swift; sourceTree = "<group>"; };
 		8BCC0713299C126700F4CF43 /* ColorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCollectionViewCell.swift; sourceTree = "<group>"; };
 		8BCC0714299C126700F4CF43 /* ColorCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorCollectionViewCell.xib; sourceTree = "<group>"; };
+		8BCC0717299D397200F4CF43 /* CardColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardColors.swift; sourceTree = "<group>"; };
 		D9237EFCB04453676CE09965 /* Pods-MTG.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MTG.debug.xcconfig"; path = "Target Support Files/Pods-MTG/Pods-MTG.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -154,6 +156,7 @@
 		8B982FB3299154FF00A60D7E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8B98495C299AE96200819DAC /* AdvancedCardSearchModalFilterViewController.swift */,
 				8BC5F3CD29941C5A0040F49C /* Search */,
 				8B982FBE2991646C00A60D7E /* CardListViewController.swift */,
 				8B982FC02991666F00A60D7E /* CardDetailViewController.swift */,
@@ -175,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				8B982FB92991563600A60D7E /* Card.swift */,
+				8BCC0717299D397200F4CF43 /* CardColors.swift */,
 				8B98495E299BEDF000819DAC /* Types.swift */,
 				8B984960299BFCC800819DAC /* Subtype.swift */,
 				8B982FC929917F8D00A60D7E /* Symbols.swift */,
@@ -185,16 +189,12 @@
 		8B982FC829917A8200A60D7E /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				8B982FC42991751500A60D7E /* CardTableViewCell.swift */,
-				8B982FC52991751500A60D7E /* CardTableViewCell.xib */,
+				8BCC071B299D39F700F4CF43 /* Card Cell */,
 				8B984968299C0DE200819DAC /* Text Cell */,
 				8B984967299C0DCC00819DAC /* Types Cell */,
-				8B9849322995A25600819DAC /* AdvancedCardSearchCollectionViewCell.swift */,
-				8B9849332995A25600819DAC /* AdvancedCardSearchCollectionViewCell.xib */,
+				8BCC071A299D39CF00F4CF43 /* Card Search Labels Cell */,
 				8B984966299C0DB500819DAC /* Color Cell */,
-				8B98495C299AE96200819DAC /* AdvancedCardSearchModalFilterViewController.swift */,
-				8B982FD22991A86900A60D7E /* ManaCostCollectionViewCell.swift */,
-				8B982FD32991A86900A60D7E /* ManaCostCollectionViewCell.xib */,
+				8BCC0719299D39B600F4CF43 /* Mana Cost Cell */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -203,7 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				8B982FCF2991A60000A60D7E /* String+Extension.swift */,
-				8B984956299AA5AC00819DAC /* LeftAlignedCollectionViewFlowLayout.swift */,
+				8B984956299AA5AC00819DAC /* UICollectionViewFlowLayout+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -244,6 +244,33 @@
 				8B7F60E129956E5A00D54CF7 /* NoCardsFoundSearchViewController.swift */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		8BCC0719299D39B600F4CF43 /* Mana Cost Cell */ = {
+			isa = PBXGroup;
+			children = (
+				8B982FD22991A86900A60D7E /* ManaCostCollectionViewCell.swift */,
+				8B982FD32991A86900A60D7E /* ManaCostCollectionViewCell.xib */,
+			);
+			path = "Mana Cost Cell";
+			sourceTree = "<group>";
+		};
+		8BCC071A299D39CF00F4CF43 /* Card Search Labels Cell */ = {
+			isa = PBXGroup;
+			children = (
+				8B9849322995A25600819DAC /* AdvancedCardSearchCollectionViewCell.swift */,
+				8B9849332995A25600819DAC /* AdvancedCardSearchCollectionViewCell.xib */,
+			);
+			path = "Card Search Labels Cell";
+			sourceTree = "<group>";
+		};
+		8BCC071B299D39F700F4CF43 /* Card Cell */ = {
+			isa = PBXGroup;
+			children = (
+				8B982FC42991751500A60D7E /* CardTableViewCell.swift */,
+				8B982FC52991751500A60D7E /* CardTableViewCell.xib */,
+			);
+			path = "Card Cell";
 			sourceTree = "<group>";
 		};
 		B8751C00A9AF0647B4CC22DB /* Pods */ = {
@@ -384,7 +411,8 @@
 				8B98495F299BEDF000819DAC /* Types.swift in Sources */,
 				8BC5F3CC29941C4E0040F49C /* CardSearchViewController.swift in Sources */,
 				8B9849342995A25600819DAC /* AdvancedCardSearchCollectionViewCell.swift in Sources */,
-				8B984957299AA5AD00819DAC /* LeftAlignedCollectionViewFlowLayout.swift in Sources */,
+				8B984957299AA5AD00819DAC /* UICollectionViewFlowLayout+Extension.swift in Sources */,
+				8BCC0718299D397200F4CF43 /* CardColors.swift in Sources */,
 				8B7F60DB299433F300D54CF7 /* ScryfallInteractor.swift in Sources */,
 				8B982FCA29917F8D00A60D7E /* Symbols.swift in Sources */,
 				8B982FC12991666F00A60D7E /* CardDetailViewController.swift in Sources */,

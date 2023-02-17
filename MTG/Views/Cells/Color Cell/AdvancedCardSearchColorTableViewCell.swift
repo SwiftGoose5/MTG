@@ -10,15 +10,6 @@
 
 import UIKit
 
-enum CardColors: String, CaseIterable {
-    case White = "White"
-    case Blue = "Blue"
-    case Black = "Black"
-    case Red = "Red"
-    case Green = "Green"
-    case Colorless = "Colorless"
-}
-
 class AdvancedCardSearchColorTableViewCell: UITableViewCell {
 
     @IBOutlet weak var clearButton: UIButton!
@@ -104,7 +95,7 @@ extension AdvancedCardSearchColorTableViewCell: UICollectionViewDelegate, UIColl
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView == colorCollectionView {
-            return 6
+            return CardColors.allCases.count
         } else {
             return searchViewModels.count
         }

@@ -45,9 +45,9 @@ class AdvancedCardSearchCollectionViewCell: UICollectionViewCell {
         searchTermLabel.text = viewModel.searchTerm
         
         switch searchFilterLabel.text {
-        case "IS":
+        case "IS", "Include":
             searchFilterLabel.backgroundColor = .systemCyan
-        case "OR":
+        case "OR", "Exactly":
             searchFilterLabel.backgroundColor = .systemGreen
         default:
             searchFilterLabel.backgroundColor = .systemRed

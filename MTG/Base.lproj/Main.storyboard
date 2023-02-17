@@ -147,25 +147,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="exclamationmark.triangle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="9ih-bt-NSF">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="exclamationmark.triangle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="9ih-bt-NSF">
                                 <rect key="frame" x="180" y="133" width="32" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="EfW-gc-eqG"/>
+                                    <constraint firstAttribute="width" constant="32" id="PeT-QD-lHx"/>
+                                </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sorry but the search criteria yielded zero results to display. Please check your inpiuts and try again." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rZR-0G-AYh">
-                                <rect key="frame" x="49" y="564.33333333333337" width="295" height="61"/>
+                                <rect key="frame" x="49" y="567.33333333333337" width="295" height="61"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="imF-hl-kZA"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d1h-e6-1O2">
-                                <rect key="frame" x="150" y="725.33333333333337" width="93" height="42.666666666666629"/>
+                                <rect key="frame" x="150" y="728" width="93" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="hL8-mR-zSr"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Ok"/>
                                 <connections>
                                     <action selector="okButtonPressed:" destination="pAq-yC-GHe" eventType="touchUpInside" id="Qlh-ro-fK1"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No cards found" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L4c-1k-s57">
-                                <rect key="frame" x="97" y="180.33333333333334" width="198" height="34"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="No cards found" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L4c-1k-s57">
+                                <rect key="frame" x="97" y="183.33333333333334" width="198" height="34"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -180,7 +190,7 @@
                             <constraint firstItem="rZR-0G-AYh" firstAttribute="leading" secondItem="y2M-Lz-jP6" secondAttribute="leading" constant="49" id="JwT-hL-QqR"/>
                             <constraint firstItem="L4c-1k-s57" firstAttribute="leading" secondItem="y2M-Lz-jP6" secondAttribute="leading" constant="97" id="Kee-b3-UJW"/>
                             <constraint firstItem="y2M-Lz-jP6" firstAttribute="trailing" secondItem="rZR-0G-AYh" secondAttribute="trailing" constant="49" id="Lqn-KS-6NF"/>
-                            <constraint firstItem="L4c-1k-s57" firstAttribute="top" secondItem="9ih-bt-NSF" secondAttribute="bottom" constant="27" id="QPZ-f6-WcH"/>
+                            <constraint firstItem="L4c-1k-s57" firstAttribute="top" secondItem="9ih-bt-NSF" secondAttribute="bottom" constant="30" id="QPZ-f6-WcH"/>
                             <constraint firstItem="y2M-Lz-jP6" firstAttribute="trailing" secondItem="L4c-1k-s57" secondAttribute="trailing" constant="98" id="eZc-Xj-6Zn"/>
                             <constraint firstItem="y2M-Lz-jP6" firstAttribute="trailing" secondItem="d1h-e6-1O2" secondAttribute="trailing" constant="150" id="h2h-FA-h4G"/>
                             <constraint firstItem="y2M-Lz-jP6" firstAttribute="bottom" secondItem="d1h-e6-1O2" secondAttribute="bottom" constant="50" id="kEC-xn-bey"/>
@@ -429,7 +439,7 @@
         <scene sceneID="8WX-Bb-0wi">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zUu-8e-Ktb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Decks" image="square.stack.3d.down.forward.fill" selectedImage="square.stack.3d.down.forward.fill" catalog="system" id="5I7-qQ-zFY"/>
+                    <tabBarItem key="tabBarItem" title="Decks" image="square.stack.3d.down.forward.fill" catalog="system" selectedImage="square.stack.3d.down.forward.fill" id="5I7-qQ-zFY"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fdt-mJ-fgi">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -448,7 +458,7 @@
         <scene sceneID="ZeS-Sx-x26">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="J9i-Ea-f0g" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Prices" image="chart.line.uptrend.xyaxis" selectedImage="chart.line.uptrend.xyaxis" catalog="system" id="2aA-oj-icu"/>
+                    <tabBarItem key="tabBarItem" title="Prices" image="chart.line.uptrend.xyaxis" catalog="system" selectedImage="chart.line.uptrend.xyaxis" id="2aA-oj-icu"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cha-BT-xE8">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -502,12 +512,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="chart.line.uptrend.xyaxis" width="128" height="128"/>
         <image name="chart.line.uptrend.xyaxis" catalog="system" width="128" height="102"/>
         <image name="exclamationmark.triangle.fill" catalog="system" width="128" height="109"/>
         <image name="rectangle.portrait.fill" catalog="system" width="115" height="128"/>
         <image name="square.stack.3d.down.forward.fill" catalog="system" width="123" height="128"/>
-        <image name="square.stack.3d.down.forward.fill" width="128" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

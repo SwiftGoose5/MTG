@@ -11,14 +11,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ColorCollectionViewCell" id="gTV-IL-0wX" customClass="ColorCollectionViewCell" customModule="MTG" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+            <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+                <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="B" translatesAutoresizingMaskIntoConstraints="NO" id="6sj-gh-cDc">
-                        <rect key="frame" x="4" y="4" width="40" height="40"/>
+                        <rect key="frame" x="6" y="6" width="32" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
                 </subviews>
@@ -27,7 +27,7 @@
             <connections>
                 <outlet property="imageView" destination="6sj-gh-cDc" id="NyQ-zX-paW"/>
             </connections>
-            <point key="canvasLocation" x="131" y="-11"/>
+            <point key="canvasLocation" x="129.7709923664122" y="-11.267605633802818"/>
         </collectionViewCell>
     </objects>
     <resources>

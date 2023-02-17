@@ -36,6 +36,8 @@ class CardSearchViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
+        tableView.estimatedRowHeight = 200
+        
         tableView.register(AdvancedCardSearchTableViewCell.nib(), forCellReuseIdentifier: AdvancedCardSearchTableViewCell.identifier)
         tableView.register(AdvancedCardSearchCardTypeTableViewCell.nib(), forCellReuseIdentifier: AdvancedCardSearchCardTypeTableViewCell.identifier)
         tableView.register(AdvancedCardSearchColorTableViewCell.nib(), forCellReuseIdentifier: AdvancedCardSearchColorTableViewCell.identifier)
@@ -157,8 +159,8 @@ extension CardSearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return UITableView.automaticDimension
-        return 300
+        return UITableView.automaticDimension
+//        return 300
         
     }
     
