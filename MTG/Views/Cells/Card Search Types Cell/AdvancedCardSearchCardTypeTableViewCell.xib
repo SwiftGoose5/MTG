@@ -23,7 +23,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jlc-Wl-wv0">
                         <rect key="frame" x="16.000000000000004" y="16" width="41.333333333333343" height="32"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="32" id="can-p2-Cjh"/>
+                            <constraint firstAttribute="height" constant="32" id="7kv-RI-6Ne"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
@@ -45,16 +45,6 @@
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="filled" title="Button"/>
                     </button>
-                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" pagingEnabled="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="OMY-yS-KGj">
-                        <rect key="frame" x="16" y="115.66666666666669" width="545" height="82.333333333333314"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="4" minimumInteritemSpacing="4" id="TfA-HO-6tT">
-                            <size key="itemSize" width="128" height="22"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        </collectionViewFlowLayout>
-                    </collectionView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="374-S6-X2g">
                         <rect key="frame" x="73.333333333333329" y="16" width="63.999999999999986" height="32"/>
                         <constraints>
@@ -78,9 +68,20 @@
                             <action selector="dropdownButtonPressed:" destination="auu-hd-b3s" eventType="touchUpInside" id="gbj-lY-faX"/>
                         </connections>
                     </button>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" pagingEnabled="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="OMY-yS-KGj">
+                        <rect key="frame" x="16" y="115.66666666666669" width="545" height="82.333333333333314"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="4" minimumInteritemSpacing="4" id="TfA-HO-6tT">
+                            <size key="itemSize" width="128" height="22"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                    </collectionView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="OMY-yS-KGj" firstAttribute="leading" secondItem="KNg-Km-8rM" secondAttribute="leading" constant="16" id="0S7-CY-Ian"/>
+                    <constraint firstItem="aaN-BT-U87" firstAttribute="top" secondItem="KNg-Km-8rM" secondAttribute="top" constant="64" id="5qQ-s5-zMG"/>
                     <constraint firstItem="Jlc-Wl-wv0" firstAttribute="top" secondItem="KNg-Km-8rM" secondAttribute="top" constant="16" id="9ar-4w-hJT"/>
                     <constraint firstItem="374-S6-X2g" firstAttribute="leading" secondItem="Jlc-Wl-wv0" secondAttribute="trailing" constant="16" id="J6r-yc-0M2"/>
                     <constraint firstAttribute="bottom" secondItem="OMY-yS-KGj" secondAttribute="bottom" constant="16" id="MhN-gk-Scf"/>

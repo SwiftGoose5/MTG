@@ -32,6 +32,8 @@ class AdvancedCardSearchCardTypeTableViewCell: UITableViewCell {
         }
     }
     
+    var tableViewDelegate: TableViewDelegate!
+    
     static let identifier = "AdvancedCardSearchCardTypeTableViewCell"
     
     static func nib() -> UINib {
@@ -40,6 +42,7 @@ class AdvancedCardSearchCardTypeTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        selectionStyle = .none
         clearButton.isHidden = true
         
         collectionView.dataSource = self
@@ -50,11 +53,9 @@ class AdvancedCardSearchCardTypeTableViewCell: UITableViewCell {
         configureMenu()
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+//    override func setSelected(_ selected: Bool, animated: Bool) {
+//        super.setSelected(selected, animated: animated)
+//    }
     
     func configure(with cellViewModel: AdvancedCardSearchCardTypeTableViewCellViewModel) {
         self.cellViewModel = cellViewModel
@@ -95,6 +96,7 @@ class AdvancedCardSearchCardTypeTableViewCell: UITableViewCell {
         
         DispatchQueue.main.async {
             self.collectionView.reloadData()
+            self.tableViewDelegate.reload()
         }
     }
 }
@@ -112,6 +114,18 @@ extension AdvancedCardSearchCardTypeTableViewCell: UICollectionViewDataSource, U
         
         return cell
     }
+    
+    override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
+        let collectionViewHeight = collectionView.collectionViewLayout.collectionViewContentSize.height
+
+        let titleLabelHeight = titleLabel.frame.height
+        let filterButtonHeight = filterButton.frame.height
+        let padding: CGFloat = 16
+        let totalPadding: CGFloat = padding * 4
+
+        let totalHeight = collectionViewHeight + titleLabelHeight + filterButtonHeight + totalPadding
+        return CGSize(width: targetSize.width, height: totalHeight)
+    }
 }
 
 extension AdvancedCardSearchCardTypeTableViewCell: AdvancedCardSearchCollectionViewCellDelegate {
@@ -124,6 +138,7 @@ extension AdvancedCardSearchCardTypeTableViewCell: AdvancedCardSearchCollectionV
         
         DispatchQueue.main.async {
             self.collectionView.reloadData()
+            self.tableViewDelegate.reload()
         }
     }
 }
@@ -134,6 +149,7 @@ extension AdvancedCardSearchCardTypeTableViewCell: ModalFilterSelectionDelegate 
         
         DispatchQueue.main.async {
             self.collectionView.reloadData()
+            self.tableViewDelegate.reload()
         }
     }
 }

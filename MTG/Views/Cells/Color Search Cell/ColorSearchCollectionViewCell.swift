@@ -14,15 +14,15 @@ struct ColorCollectionViewCellViewModel {
     let image: UIImage
 }
 
-class ColorCollectionViewCell: UICollectionViewCell {
+class ColorSearchCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageView: UIImageView!
     var colorViewModel: ColorCollectionViewCellViewModel!
     
-    static let identifier = "ColorCollectionViewCell"
+    static let identifier = "ColorSearchCollectionViewCell"
     
     static func nib() -> UINib {
-        return UINib(nibName: "ColorCollectionViewCell", bundle: nil)
+        return UINib(nibName: "ColorSearchCollectionViewCell", bundle: nil)
     }
 
     override func awakeFromNib() {

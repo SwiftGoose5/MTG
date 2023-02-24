@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		538BD98BC104461249EA8DD1 /* Pods_MTG.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E48989CCAFBBCF69DF5FC0 /* Pods_MTG.framework */; };
+		8B170FFA29A6B38800EC1D34 /* SliderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B170FF829A6B38800EC1D34 /* SliderTableViewCell.swift */; };
+		8B17100029A7FED400EC1D34 /* SliderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B170FFF29A7FED400EC1D34 /* SliderTableViewCell.xib */; };
 		8B7F60DB299433F300D54CF7 /* ScryfallInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7F60DA299433F300D54CF7 /* ScryfallInteractor.swift */; };
 		8B7F60E02994B2B900D54CF7 /* CardSearchViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7F60DF2994B2B900D54CF7 /* CardSearchViewModels.swift */; };
 		8B7F60E229956E5A00D54CF7 /* NoCardsFoundSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7F60E129956E5A00D54CF7 /* NoCardsFoundSearchViewController.swift */; };
@@ -37,17 +39,19 @@
 		8B98495D299AE96200819DAC /* AdvancedCardSearchModalFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B98495C299AE96200819DAC /* AdvancedCardSearchModalFilterViewController.swift */; };
 		8B98495F299BEDF000819DAC /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B98495E299BEDF000819DAC /* Types.swift */; };
 		8B984961299BFCC800819DAC /* Subtype.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B984960299BFCC800819DAC /* Subtype.swift */; };
-		8B984964299C0D9700819DAC /* AdvancedCardSearchColorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B984962299C0D9700819DAC /* AdvancedCardSearchColorTableViewCell.swift */; };
-		8B984965299C0D9700819DAC /* AdvancedCardSearchColorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B984963299C0D9700819DAC /* AdvancedCardSearchColorTableViewCell.xib */; };
+		8B984964299C0D9700819DAC /* ColorSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B984962299C0D9700819DAC /* ColorSearchTableViewCell.swift */; };
+		8B984965299C0D9700819DAC /* ColorSearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B984963299C0D9700819DAC /* ColorSearchTableViewCell.xib */; };
 		8BC5F3CC29941C4E0040F49C /* CardSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC5F3CB29941C4E0040F49C /* CardSearchViewController.swift */; };
-		8BCC0715299C126700F4CF43 /* ColorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCC0713299C126700F4CF43 /* ColorCollectionViewCell.swift */; };
-		8BCC0716299C126700F4CF43 /* ColorCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BCC0714299C126700F4CF43 /* ColorCollectionViewCell.xib */; };
+		8BCC0715299C126700F4CF43 /* ColorSearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCC0713299C126700F4CF43 /* ColorSearchCollectionViewCell.swift */; };
+		8BCC0716299C126700F4CF43 /* ColorSearchCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BCC0714299C126700F4CF43 /* ColorSearchCollectionViewCell.xib */; };
 		8BCC0718299D397200F4CF43 /* CardColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCC0717299D397200F4CF43 /* CardColors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		18E48989CCAFBBCF69DF5FC0 /* Pods_MTG.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MTG.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BDEFA78034205AFA5F319DA /* Pods-MTG.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MTG.release.xcconfig"; path = "Target Support Files/Pods-MTG/Pods-MTG.release.xcconfig"; sourceTree = "<group>"; };
+		8B170FF829A6B38800EC1D34 /* SliderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderTableViewCell.swift; sourceTree = "<group>"; };
+		8B170FFF29A7FED400EC1D34 /* SliderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SliderTableViewCell.xib; sourceTree = "<group>"; };
 		8B7F60DA299433F300D54CF7 /* ScryfallInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScryfallInteractor.swift; sourceTree = "<group>"; };
 		8B7F60DF2994B2B900D54CF7 /* CardSearchViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSearchViewModels.swift; sourceTree = "<group>"; };
 		8B7F60E129956E5A00D54CF7 /* NoCardsFoundSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoCardsFoundSearchViewController.swift; sourceTree = "<group>"; };
@@ -79,11 +83,11 @@
 		8B98495C299AE96200819DAC /* AdvancedCardSearchModalFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedCardSearchModalFilterViewController.swift; sourceTree = "<group>"; };
 		8B98495E299BEDF000819DAC /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 		8B984960299BFCC800819DAC /* Subtype.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subtype.swift; sourceTree = "<group>"; };
-		8B984962299C0D9700819DAC /* AdvancedCardSearchColorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedCardSearchColorTableViewCell.swift; sourceTree = "<group>"; };
-		8B984963299C0D9700819DAC /* AdvancedCardSearchColorTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdvancedCardSearchColorTableViewCell.xib; sourceTree = "<group>"; };
+		8B984962299C0D9700819DAC /* ColorSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSearchTableViewCell.swift; sourceTree = "<group>"; };
+		8B984963299C0D9700819DAC /* ColorSearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorSearchTableViewCell.xib; sourceTree = "<group>"; };
 		8BC5F3CB29941C4E0040F49C /* CardSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSearchViewController.swift; sourceTree = "<group>"; };
-		8BCC0713299C126700F4CF43 /* ColorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCollectionViewCell.swift; sourceTree = "<group>"; };
-		8BCC0714299C126700F4CF43 /* ColorCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorCollectionViewCell.xib; sourceTree = "<group>"; };
+		8BCC0713299C126700F4CF43 /* ColorSearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSearchCollectionViewCell.swift; sourceTree = "<group>"; };
+		8BCC0714299C126700F4CF43 /* ColorSearchCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorSearchCollectionViewCell.xib; sourceTree = "<group>"; };
 		8BCC0717299D397200F4CF43 /* CardColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardColors.swift; sourceTree = "<group>"; };
 		D9237EFCB04453676CE09965 /* Pods-MTG.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MTG.debug.xcconfig"; path = "Target Support Files/Pods-MTG/Pods-MTG.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -100,6 +104,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8B170FFC29A6B38C00EC1D34 /* Slider Cell */ = {
+			isa = PBXGroup;
+			children = (
+				8B170FF829A6B38800EC1D34 /* SliderTableViewCell.swift */,
+				8B170FFF29A7FED400EC1D34 /* SliderTableViewCell.xib */,
+			);
+			path = "Slider Cell";
+			sourceTree = "<group>";
+		};
 		8B6608D92992A4A10040C9FA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -191,10 +204,11 @@
 			children = (
 				8BCC071B299D39F700F4CF43 /* Card Cell */,
 				8B984968299C0DE200819DAC /* Text Cell */,
-				8B984967299C0DCC00819DAC /* Types Cell */,
+				8B984967299C0DCC00819DAC /* Card Search Types Cell */,
 				8BCC071A299D39CF00F4CF43 /* Card Search Labels Cell */,
-				8B984966299C0DB500819DAC /* Color Cell */,
+				8B984966299C0DB500819DAC /* Color Search Cell */,
 				8BCC0719299D39B600F4CF43 /* Mana Cost Cell */,
+				8B170FFC29A6B38C00EC1D34 /* Slider Cell */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -208,24 +222,24 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		8B984966299C0DB500819DAC /* Color Cell */ = {
+		8B984966299C0DB500819DAC /* Color Search Cell */ = {
 			isa = PBXGroup;
 			children = (
-				8B984962299C0D9700819DAC /* AdvancedCardSearchColorTableViewCell.swift */,
-				8B984963299C0D9700819DAC /* AdvancedCardSearchColorTableViewCell.xib */,
-				8BCC0713299C126700F4CF43 /* ColorCollectionViewCell.swift */,
-				8BCC0714299C126700F4CF43 /* ColorCollectionViewCell.xib */,
+				8B984962299C0D9700819DAC /* ColorSearchTableViewCell.swift */,
+				8B984963299C0D9700819DAC /* ColorSearchTableViewCell.xib */,
+				8BCC0713299C126700F4CF43 /* ColorSearchCollectionViewCell.swift */,
+				8BCC0714299C126700F4CF43 /* ColorSearchCollectionViewCell.xib */,
 			);
-			path = "Color Cell";
+			path = "Color Search Cell";
 			sourceTree = "<group>";
 		};
-		8B984967299C0DCC00819DAC /* Types Cell */ = {
+		8B984967299C0DCC00819DAC /* Card Search Types Cell */ = {
 			isa = PBXGroup;
 			children = (
 				8B984958299AD29300819DAC /* AdvancedCardSearchCardTypeTableViewCell.swift */,
 				8B984959299AD29300819DAC /* AdvancedCardSearchCardTypeTableViewCell.xib */,
 			);
-			path = "Types Cell";
+			path = "Card Search Types Cell";
 			sourceTree = "<group>";
 		};
 		8B984968299C0DE200819DAC /* Text Cell */ = {
@@ -342,15 +356,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8BCC0716299C126700F4CF43 /* ColorCollectionViewCell.xib in Resources */,
+				8BCC0716299C126700F4CF43 /* ColorSearchCollectionViewCell.xib in Resources */,
 				8B982FD52991A86900A60D7E /* ManaCostCollectionViewCell.xib in Resources */,
+				8B17100029A7FED400EC1D34 /* SliderTableViewCell.xib in Resources */,
 				8B982FAA2991540200A60D7E /* LaunchScreen.storyboard in Resources */,
 				8B982FBD29915FA500A60D7E /* Sample.json in Resources */,
 				8B98495B299AD29300819DAC /* AdvancedCardSearchCardTypeTableViewCell.xib in Resources */,
 				8B982FC72991751500A60D7E /* CardTableViewCell.xib in Resources */,
 				8B9849312995A03000819DAC /* AdvancedCardSearchTableViewCell.xib in Resources */,
 				8B982FA72991540200A60D7E /* Assets.xcassets in Resources */,
-				8B984965299C0D9700819DAC /* AdvancedCardSearchColorTableViewCell.xib in Resources */,
+				8B984965299C0D9700819DAC /* ColorSearchTableViewCell.xib in Resources */,
 				8B9849352995A25600819DAC /* AdvancedCardSearchCollectionViewCell.xib in Resources */,
 				8B982FA52991540100A60D7E /* Main.storyboard in Resources */,
 			);
@@ -409,6 +424,7 @@
 				8B982FBF2991646C00A60D7E /* CardListViewController.swift in Sources */,
 				8B98495A299AD29300819DAC /* AdvancedCardSearchCardTypeTableViewCell.swift in Sources */,
 				8B98495F299BEDF000819DAC /* Types.swift in Sources */,
+				8B170FFA29A6B38800EC1D34 /* SliderTableViewCell.swift in Sources */,
 				8BC5F3CC29941C4E0040F49C /* CardSearchViewController.swift in Sources */,
 				8B9849342995A25600819DAC /* AdvancedCardSearchCollectionViewCell.swift in Sources */,
 				8B984957299AA5AD00819DAC /* UICollectionViewFlowLayout+Extension.swift in Sources */,
@@ -427,8 +443,8 @@
 				8B982FB72991561E00A60D7E /* ScryfallAPI.swift in Sources */,
 				8B982FD02991A60000A60D7E /* String+Extension.swift in Sources */,
 				8B982FC62991751500A60D7E /* CardTableViewCell.swift in Sources */,
-				8B984964299C0D9700819DAC /* AdvancedCardSearchColorTableViewCell.swift in Sources */,
-				8BCC0715299C126700F4CF43 /* ColorCollectionViewCell.swift in Sources */,
+				8B984964299C0D9700819DAC /* ColorSearchTableViewCell.swift in Sources */,
+				8BCC0715299C126700F4CF43 /* ColorSearchCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -32,6 +32,10 @@ class AdvancedCardSearchCollectionViewModel {
     }
 }
 
+protocol TableViewDelegate {
+    func reload()
+}
+
 class AdvancedCardSearchTableViewCell: UITableViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
@@ -40,13 +44,13 @@ class AdvancedCardSearchTableViewCell: UITableViewCell {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var searchTerms: [String] = []
-    var searchFilters: [SearchFilters] = []
     var searchViewModels: [AdvancedCardSearchCollectionViewModel] = [] {
         didSet {
             searchViewModels.isEmpty ? (clearButton.isHidden = true) : (clearButton.isHidden = false)
         }
     }
+    
+    var tableViewDelegate: TableViewDelegate!
     
     static let identifier = "AdvancedCardSearchTableViewCell"
     
@@ -56,6 +60,7 @@ class AdvancedCardSearchTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        selectionStyle = .none
         clearButton.isHidden = true
         
         collectionView.dataSource = self
@@ -80,15 +85,12 @@ class AdvancedCardSearchTableViewCell: UITableViewCell {
         filterButton.menu = menu
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-    
     @IBAction func clearButtonPressed(_ sender: Any) {
         searchViewModels.removeAll()
         
         DispatchQueue.main.async {
             self.collectionView.reloadData()
+            self.tableViewDelegate.reload()
         }
     }
     
@@ -109,7 +111,7 @@ extension AdvancedCardSearchTableViewCell: UITextFieldDelegate {
     }
     
     func addSearchQuery() {
-        guard let searchTerm = textField.text else { return }
+        guard let searchTerm = textField.text, !searchTerm.isEmpty else { return }
         
         let searchModel = AdvancedCardSearchCollectionViewModel(tag: searchViewModels.count, searchFilter: filterButton.currentTitle, searchTerm: searchTerm)
         
@@ -117,6 +119,7 @@ extension AdvancedCardSearchTableViewCell: UITextFieldDelegate {
         
         DispatchQueue.main.async {
             self.collectionView.reloadData()
+            self.tableViewDelegate.reload()
         }
     }
 }
@@ -134,6 +137,18 @@ extension AdvancedCardSearchTableViewCell: UICollectionViewDataSource, UICollect
         
         return cell
     }
+
+    override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
+        let collectionViewHeight = collectionView.collectionViewLayout.collectionViewContentSize.height
+
+        let titleLabelHeight = titleLabel.frame.height
+        let filterButtonHeight = filterButton.frame.height
+        let padding: CGFloat = 16
+        let totalPadding: CGFloat = padding * 4
+
+        let totalHeight = collectionViewHeight + titleLabelHeight + filterButtonHeight + totalPadding
+        return CGSize(width: targetSize.width, height: totalHeight)
+    }
 }
 
 extension AdvancedCardSearchTableViewCell: AdvancedCardSearchCollectionViewCellDelegate {
@@ -146,6 +161,7 @@ extension AdvancedCardSearchTableViewCell: AdvancedCardSearchCollectionViewCellD
         
         DispatchQueue.main.async {
             self.collectionView.reloadData()
+            self.tableViewDelegate.reload()
         }
     }
 }

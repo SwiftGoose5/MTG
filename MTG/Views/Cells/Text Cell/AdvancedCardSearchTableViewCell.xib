@@ -62,7 +62,7 @@
                             <action selector="addButtonPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ad2-sv-t48"/>
                         </connections>
                     </button>
-                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" pagingEnabled="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="NyD-5a-aMW">
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="NyD-5a-aMW">
                         <rect key="frame" x="16" y="114.33333333333331" width="545" height="83.666666666666686"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="4" minimumInteritemSpacing="4" id="IOx-81-xww">

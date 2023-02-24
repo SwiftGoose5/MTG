@@ -10,8 +10,9 @@
 
 import UIKit
 
-class AdvancedCardSearchColorTableViewCell: UITableViewCell {
+class ColorSearchTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var colorCollectionView: UICollectionView!
@@ -24,21 +25,23 @@ class AdvancedCardSearchColorTableViewCell: UITableViewCell {
     }
     
     var selectedColors: [String] = []
+    var tableDelegate: TableViewDelegate!
     
-    static let identifier = "AdvancedCardSearchColorTableViewCell"
+    static let identifier = "ColorSearchTableViewCell"
     
     static func nib() -> UINib {
-        return UINib(nibName: "AdvancedCardSearchColorTableViewCell", bundle: nil)
+        return UINib(nibName: "ColorSearchTableViewCell", bundle: nil)
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        selectionStyle = .none
         clearButton.isHidden = true
         
         colorCollectionView.delegate = self
         colorCollectionView.dataSource = self
         colorCollectionView.allowsMultipleSelection = true
-        colorCollectionView.register(ColorCollectionViewCell.nib(), forCellWithReuseIdentifier: ColorCollectionViewCell.identifier)
+        colorCollectionView.register(ColorSearchCollectionViewCell.nib(), forCellWithReuseIdentifier: ColorSearchCollectionViewCell.identifier)
         
         termCollectionView.delegate = self
         termCollectionView.dataSource = self
@@ -62,6 +65,7 @@ class AdvancedCardSearchColorTableViewCell: UITableViewCell {
         
         DispatchQueue.main.async {
             self.termCollectionView.reloadData()
+            self.tableDelegate.reload()
         }
     }
     
@@ -87,11 +91,12 @@ class AdvancedCardSearchColorTableViewCell: UITableViewCell {
         
         DispatchQueue.main.async {
             self.termCollectionView.reloadData()
+            self.tableDelegate.reload()
         }
     }
 }
 
-extension AdvancedCardSearchColorTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
+extension ColorSearchTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView == colorCollectionView {
@@ -105,7 +110,7 @@ extension AdvancedCardSearchColorTableViewCell: UICollectionViewDelegate, UIColl
         
         if collectionView == colorCollectionView {
             
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ColorCollectionViewCell.identifier, for: indexPath) as! ColorCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ColorSearchCollectionViewCell.identifier, for: indexPath) as! ColorSearchCollectionViewCell
             
             var imageForCell: UIImage!
             
@@ -186,9 +191,22 @@ extension AdvancedCardSearchColorTableViewCell: UICollectionViewDelegate, UIColl
             }
         }
     }
+    
+    override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
+        let collectionViewHeight = termCollectionView.collectionViewLayout.collectionViewContentSize.height
+
+        let titleLabelHeight = titleLabel.frame.height
+        let segmentedControlHeight = segmentedControl.frame.height
+        let colorCollectionViewHeight = colorCollectionView.frame.height
+        let padding: CGFloat = 16
+        let totalPadding: CGFloat = padding * 4
+
+        let totalHeight = collectionViewHeight + titleLabelHeight + segmentedControlHeight + colorCollectionViewHeight + totalPadding
+        return CGSize(width: targetSize.width, height: totalHeight)
+    }
 }
 
-extension AdvancedCardSearchColorTableViewCell: AdvancedCardSearchCollectionViewCellDelegate {
+extension ColorSearchTableViewCell: AdvancedCardSearchCollectionViewCellDelegate {
     func collectionViewCellCloseButtonPressed(from index: Int) {
         searchViewModels.remove(at: index)
         
@@ -198,6 +216,7 @@ extension AdvancedCardSearchColorTableViewCell: AdvancedCardSearchCollectionView
         
         DispatchQueue.main.async {
             self.termCollectionView.reloadData()
+            self.tableDelegate.reload()
         }
     }
 }

@@ -25,6 +25,8 @@ class CardSearchViewController: UIViewController {
     var superTypesModel: AdvancedCardSearchCardTypeTableViewCellViewModel!
     var subTypesModel: AdvancedCardSearchCardTypeTableViewCellViewModel!
     
+    var advancedSearchQueryModels: [String]!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -36,11 +38,10 @@ class CardSearchViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        tableView.estimatedRowHeight = 200
-        
         tableView.register(AdvancedCardSearchTableViewCell.nib(), forCellReuseIdentifier: AdvancedCardSearchTableViewCell.identifier)
         tableView.register(AdvancedCardSearchCardTypeTableViewCell.nib(), forCellReuseIdentifier: AdvancedCardSearchCardTypeTableViewCell.identifier)
-        tableView.register(AdvancedCardSearchColorTableViewCell.nib(), forCellReuseIdentifier: AdvancedCardSearchColorTableViewCell.identifier)
+        tableView.register(ColorSearchTableViewCell.nib(), forCellReuseIdentifier: ColorSearchTableViewCell.identifier)
+        tableView.register(SliderTableViewCell.nib(), forCellReuseIdentifier: SliderTableViewCell.identifier)
         
         configureSearchBar()
         showSimpleSearchView()
@@ -124,44 +125,54 @@ extension CardSearchViewController: UISearchBarDelegate {
     
 }
 
+extension CardSearchViewController: TableViewDelegate {
+    func reload() {
+        tableView.beginUpdates()
+        tableView.reloadData()
+        tableView.endUpdates()
+    }
+}
+
 extension CardSearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: AdvancedCardSearchTableViewCell.identifier, for: indexPath) as! AdvancedCardSearchTableViewCell
             cell.titleLabel.text = "Card Name".uppercased()
-            cell.selectionStyle = .none
+            cell.tableViewDelegate = self
             return cell
         }
         else if indexPath.row == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: AdvancedCardSearchCardTypeTableViewCell.identifier, for: indexPath) as! AdvancedCardSearchCardTypeTableViewCell
             cell.titleLabel.text = "Card Type".uppercased()
+            cell.tableViewDelegate = self
             cell.configure(with: superTypesModel)
-            cell.selectionStyle = .none
             return cell
         }
         else if indexPath.row == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: AdvancedCardSearchCardTypeTableViewCell.identifier, for: indexPath) as! AdvancedCardSearchCardTypeTableViewCell
             cell.titleLabel.text = "Card Subtype".uppercased()
+            cell.tableViewDelegate = self
             cell.configure(with: subTypesModel)
-            cell.selectionStyle = .none
+            return cell
+        }
+        else if indexPath.row == 3 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: ColorSearchTableViewCell.identifier, for: indexPath) as! ColorSearchTableViewCell
+            cell.tableDelegate = self
             return cell
         }
         else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: AdvancedCardSearchColorTableViewCell.identifier, for: indexPath) as! AdvancedCardSearchColorTableViewCell
-            cell.selectionStyle = .none
+            let cell = tableView.dequeueReusableCell(withIdentifier: SliderTableViewCell.identifier, for: indexPath) as! SliderTableViewCell
             return cell
         }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 5
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
-//        return 300
-        
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {

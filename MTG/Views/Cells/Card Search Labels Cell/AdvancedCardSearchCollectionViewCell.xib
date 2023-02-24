@@ -28,9 +28,9 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nFw-uv-Gkx">
-                        <rect key="frame" x="361" y="0.0" width="32" height="22"/>
+                        <rect key="frame" x="371" y="0.0" width="22" height="22"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="32" id="EDV-Wk-cgo"/>
+                            <constraint firstAttribute="width" constant="22" id="EDV-Wk-cgo"/>
                         </constraints>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <state key="normal" title="Button"/>
@@ -42,7 +42,7 @@
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X5w-Ed-7xw">
-                        <rect key="frame" x="72" y="0.0" width="281" height="22"/>
+                        <rect key="frame" x="72" y="0.0" width="291" height="22"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
