@@ -25,6 +25,7 @@ class SliderTableViewCell: UITableViewCell {
     
     @IBOutlet var stackViewElements: [UIView]!
     
+    let impactFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
     
     static let identifier = "SliderTableViewCell"
     
@@ -41,6 +42,8 @@ class SliderTableViewCell: UITableViewCell {
         
         let panRightGesture = UIPanGestureRecognizer(target: self, action: #selector(handleRightPan(_:)))
         dragRightButton.addGestureRecognizer(panRightGesture)
+        
+        impactFeedbackGenerator.prepare()
         
         sliderBackground.layer.cornerRadius = sliderBackground.frame.height / 2
         dragLeftButton.layer.cornerRadius = dragLeftButton.frame.height / 2
@@ -95,6 +98,7 @@ class SliderTableViewCell: UITableViewCell {
                 
                 let centerX = closestElement.center.x
                 dragLeftButton.center.x = centerX + 19
+                impactFeedbackGenerator.impactOccurred()
                 
                 
                 var newFrame = dragBackground.frame
@@ -164,6 +168,7 @@ class SliderTableViewCell: UITableViewCell {
                     
                     let centerX = closestElement.center.x
                     dragRightButton.center.x = centerX + 19
+                    impactFeedbackGenerator.impactOccurred()
                     
                     
                     var newFrame = dragBackground.frame
