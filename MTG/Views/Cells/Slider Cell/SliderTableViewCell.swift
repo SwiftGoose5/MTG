@@ -10,6 +10,11 @@
 
 import UIKit
 
+struct SliderTableViewModel {
+    var lhs: String
+    var rhs: String
+}
+
 class SliderTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
@@ -18,14 +23,33 @@ class SliderTableViewCell: UITableViewCell {
     @IBOutlet weak var dragLeftButton: UIButton!
     @IBOutlet weak var dragRightButton: UIButton!
     @IBOutlet weak var dragBackground: UIView!
+    @IBOutlet weak var buttonsBackground: UIView!
     @IBOutlet weak var sliderBackground: UIView!
-    
     @IBOutlet weak var stackView: UIStackView!
-    
-    
     @IBOutlet var stackViewElements: [UIView]!
     
-    let impactFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
+    private let impactFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
+    private let stackViewLeftPadding = CGFloat(19)
+
+    private var previousLeftTag = 6
+    private var previousRightTag = 6
+
+    private var overlapShouldPanLeft = false
+    
+    private var animationDuration: TimeInterval = 0.05
+
+    private var leftSliderTagValue: Int = 6 {
+        didSet {
+            updateLabel()
+        }
+    }
+    private var rightSliderTagValue: Int = 6 {
+        didSet {
+            updateLabel()
+        }
+    }
+    
+    var sliderTableViewModel: SliderTableViewModel? = nil
     
     static let identifier = "SliderTableViewCell"
     
@@ -49,149 +73,120 @@ class SliderTableViewCell: UITableViewCell {
         dragLeftButton.layer.cornerRadius = dragLeftButton.frame.height / 2
         dragRightButton.layer.cornerRadius = dragRightButton.frame.height / 2
         dragBackground.layer.cornerRadius = dragBackground.frame.height / 2
+        buttonsBackground.layer.cornerRadius = buttonsBackground.frame.height / 2
         
-        dragLeftButton.layer.zPosition = 1
-        dragLeftButton.tintColor = .orange
+        let leftGradientLayer = CAGradientLayer()
+        leftGradientLayer.type = .radial
+        leftGradientLayer.frame = dragLeftButton.bounds
+        leftGradientLayer.colors = [UIColor.yellow.cgColor, UIColor.orange.cgColor]
+        leftGradientLayer.startPoint = CGPoint(x: 0.5, y: 0.5)
+        leftGradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
         
-        dragRightButton.layer.zPosition = 1
-        dragRightButton.tintColor = .black
+        let rightGradientLayer = CAGradientLayer()
+        rightGradientLayer.type = .radial
+        rightGradientLayer.frame = dragRightButton.bounds
+        rightGradientLayer.colors = [UIColor.yellow.cgColor, UIColor.orange.cgColor]
+        rightGradientLayer.startPoint = CGPoint(x: 0.5, y: 0.5)
+        rightGradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
         
-        dragLeftButton.center.x = stackView.center.x
-        dragRightButton.center.x = stackView.center.x
-    }
-    
-    @objc func handleLeftPan(_ gesture: UIPanGestureRecognizer) {
-//        let translation = gesture.translation(in: superview)
-//        let location = gesture.location(in: stackView)
-//
-//        print(location.x)
-//
-//        if let button = gesture.view as? UIButton, let buttonBackground = button.superview {
-//
-//            var newFrame = buttonBackground.frame
-//            let originalX = buttonBackground.frame.origin.x + button.frame.origin.x
-//
-//            let newX = originalX + translation.x
-//            let newWidth = buttonBackground.frame.width - (newX - originalX)
-//
-//            newFrame.origin.x = newX - button.frame.origin.x
-//            newFrame.size.width = newWidth
-//            buttonBackground.frame = newFrame
-//            dragRightButton.frame.origin.x = newWidth - button.frame.width * 1.5
-//
-//            buttonBackground.backgroundColor = .cyan
-//
-//        }
-//        gesture.setTranslation(CGPoint.zero, in: superview)
+        dragLeftButton.layer.insertSublayer(leftGradientLayer, at: 1)
+        dragRightButton.layer.insertSublayer(rightGradientLayer, at: 1)
         
+        dragBackground.backgroundColor = .white
+        buttonsBackground.backgroundColor = .blue
         
-        let translation = gesture.translation(in: superview)
-        let touchLocationInStackView = gesture.location(in: stackView)
-        let touchLocationInSliderView = gesture.location(in: sliderBackground)
-        
-        if touchLocationInSliderView.x <= dragRightButton.center.x {
-            
-            if let button = gesture.view as? UIButton {
-                dragLeftButton.center.x = button.center.x + translation.x
-                
-                let closestElement = getClosestView(near: touchLocationInStackView)
-                
-                let centerX = closestElement.center.x
-                dragLeftButton.center.x = centerX + 19
-                impactFeedbackGenerator.impactOccurred()
-                
-                
-                var newFrame = dragBackground.frame
-                newFrame.origin.x = dragLeftButton.center.x - dragLeftButton.frame.width
-                let newWidth = dragRightButton.center.x - dragLeftButton.center.x + (dragRightButton.frame.width * 2)
-                newFrame.size.width = newWidth
-                dragBackground.frame = newFrame
-                dragBackground.backgroundColor = .white
-            }
-            
-            gesture.setTranslation(CGPoint.zero, in: superview)
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            self.resetSliders()
         }
     }
     
-    @objc func handleRightPan(_ gesture: UIPanGestureRecognizer) {
-//        let translation = gesture.translation(in: superview)
-//        let location = gesture.location(in: stackView)
-//        print(location.x)
-//
-//        if let button = gesture.view as? UIButton, let buttonBackground = button.superview {
-//            var newFrame = buttonBackground.frame
-//            let newWidth = buttonBackground.frame.width + translation.x
-//            button.center = CGPoint(x: newWidth - button.frame.width, y: button.center.y)
-//            newFrame.size.width = newWidth
-//            buttonBackground.frame = newFrame
-//            buttonBackground.backgroundColor = .gray
-//
-//
-//            // Find the closest stackViewElement
-//            var minDistance = CGFloat.greatestFiniteMagnitude
-//            var closestIndex = -1
-//            for (index, element) in stackViewElements.enumerated() {
-//                let centerX = element.center.x
-//                let distance = abs(location.x - centerX)
-//                print("tag: \(element.tag), x: \(centerX), dist: \(distance)")
-//                if distance < minDistance {
-//                    minDistance = distance
-//                    closestIndex = index
-//                }
-//            }
-//
-//            // Snap the button to the x location of the closest stackViewElement
-//            let closestElement = stackViewElements[closestIndex]
-//            print(closestElement.tag)
-////            let centerX = closestElement.center.x
-////            button.center.x = centerX
-////            buttonBackground.frame.origin.x = centerX - button.frame.origin.x
-//
-//        }
-//        gesture.setTranslation(CGPoint.zero, in: superview)
+    @objc func handleLeftPan(_ gesture: UIPanGestureRecognizer) {
+        if gesture.state == .began && clearButton.isHidden {
+            clearButton.isHidden = false
+        }
         
-//        if dragRightButton.center.x == dragLeftButton.center.x {
-//            handleLeftPan(gesture)
-//        } else {
-            
-            
-            let translation = gesture.translation(in: superview)
-            let touchLocationInStackView = gesture.location(in: stackView)
-            let touchLocationInSliderView = gesture.location(in: sliderBackground)
-            
-            if touchLocationInSliderView.x >= dragLeftButton.center.x {
-                
-                if let button = gesture.view as? UIButton {
-                    dragRightButton.center.x = button.center.x + translation.x
-                    
-                    let closestElement = getClosestView(near: touchLocationInStackView)
-                    
-                    let centerX = closestElement.center.x
-                    dragRightButton.center.x = centerX + 19
-                    impactFeedbackGenerator.impactOccurred()
-                    
-                    
-                    var newFrame = dragBackground.frame
-                    newFrame.origin.x = dragLeftButton.center.x - dragRightButton.frame.width
-                    let newWidth = dragRightButton.center.x - dragLeftButton.center.x + (dragRightButton.frame.width * 2)
-                    newFrame.size.width = newWidth
-                    dragBackground.frame = newFrame
-                    dragBackground.backgroundColor = .white
-                }
-                
-                gesture.setTranslation(CGPoint.zero, in: superview)
+        let touchLocationInStackView = gesture.location(in: stackView)
+        let touchLocationInSliderBackgroundView = gesture.location(in: sliderBackground)
+        
+        if gesture.state == .ended {
+            overlapShouldPanLeft = false
+        }
+        
+        if touchLocationInSliderBackgroundView.x >= dragRightButton.center.x {
+            return
+        }
+
+        let closestElement = getClosestView(near: touchLocationInStackView)
+        
+        if previousLeftTag != closestElement.tag {
+            impactFeedbackGenerator.impactOccurred()
+        }
+        
+        leftSliderTagValue = closestElement.tag
+        previousLeftTag = closestElement.tag
+        
+        let centerX = closestElement.center.x
+        
+        UIView.animate(withDuration: animationDuration) {
+            self.dragLeftButton.center.x = centerX + self.stackViewLeftPadding
+        }
+        
+        regenerateBackgroundFrames()
+        
+        gesture.setTranslation(CGPoint.zero, in: superview)
+    }
+    
+    @objc func handleRightPan(_ gesture: UIPanGestureRecognizer) {
+        if gesture.state == .began && clearButton.isHidden {
+            clearButton.isHidden = false
+        }
+        
+        let translation = gesture.translation(in: superview)
+        let touchLocationInStackView = gesture.location(in: stackView)
+        let touchLocationInSliderBackgroundView = gesture.location(in: sliderBackground)
+        
+        if gesture.state == .began && dragLeftButton.center.x == dragRightButton.center.x && translation.x < 0 {
+            overlapShouldPanLeft = true
+            handleLeftPan(gesture)
+        }
+        
+        else {
+            if overlapShouldPanLeft {
+                handleLeftPan(gesture)
+                return
             }
-//        }
+            if touchLocationInSliderBackgroundView.x <= dragLeftButton.center.x { return }
+
+            let closestElement = getClosestView(near: touchLocationInStackView)
+            
+            if previousRightTag != closestElement.tag {
+                impactFeedbackGenerator.impactOccurred()
+            }
+            
+            rightSliderTagValue = closestElement.tag
+            previousRightTag = closestElement.tag
+            
+            let centerX = closestElement.center.x
+            
+            UIView.animate(withDuration: animationDuration) {
+                self.dragRightButton.center.x = centerX + self.stackViewLeftPadding
+            }
+            
+            regenerateBackgroundFrames()
+        }
+        
+        gesture.setTranslation(CGPoint.zero, in: superview)
     }
     
     @IBAction func clearButtonPressed(_ sender: Any) {
+        resetSliders()
     }
     
     override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
         return CGSize(width: targetSize.width, height: 120)
     }
     
-    func getClosestView(near point: CGPoint) -> UIView {
+    private func getClosestView(near point: CGPoint) -> UIView {
         var minDistance = CGFloat.greatestFiniteMagnitude
         var closestIndex = 0
         
@@ -205,5 +200,94 @@ class SliderTableViewCell: UITableViewCell {
         }
         
         return stackViewElements[closestIndex]
+    }
+    
+    private func getClosestView(by tag: Int) -> CGPoint {
+        let element = stackViewElements[tag]
+        return element.center
+    }
+    
+    private func updateLabel() {
+        
+        var leftSide = ""
+        var rightSide = ""
+        
+        switch leftSliderTagValue {
+        case 0:
+            leftSide = "X"
+        case 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11:
+            leftSide = String(leftSliderTagValue - 1)
+        default:
+            leftSide = "10+"
+        }
+        
+        switch rightSliderTagValue {
+        case 0:
+            rightSide = "X"
+        case 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11:
+            rightSide = String(rightSliderTagValue - 1)
+        default:
+            rightSide = "10+"
+        }
+        
+        if leftSliderTagValue == rightSliderTagValue {
+            filterLabel.text = "= \(rightSide)"
+        } else {
+            filterLabel.text = String(leftSide + " - " + rightSide)
+        }
+        
+        sliderTableViewModel = SliderTableViewModel(lhs: leftSide, rhs: rightSide)
+    }
+    
+    private func resetSliders() {
+        leftSliderTagValue = 6
+        rightSliderTagValue = 6
+        resetLabel()
+        
+        sliderTableViewModel = nil
+        
+        dragLeftButton.center.x = getClosestView(by: leftSliderTagValue).x + stackViewLeftPadding
+        dragRightButton.center.x = getClosestView(by: rightSliderTagValue).x + stackViewLeftPadding
+        
+        clearButton.isHidden = true
+        
+        regenerateBackgroundFrames(reset: true)
+    }
+    
+    private func resetLabel() {
+        filterLabel.text = ""
+    }
+    
+    private func regenerateBackgroundFrames(reset: Bool = false) {
+        var newFrame = dragBackground.frame
+        newFrame.origin.x = dragLeftButton.center.x - dragLeftButton.frame.width
+        let newWidth = dragRightButton.center.x - dragLeftButton.center.x + (dragRightButton.frame.width * 2)
+        newFrame.size.width = newWidth
+        
+        if reset {
+            dragBackground.frame = newFrame
+        } else {
+            UIView.animate(withDuration: animationDuration) {
+                self.dragBackground.frame = newFrame
+            }
+        }
+        
+        var newButtonsBackgroundFrame = buttonsBackground.frame
+        newButtonsBackgroundFrame.origin.x = dragLeftButton.center.x - dragLeftButton.frame.width / 2
+        let newButtonsBackgroundWidth = dragRightButton.center.x - dragLeftButton.center.x + dragRightButton.frame.width
+        newButtonsBackgroundFrame.size.width = newButtonsBackgroundWidth
+        
+        if reset {
+            buttonsBackground.frame = newButtonsBackgroundFrame
+        } else {
+            UIView.animate(withDuration: animationDuration) {
+                self.buttonsBackground.frame = newButtonsBackgroundFrame
+            }
+        }
+
+        if reset {
+            dragBackground.center.x = getClosestView(by: leftSliderTagValue).x + stackViewLeftPadding
+            buttonsBackground.center.x = getClosestView(by: leftSliderTagValue).x + stackViewLeftPadding
+        }
     }
 }

@@ -10,6 +10,16 @@
 		538BD98BC104461249EA8DD1 /* Pods_MTG.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E48989CCAFBBCF69DF5FC0 /* Pods_MTG.framework */; };
 		8B170FFA29A6B38800EC1D34 /* SliderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B170FF829A6B38800EC1D34 /* SliderTableViewCell.swift */; };
 		8B17100029A7FED400EC1D34 /* SliderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B170FFF29A7FED400EC1D34 /* SliderTableViewCell.xib */; };
+		8B17101029AD2C4000EC1D34 /* Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B17100F29AD2C4000EC1D34 /* Format.swift */; };
+		8B17101229AD2CE900EC1D34 /* Rarity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B17101129AD2CE900EC1D34 /* Rarity.swift */; };
+		8B17101429AD2DAF00EC1D34 /* SingleSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B17101329AD2DAF00EC1D34 /* SingleSet.swift */; };
+		8B17101629AD2FA800EC1D34 /* Sets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B17101529AD2FA800EC1D34 /* Sets.swift */; };
+		8B17101929AD3F6500EC1D34 /* CustomDropdownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B17101729AD3F6500EC1D34 /* CustomDropdownTableViewCell.swift */; };
+		8B17101A29AD3F6500EC1D34 /* CustomDropdownTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B17101829AD3F6500EC1D34 /* CustomDropdownTableViewCell.xib */; };
+		8B2744D029AEA62E00BC1CB0 /* CheckboxCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2744CE29AEA62E00BC1CB0 /* CheckboxCollectionViewCell.swift */; };
+		8B2744D129AEA62E00BC1CB0 /* CheckboxCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B2744CF29AEA62E00BC1CB0 /* CheckboxCollectionViewCell.xib */; };
+		8B2744D429AEA6D000BC1CB0 /* CheckboxTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2744D229AEA6D000BC1CB0 /* CheckboxTableViewCell.swift */; };
+		8B2744D529AEA6D000BC1CB0 /* CheckboxTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B2744D329AEA6D000BC1CB0 /* CheckboxTableViewCell.xib */; };
 		8B7F60DB299433F300D54CF7 /* ScryfallInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7F60DA299433F300D54CF7 /* ScryfallInteractor.swift */; };
 		8B7F60E02994B2B900D54CF7 /* CardSearchViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7F60DF2994B2B900D54CF7 /* CardSearchViewModels.swift */; };
 		8B7F60E229956E5A00D54CF7 /* NoCardsFoundSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7F60E129956E5A00D54CF7 /* NoCardsFoundSearchViewController.swift */; };
@@ -34,8 +44,8 @@
 		8B9849342995A25600819DAC /* AdvancedCardSearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9849322995A25600819DAC /* AdvancedCardSearchCollectionViewCell.swift */; };
 		8B9849352995A25600819DAC /* AdvancedCardSearchCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B9849332995A25600819DAC /* AdvancedCardSearchCollectionViewCell.xib */; };
 		8B984957299AA5AD00819DAC /* UICollectionViewFlowLayout+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B984956299AA5AC00819DAC /* UICollectionViewFlowLayout+Extension.swift */; };
-		8B98495A299AD29300819DAC /* AdvancedCardSearchCardTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B984958299AD29300819DAC /* AdvancedCardSearchCardTypeTableViewCell.swift */; };
-		8B98495B299AD29300819DAC /* AdvancedCardSearchCardTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B984959299AD29300819DAC /* AdvancedCardSearchCardTypeTableViewCell.xib */; };
+		8B98495A299AD29300819DAC /* DropdownTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B984958299AD29300819DAC /* DropdownTableViewCell.swift */; };
+		8B98495B299AD29300819DAC /* DropdownTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B984959299AD29300819DAC /* DropdownTableViewCell.xib */; };
 		8B98495D299AE96200819DAC /* AdvancedCardSearchModalFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B98495C299AE96200819DAC /* AdvancedCardSearchModalFilterViewController.swift */; };
 		8B98495F299BEDF000819DAC /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B98495E299BEDF000819DAC /* Types.swift */; };
 		8B984961299BFCC800819DAC /* Subtype.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B984960299BFCC800819DAC /* Subtype.swift */; };
@@ -52,6 +62,16 @@
 		1BDEFA78034205AFA5F319DA /* Pods-MTG.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MTG.release.xcconfig"; path = "Target Support Files/Pods-MTG/Pods-MTG.release.xcconfig"; sourceTree = "<group>"; };
 		8B170FF829A6B38800EC1D34 /* SliderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderTableViewCell.swift; sourceTree = "<group>"; };
 		8B170FFF29A7FED400EC1D34 /* SliderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SliderTableViewCell.xib; sourceTree = "<group>"; };
+		8B17100F29AD2C4000EC1D34 /* Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Format.swift; sourceTree = "<group>"; };
+		8B17101129AD2CE900EC1D34 /* Rarity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rarity.swift; sourceTree = "<group>"; };
+		8B17101329AD2DAF00EC1D34 /* SingleSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSet.swift; sourceTree = "<group>"; };
+		8B17101529AD2FA800EC1D34 /* Sets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sets.swift; sourceTree = "<group>"; };
+		8B17101729AD3F6500EC1D34 /* CustomDropdownTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDropdownTableViewCell.swift; sourceTree = "<group>"; };
+		8B17101829AD3F6500EC1D34 /* CustomDropdownTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomDropdownTableViewCell.xib; sourceTree = "<group>"; };
+		8B2744CE29AEA62E00BC1CB0 /* CheckboxCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxCollectionViewCell.swift; sourceTree = "<group>"; };
+		8B2744CF29AEA62E00BC1CB0 /* CheckboxCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheckboxCollectionViewCell.xib; sourceTree = "<group>"; };
+		8B2744D229AEA6D000BC1CB0 /* CheckboxTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxTableViewCell.swift; sourceTree = "<group>"; };
+		8B2744D329AEA6D000BC1CB0 /* CheckboxTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CheckboxTableViewCell.xib; sourceTree = "<group>"; };
 		8B7F60DA299433F300D54CF7 /* ScryfallInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScryfallInteractor.swift; sourceTree = "<group>"; };
 		8B7F60DF2994B2B900D54CF7 /* CardSearchViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSearchViewModels.swift; sourceTree = "<group>"; };
 		8B7F60E129956E5A00D54CF7 /* NoCardsFoundSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoCardsFoundSearchViewController.swift; sourceTree = "<group>"; };
@@ -78,8 +98,8 @@
 		8B9849322995A25600819DAC /* AdvancedCardSearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedCardSearchCollectionViewCell.swift; sourceTree = "<group>"; };
 		8B9849332995A25600819DAC /* AdvancedCardSearchCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdvancedCardSearchCollectionViewCell.xib; sourceTree = "<group>"; };
 		8B984956299AA5AC00819DAC /* UICollectionViewFlowLayout+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewFlowLayout+Extension.swift"; sourceTree = "<group>"; };
-		8B984958299AD29300819DAC /* AdvancedCardSearchCardTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedCardSearchCardTypeTableViewCell.swift; sourceTree = "<group>"; };
-		8B984959299AD29300819DAC /* AdvancedCardSearchCardTypeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdvancedCardSearchCardTypeTableViewCell.xib; sourceTree = "<group>"; };
+		8B984958299AD29300819DAC /* DropdownTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownTableViewCell.swift; sourceTree = "<group>"; };
+		8B984959299AD29300819DAC /* DropdownTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropdownTableViewCell.xib; sourceTree = "<group>"; };
 		8B98495C299AE96200819DAC /* AdvancedCardSearchModalFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedCardSearchModalFilterViewController.swift; sourceTree = "<group>"; };
 		8B98495E299BEDF000819DAC /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 		8B984960299BFCC800819DAC /* Subtype.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subtype.swift; sourceTree = "<group>"; };
@@ -195,6 +215,10 @@
 				8B98495E299BEDF000819DAC /* Types.swift */,
 				8B984960299BFCC800819DAC /* Subtype.swift */,
 				8B982FC929917F8D00A60D7E /* Symbols.swift */,
+				8B17100F29AD2C4000EC1D34 /* Format.swift */,
+				8B17101129AD2CE900EC1D34 /* Rarity.swift */,
+				8B17101329AD2DAF00EC1D34 /* SingleSet.swift */,
+				8B17101529AD2FA800EC1D34 /* Sets.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -209,6 +233,10 @@
 				8B984966299C0DB500819DAC /* Color Search Cell */,
 				8BCC0719299D39B600F4CF43 /* Mana Cost Cell */,
 				8B170FFC29A6B38C00EC1D34 /* Slider Cell */,
+				8B2744CE29AEA62E00BC1CB0 /* CheckboxCollectionViewCell.swift */,
+				8B2744CF29AEA62E00BC1CB0 /* CheckboxCollectionViewCell.xib */,
+				8B2744D229AEA6D000BC1CB0 /* CheckboxTableViewCell.swift */,
+				8B2744D329AEA6D000BC1CB0 /* CheckboxTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -236,8 +264,10 @@
 		8B984967299C0DCC00819DAC /* Card Search Types Cell */ = {
 			isa = PBXGroup;
 			children = (
-				8B984958299AD29300819DAC /* AdvancedCardSearchCardTypeTableViewCell.swift */,
-				8B984959299AD29300819DAC /* AdvancedCardSearchCardTypeTableViewCell.xib */,
+				8B984958299AD29300819DAC /* DropdownTableViewCell.swift */,
+				8B984959299AD29300819DAC /* DropdownTableViewCell.xib */,
+				8B17101729AD3F6500EC1D34 /* CustomDropdownTableViewCell.swift */,
+				8B17101829AD3F6500EC1D34 /* CustomDropdownTableViewCell.xib */,
 			);
 			path = "Card Search Types Cell";
 			sourceTree = "<group>";
@@ -357,13 +387,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BCC0716299C126700F4CF43 /* ColorSearchCollectionViewCell.xib in Resources */,
+				8B2744D529AEA6D000BC1CB0 /* CheckboxTableViewCell.xib in Resources */,
+				8B2744D129AEA62E00BC1CB0 /* CheckboxCollectionViewCell.xib in Resources */,
 				8B982FD52991A86900A60D7E /* ManaCostCollectionViewCell.xib in Resources */,
 				8B17100029A7FED400EC1D34 /* SliderTableViewCell.xib in Resources */,
 				8B982FAA2991540200A60D7E /* LaunchScreen.storyboard in Resources */,
 				8B982FBD29915FA500A60D7E /* Sample.json in Resources */,
-				8B98495B299AD29300819DAC /* AdvancedCardSearchCardTypeTableViewCell.xib in Resources */,
+				8B98495B299AD29300819DAC /* DropdownTableViewCell.xib in Resources */,
 				8B982FC72991751500A60D7E /* CardTableViewCell.xib in Resources */,
 				8B9849312995A03000819DAC /* AdvancedCardSearchTableViewCell.xib in Resources */,
+				8B17101A29AD3F6500EC1D34 /* CustomDropdownTableViewCell.xib in Resources */,
 				8B982FA72991540200A60D7E /* Assets.xcassets in Resources */,
 				8B984965299C0D9700819DAC /* ColorSearchTableViewCell.xib in Resources */,
 				8B9849352995A25600819DAC /* AdvancedCardSearchCollectionViewCell.xib in Resources */,
@@ -420,17 +453,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B2744D429AEA6D000BC1CB0 /* CheckboxTableViewCell.swift in Sources */,
 				8B98495D299AE96200819DAC /* AdvancedCardSearchModalFilterViewController.swift in Sources */,
 				8B982FBF2991646C00A60D7E /* CardListViewController.swift in Sources */,
-				8B98495A299AD29300819DAC /* AdvancedCardSearchCardTypeTableViewCell.swift in Sources */,
+				8B17101029AD2C4000EC1D34 /* Format.swift in Sources */,
+				8B2744D029AEA62E00BC1CB0 /* CheckboxCollectionViewCell.swift in Sources */,
+				8B98495A299AD29300819DAC /* DropdownTableViewCell.swift in Sources */,
 				8B98495F299BEDF000819DAC /* Types.swift in Sources */,
 				8B170FFA29A6B38800EC1D34 /* SliderTableViewCell.swift in Sources */,
 				8BC5F3CC29941C4E0040F49C /* CardSearchViewController.swift in Sources */,
 				8B9849342995A25600819DAC /* AdvancedCardSearchCollectionViewCell.swift in Sources */,
+				8B17101929AD3F6500EC1D34 /* CustomDropdownTableViewCell.swift in Sources */,
 				8B984957299AA5AD00819DAC /* UICollectionViewFlowLayout+Extension.swift in Sources */,
 				8BCC0718299D397200F4CF43 /* CardColors.swift in Sources */,
 				8B7F60DB299433F300D54CF7 /* ScryfallInteractor.swift in Sources */,
 				8B982FCA29917F8D00A60D7E /* Symbols.swift in Sources */,
+				8B17101629AD2FA800EC1D34 /* Sets.swift in Sources */,
+				8B17101429AD2DAF00EC1D34 /* SingleSet.swift in Sources */,
+				8B17101229AD2CE900EC1D34 /* Rarity.swift in Sources */,
 				8B982FC12991666F00A60D7E /* CardDetailViewController.swift in Sources */,
 				8B982F9E2991540100A60D7E /* AppDelegate.swift in Sources */,
 				8B7F60E229956E5A00D54CF7 /* NoCardsFoundSearchViewController.swift in Sources */,

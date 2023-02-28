@@ -53,12 +53,6 @@ class ColorSearchTableViewCell: UITableViewCell {
         termCollectionView.register(AdvancedCardSearchCollectionViewCell.nib(), forCellWithReuseIdentifier: AdvancedCardSearchCollectionViewCell.identifier)
         
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
     
     @IBAction func clearButtonPressed(_ sender: Any) {
         searchViewModels.removeAll()

@@ -180,8 +180,14 @@
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" name="AccentColor"/>
                             </view>
+                            <view alpha="0.29999999999999999" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yuZ-xv-WJe" userLabel="Buttons Background">
+                                <rect key="frame" x="167" y="10" width="40" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                <color key="tintColor" name="AccentColor"/>
+                            </view>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EMV-pW-wYQ">
-                                <rect key="frame" x="218.91368716614988" y="10.000000000000057" width="20.000000000000028" height="19.999999999999986"/>
+                                <rect key="frame" x="175" y="10" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                 <color key="tintColor" systemColor="systemOrangeColor"/>
@@ -223,6 +229,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="tJf-4O-vYe"/>
             <connections>
+                <outlet property="buttonsBackground" destination="yuZ-xv-WJe" id="fDt-cE-mOJ"/>
                 <outlet property="clearButton" destination="NkU-hi-G6T" id="Vg2-Ta-vLv"/>
                 <outlet property="dragBackground" destination="ai1-hK-SOe" id="auE-Sh-ZKs"/>
                 <outlet property="dragLeftButton" destination="EMV-pW-wYQ" id="H9m-ff-0Kj"/>

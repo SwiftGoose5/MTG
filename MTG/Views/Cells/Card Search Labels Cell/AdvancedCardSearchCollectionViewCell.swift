@@ -33,11 +33,7 @@ class AdvancedCardSearchCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-    }
-    
+
     func configure() {
         backgroundColor = .systemBlue
         layer.cornerRadius = 8

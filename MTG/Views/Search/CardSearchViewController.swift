@@ -22,31 +22,44 @@ class CardSearchViewController: UIViewController {
     
     var cards: [Card?] = []
     
-    var superTypesModel: AdvancedCardSearchCardTypeTableViewCellViewModel!
-    var subTypesModel: AdvancedCardSearchCardTypeTableViewCellViewModel!
+    var superTypesModel: DropdownTableViewCellViewModel!
+    var subTypesModel: DropdownTableViewCellViewModel!
+    var setsModel: CustomDropdownTableViewCellViewModel!
+    var formatsModel: CheckboxTableViewCellModel!
+    var rarityModel: CheckboxTableViewCellModel!
+    
+//    var setsModels: [SetsTableViewModel]!
     
     var advancedSearchQueryModels: [String]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        superTypesModel = AdvancedCardSearchCardTypeTableViewCellViewModel(titleText: "Super Types", cellIdentifier: "ModalCell", terms: Types.allCases.map { $0.rawValue })
-        subTypesModel = AdvancedCardSearchCardTypeTableViewCellViewModel(titleText: "", cellIdentifier: "", terms: [])
+        superTypesModel = DropdownTableViewCellViewModel(titleText: "Super Types", cellIdentifier: "ModalCell", terms: Types.allCases.map { $0.rawValue })
+        subTypesModel = DropdownTableViewCellViewModel(titleText: "", cellIdentifier: "", terms: [])
+        formatsModel = CheckboxTableViewCellModel(titleText: "Formats", terms: Format.allCases.map { $0.rawValue })
+        rarityModel = CheckboxTableViewCellModel(titleText: "Rarity", terms: Rarity.allCases.map { $0.rawValue })
         
         navigationItem.title = "Cards"
         
         tableView.delegate = self
         tableView.dataSource = self
         
+        tableView.separatorStyle = .none
+        
         tableView.register(AdvancedCardSearchTableViewCell.nib(), forCellReuseIdentifier: AdvancedCardSearchTableViewCell.identifier)
-        tableView.register(AdvancedCardSearchCardTypeTableViewCell.nib(), forCellReuseIdentifier: AdvancedCardSearchCardTypeTableViewCell.identifier)
+        tableView.register(DropdownTableViewCell.nib(), forCellReuseIdentifier: DropdownTableViewCell.identifier + "SuperType")
+        tableView.register(DropdownTableViewCell.nib(), forCellReuseIdentifier: DropdownTableViewCell.identifier + "SubType")
+        tableView.register(DropdownTableViewCell.nib(), forCellReuseIdentifier: DropdownTableViewCell.identifier + "Set")
         tableView.register(ColorSearchTableViewCell.nib(), forCellReuseIdentifier: ColorSearchTableViewCell.identifier)
         tableView.register(SliderTableViewCell.nib(), forCellReuseIdentifier: SliderTableViewCell.identifier)
+        tableView.register(CheckboxTableViewCell.nib(), forCellReuseIdentifier: CheckboxTableViewCell.identifier)
         
         configureSearchBar()
         showSimpleSearchView()
         
         fetchSubTypes()
+        fetchSets()
     }
 
     @IBAction func segmentedControlChanged(_ sender: Any) {
@@ -86,7 +99,24 @@ extension CardSearchViewController {
             
             subTypes.sort()
             
-            subTypesModel = AdvancedCardSearchCardTypeTableViewCellViewModel(titleText: "Subtypes", cellIdentifier: "ModalCell", terms: subTypes)
+            subTypesModel = DropdownTableViewCellViewModel(titleText: "Subtypes", cellIdentifier: "ModalCell", terms: subTypes)
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    func fetchSets() {
+        Task {
+            var sets: [SetsTableViewModel] = []
+            
+            let getSets = await ScryfallInteractor.getSetsWithSymbols()
+            
+            sets.append(contentsOf: getSets)
+            sets.sort(by: { $0.setName < $1.setName })
+            
+            setsModel = CustomDropdownTableViewCellViewModel(titleText: "Sets", cellIdentifier: CustomDropdownTableViewCell.identifier, models: sets)
             
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -143,15 +173,17 @@ extension CardSearchViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
         else if indexPath.row == 1 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: AdvancedCardSearchCardTypeTableViewCell.identifier, for: indexPath) as! AdvancedCardSearchCardTypeTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: DropdownTableViewCell.identifier + "SuperType", for: indexPath) as! DropdownTableViewCell
             cell.titleLabel.text = "Card Type".uppercased()
+            cell.dropdownButton.setTitle("Enter Type, Supertype", for: .normal)
             cell.tableViewDelegate = self
             cell.configure(with: superTypesModel)
             return cell
         }
         else if indexPath.row == 2 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: AdvancedCardSearchCardTypeTableViewCell.identifier, for: indexPath) as! AdvancedCardSearchCardTypeTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: DropdownTableViewCell.identifier + "SubType", for: indexPath) as! DropdownTableViewCell
             cell.titleLabel.text = "Card Subtype".uppercased()
+            cell.dropdownButton.setTitle("Enter Subtype", for: .normal)
             cell.tableViewDelegate = self
             cell.configure(with: subTypesModel)
             return cell
@@ -161,14 +193,44 @@ extension CardSearchViewController: UITableViewDelegate, UITableViewDataSource {
             cell.tableDelegate = self
             return cell
         }
-        else {
+        else if indexPath.row == 4 {
             let cell = tableView.dequeueReusableCell(withIdentifier: SliderTableViewCell.identifier, for: indexPath) as! SliderTableViewCell
+            cell.titleLabel.text = "Mana Value".uppercased()
             return cell
         }
+        else if indexPath.row == 5 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: SliderTableViewCell.identifier, for: indexPath) as! SliderTableViewCell
+            cell.titleLabel.text = "Power".uppercased()
+            return cell
+        }
+        else if indexPath.row == 6 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: SliderTableViewCell.identifier, for: indexPath) as! SliderTableViewCell
+            cell.titleLabel.text = "Toughness".uppercased()
+            return cell
+        }
+        else if indexPath.row == 7 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: DropdownTableViewCell.identifier + "Set", for: indexPath) as! DropdownTableViewCell
+            cell.configure(with: setsModel)
+            cell.titleLabel.text = "Sets".uppercased()
+            cell.dropdownButton.setTitle("Enter Set", for: .normal)
+            cell.tableViewDelegate = self
+            return cell
+        }
+        else if indexPath.row == 8 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: CheckboxTableViewCell.identifier, for: indexPath) as! CheckboxTableViewCell
+            cell.configure(with: formatsModel)
+            return cell
+        }
+        else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: CheckboxTableViewCell.identifier, for: indexPath) as! CheckboxTableViewCell
+            cell.configure(with: rarityModel)
+            return cell
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 10
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

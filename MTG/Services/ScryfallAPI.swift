@@ -30,6 +30,8 @@ enum CardPaths: String {
     case EnchantmentTypes = "/enchantment-types"
     case SpellTypes = "/spell-types"
     
+    case Sets = "/sets"
+    
 }
 
 enum APIError: Error {
@@ -211,6 +213,41 @@ extension ScryfallAPI {
             let (data, _) = try await URLSession.shared.data(from: url)
             let symbols = try JSONDecoder().decode(Subtype.self, from: data)
             return .success(symbols)
+        } catch {
+            print("ERROR: \(error.localizedDescription)")
+            return .failure(APIError.failedToCreateData)
+        }
+    }
+}
+
+// MARK: - Sets API Calls
+extension ScryfallAPI {
+    static func getSets() async -> Result<Sets, Error> {
+        guard let url = URL(string: BASE_URL + CardPaths.Sets.rawValue) else { return .failure(APIError.failedToCreateURL) }
+        
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            let sets = try JSONDecoder().decode(Sets.self, from: data)
+            return .success(sets)
+        } catch {
+            print("ERROR: \(error.localizedDescription)")
+            return .failure(APIError.failedToCreateData)
+        }
+    }
+    
+    static func getSetImage(of setImageUrl: String) async -> Result<UIImage, Error> {
+        
+        guard let url = URL(string: setImageUrl) else { return .failure(APIError.failedToCreateURL) }
+        
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            
+            guard let receivedImage: SVGKImage = SVGKImage(data: data) else { return .failure(APIError.failedToGenerateImage) }
+            
+            print("getting set image")
+            
+            return .success(receivedImage.uiImage)
+            
         } catch {
             print("ERROR: \(error.localizedDescription)")
             return .failure(APIError.failedToCreateData)

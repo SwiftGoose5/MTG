@@ -90,6 +90,8 @@ struct ScryfallInteractor {
     }
 }
 
+
+// MARK: - Types Calls
 extension ScryfallInteractor {
     static func getCreatureTypes() async -> [String] {
         let result = await ScryfallAPI.getCreatureTypes()
@@ -168,6 +170,63 @@ extension ScryfallInteractor {
         case .success(let subtype):
             guard let subtypes = subtype.data else { return [] }
             return subtypes
+            
+        case .failure(let error):
+            print("Creature Type Error: \(error.localizedDescription)")
+            return []
+        }
+    }
+}
+
+// MARK: - Sets Calls
+extension ScryfallInteractor {
+    static func getSets() async -> [String] {
+        let result = await ScryfallAPI.getSets()
+        
+        switch result {
+        case .success(let sets):
+            guard let sets = sets.data else { return [] }
+            
+            var allSets: [String] = []
+            
+            for set in sets {
+                allSets.append(set.name!)
+            }
+            return allSets
+            
+        case .failure(let error):
+            print("Creature Type Error: \(error.localizedDescription)")
+            return []
+        }
+    }
+    static func getSetsWithSymbols() async -> [SetsTableViewModel] {
+        let result = await ScryfallAPI.getSets()
+        
+        switch result {
+        case .success(let sets):
+            guard let sets = sets.data else { return [] }
+            
+            var allSets: [SetsTableViewModel] = []
+            
+//            for set in sets {
+//                let result = await ScryfallAPI.getSetImage(of: set.iconSVGURI!)
+//                var setImage: UIImage? = nil
+//
+//                switch result {
+//                case .success(let image):
+//                    setImage = image
+//                case .failure(let error):
+//                    setImage = nil
+//                    print(error.localizedDescription)
+//                }
+//
+//
+//            }
+            for oneSet in sets {
+                allSets.append(SetsTableViewModel(setCode: oneSet.code!, setName: oneSet.name!))
+            }
+            
+            return allSets
             
         case .failure(let error):
             print("Creature Type Error: \(error.localizedDescription)")
