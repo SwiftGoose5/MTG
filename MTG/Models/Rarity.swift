@@ -14,5 +14,5 @@ enum Rarity: String, CaseIterable {
     case Common = "Common"
     case Uncommon = "Uncommon"
     case Rare = "Rare"
-    case MythicRare = "MythicRare"
+    case MythicRare = "Mythic Rare"
 }

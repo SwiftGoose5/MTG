@@ -10,39 +10,24 @@
 
 import UIKit
 
-enum SearchFilters: String {
-    case IS = "IS"
-    case OR = "OR"
-    case NOT = "NOT"
+struct DropdownTableViewCellViewModel {
+    var titleText: String
+    var cellIdentifier: String
+    var terms: [String]
 }
 
-class AdvancedCardSearchCollectionViewModel {
-    var tag: Int!
-    var searchFilter: String!
-    var searchTerm: String!
-    
-    init(tag: Int!, searchFilter: String!, searchTerm: String!) {
-        self.tag = tag
-        self.searchFilter = searchFilter
-        self.searchTerm = searchTerm
-    }
-    
-    func adjustTag(to index: Int) {
-        tag = index
-    }
-}
+class DropdownTableViewCell: UITableViewCell {
 
-protocol TableViewDelegate {
-    func reload()
-}
-
-class AdvancedCardSearchTableViewCell: UITableViewCell {
-    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var filterButton: UIButton!
-    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var dropdownButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    var cellViewModel: DropdownTableViewCellViewModel!
+    var customCellViewModel: CustomDropdownTableViewCellViewModel!
+    
+    var custom: Bool = false
     
     var searchViewModels: [AdvancedCardSearchCollectionViewModel] = [] {
         didSet {
@@ -52,12 +37,12 @@ class AdvancedCardSearchTableViewCell: UITableViewCell {
     
     var tableViewDelegate: TableViewDelegate!
     
-    static let identifier = "AdvancedCardSearchTableViewCell"
+    static let identifier = "DropdownTableViewCell"
     
     static func nib() -> UINib {
-        return UINib(nibName: "AdvancedCardSearchTableViewCell", bundle: nil)
+        return UINib(nibName: "DropdownTableViewCell", bundle: nil)
     }
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
@@ -65,14 +50,33 @@ class AdvancedCardSearchTableViewCell: UITableViewCell {
         
         collectionView.dataSource = self
         collectionView.delegate = self
-        textField.delegate = self
+        collectionView.register(AdvancedCardSearchCollectionViewCell.nib(), forCellWithReuseIdentifier: AdvancedCardSearchCollectionViewCell.identifier)
         
+        configureFlowLayout()
+        configureMenu()
+    }
+    
+    func configure(with cellViewModel: DropdownTableViewCellViewModel) {
+        self.cellViewModel = cellViewModel
+        self.titleLabel.text = cellViewModel.titleText.uppercased()
+        self.dropdownButton.setTitle("Enter " + cellViewModel.titleText, for: .normal)
+        self.custom = false
+    }
+    
+    func configure(with customCellViewModel: CustomDropdownTableViewCellViewModel) {
+        self.customCellViewModel = customCellViewModel
+        self.titleLabel.text = customCellViewModel.titleText.uppercased()
+        self.dropdownButton.setTitle("Enter " + customCellViewModel.titleText, for: .normal)
+        self.custom = true
+    }
+    
+    func configureFlowLayout() {
         let flowLayout = LeftAlignedCollectionViewFlowLayout()
         flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         collectionView.collectionViewLayout = flowLayout
-        
-        collectionView.register(AdvancedCardSearchCollectionViewCell.nib(), forCellWithReuseIdentifier: AdvancedCardSearchCollectionViewCell.identifier)
-        
+    }
+    
+    func configureMenu() {
         let menu = UIMenu(title: "", options: [.displayInline, .destructive], children: [
             UIAction(title: "IS", image: nil, identifier: nil, discoverabilityTitle: nil, state: .on) { _ in
             },
@@ -84,7 +88,22 @@ class AdvancedCardSearchTableViewCell: UITableViewCell {
         
         filterButton.menu = menu
     }
-
+    
+    @IBAction func dropdownButtonPressed(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "AdvancedCardSearchModalFilterViewController") as! AdvancedCardSearchModalFilterViewController
+        
+        if custom {
+            vc.configure(with: customCellViewModel)
+        } else {
+            vc.configure(with: cellViewModel)
+        }
+        
+        vc.modalFilterDelegate = self
+        vc.modalPresentationStyle = .popover
+        window?.rootViewController!.present(vc, animated: true)
+    }
+    
     @IBAction func clearButtonPressed(_ sender: Any) {
         searchViewModels.removeAll()
         
@@ -93,38 +112,9 @@ class AdvancedCardSearchTableViewCell: UITableViewCell {
             self.tableViewDelegate.reload()
         }
     }
-    
-    @IBAction func addButtonPressed(_ sender: Any) {
-        addSearchQuery()
-    }
-    
 }
 
-extension AdvancedCardSearchTableViewCell: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        textField.resignFirstResponder()
-        
-        addSearchQuery()
-        
-        return true
-    }
-    
-    func addSearchQuery() {
-        guard let searchTerm = textField.text, !searchTerm.isEmpty else { return }
-        
-        let searchModel = AdvancedCardSearchCollectionViewModel(tag: searchViewModels.count, searchFilter: filterButton.currentTitle, searchTerm: searchTerm)
-        
-        searchViewModels.append(searchModel)
-        
-        DispatchQueue.main.async {
-            self.collectionView.reloadData()
-            self.tableViewDelegate.reload()
-        }
-    }
-}
-
-extension AdvancedCardSearchTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
+extension DropdownTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return searchViewModels.count
     }
@@ -137,7 +127,7 @@ extension AdvancedCardSearchTableViewCell: UICollectionViewDataSource, UICollect
         
         return cell
     }
-
+    
     override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
         let collectionViewHeight = collectionView.collectionViewLayout.collectionViewContentSize.height
 
@@ -151,7 +141,7 @@ extension AdvancedCardSearchTableViewCell: UICollectionViewDataSource, UICollect
     }
 }
 
-extension AdvancedCardSearchTableViewCell: AdvancedCardSearchCollectionViewCellDelegate {
+extension DropdownTableViewCell: AdvancedCardSearchCollectionViewCellDelegate {
     func collectionViewCellCloseButtonPressed(from index: Int) {
         searchViewModels.remove(at: index)
         
@@ -165,3 +155,15 @@ extension AdvancedCardSearchTableViewCell: AdvancedCardSearchCollectionViewCellD
         }
     }
 }
+
+extension DropdownTableViewCell: ModalFilterSelectionDelegate {
+    func filterTermSelected(term: String) {
+        searchViewModels.append(AdvancedCardSearchCollectionViewModel(tag: searchViewModels.count, searchFilter: filterButton.currentTitle, searchTerm: term))
+        
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+            self.tableViewDelegate.reload()
+        }
+    }
+}
+

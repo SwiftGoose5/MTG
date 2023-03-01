@@ -144,7 +144,11 @@ extension ColorSearchTableViewCell: UICollectionViewDelegate, UICollectionViewDa
             let cell = collectionView.cellForItem(at: indexPath)
             
             cell!.contentView.layer.cornerRadius = cell!.frame.width / 2
-            cell!.contentView.backgroundColor = .systemBlue
+            
+            UIView.animate(withDuration: 0.2) {
+                cell!.contentView.backgroundColor = .systemBlue
+            }
+            
             
             switch indexPath.row {
             case 0:

@@ -28,19 +28,6 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NkU-hi-G6T">
-                        <rect key="frame" x="73.333333333333329" y="16" width="63.999999999999986" height="32"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="64" id="iRz-Rz-baW"/>
-                        </constraints>
-                        <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain" title="Clear">
-                            <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
-                        </buttonConfiguration>
-                        <connections>
-                            <action selector="clearButtonPressed:" destination="lCv-QE-PHd" eventType="touchUpInside" id="Vco-ie-fno"/>
-                        </connections>
-                    </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kBv-NB-Tfz">
                         <rect key="frame" x="348.66666666666669" y="16" width="41.333333333333314" height="32"/>
                         <constraints>
@@ -213,6 +200,19 @@
                             <constraint firstItem="tad-aJ-WDe" firstAttribute="leading" secondItem="Gq2-ds-nCM" secondAttribute="leading" constant="19" id="gnj-jz-h5z"/>
                         </constraints>
                     </view>
+                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NkU-hi-G6T">
+                        <rect key="frame" x="72" y="16" width="63.999999999999986" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="64" id="iRz-Rz-baW"/>
+                        </constraints>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" title="Clear">
+                            <fontDescription key="titleFontDescription" type="system" pointSize="15"/>
+                        </buttonConfiguration>
+                        <connections>
+                            <action selector="clearButtonPressed:" destination="lCv-QE-PHd" eventType="touchUpInside" id="Vco-ie-fno"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Lcs-rE-LtQ" firstAttribute="top" secondItem="MBC-C4-znL" secondAttribute="top" constant="16" id="VOk-r0-PML"/>

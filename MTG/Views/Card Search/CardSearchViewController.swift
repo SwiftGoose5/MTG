@@ -47,7 +47,7 @@ class CardSearchViewController: UIViewController {
         
         tableView.separatorStyle = .none
         
-        tableView.register(AdvancedCardSearchTableViewCell.nib(), forCellReuseIdentifier: AdvancedCardSearchTableViewCell.identifier)
+        tableView.register(TextSearchTableViewCell.nib(), forCellReuseIdentifier: TextSearchTableViewCell.identifier)
         tableView.register(DropdownTableViewCell.nib(), forCellReuseIdentifier: DropdownTableViewCell.identifier + "SuperType")
         tableView.register(DropdownTableViewCell.nib(), forCellReuseIdentifier: DropdownTableViewCell.identifier + "SubType")
         tableView.register(DropdownTableViewCell.nib(), forCellReuseIdentifier: DropdownTableViewCell.identifier + "Set")
@@ -130,6 +130,9 @@ extension CardSearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text, !searchText.isEmpty else { return }
         let trimmed = searchText.trimmingCharacters(in: .whitespaces)
+        
+        searchBar.text = ""
+        searchBar.resignFirstResponder()
 
         Task {
             let card = await ScryfallInteractor.getOneCard(from: trimmed)
@@ -167,7 +170,7 @@ extension CardSearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: AdvancedCardSearchTableViewCell.identifier, for: indexPath) as! AdvancedCardSearchTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: TextSearchTableViewCell.identifier, for: indexPath) as! TextSearchTableViewCell
             cell.titleLabel.text = "Card Name".uppercased()
             cell.tableViewDelegate = self
             return cell
@@ -175,7 +178,6 @@ extension CardSearchViewController: UITableViewDelegate, UITableViewDataSource {
         else if indexPath.row == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: DropdownTableViewCell.identifier + "SuperType", for: indexPath) as! DropdownTableViewCell
             cell.titleLabel.text = "Card Type".uppercased()
-            cell.dropdownButton.setTitle("Enter Type, Supertype", for: .normal)
             cell.tableViewDelegate = self
             cell.configure(with: superTypesModel)
             return cell
@@ -183,7 +185,6 @@ extension CardSearchViewController: UITableViewDelegate, UITableViewDataSource {
         else if indexPath.row == 2 {
             let cell = tableView.dequeueReusableCell(withIdentifier: DropdownTableViewCell.identifier + "SubType", for: indexPath) as! DropdownTableViewCell
             cell.titleLabel.text = "Card Subtype".uppercased()
-            cell.dropdownButton.setTitle("Enter Subtype", for: .normal)
             cell.tableViewDelegate = self
             cell.configure(with: subTypesModel)
             return cell
