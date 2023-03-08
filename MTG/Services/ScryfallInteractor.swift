@@ -51,6 +51,23 @@ struct ScryfallInteractor {
         return card
     }
     
+    static func getManyCards(from advancedSearchModels: AdvancedCardSearchModel) async -> Cards? {
+        
+        var cards: Cards?
+        
+        let result = await ScryfallAPI.getManyCards(from: advancedSearchModels)
+        
+        switch result {
+        case .success(let tempCards):
+            cards = tempCards
+            
+        case .failure(_):
+            cards = nil
+        }
+        
+        return cards
+    }
+    
     static func getRandomCard() async -> Card? {
         
         var card: Card?

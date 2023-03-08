@@ -10,6 +10,10 @@
 
 import UIKit
 
+protocol ColorSearchModelDelegate {
+    func updateColorSearchModel(models: [AdvancedCardSearchCollectionViewModel])
+}
+
 class ColorSearchTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
@@ -21,11 +25,13 @@ class ColorSearchTableViewCell: UITableViewCell {
     var searchViewModels: [AdvancedCardSearchCollectionViewModel] = [] {
         didSet {
             searchViewModels.isEmpty ? (clearButton.isHidden = true) : (clearButton.isHidden = false)
+            colorSearchModelDelegate.updateColorSearchModel(models: searchViewModels)
         }
     }
     
     var selectedColors: [String] = []
-    var tableDelegate: TableViewDelegate!
+    var tableViewDelegate: TableViewDelegate!
+    var colorSearchModelDelegate: ColorSearchModelDelegate!
     
     static let identifier = "ColorSearchTableViewCell"
     
@@ -37,6 +43,8 @@ class ColorSearchTableViewCell: UITableViewCell {
         super.awakeFromNib()
         selectionStyle = .none
         clearButton.isHidden = true
+        
+        addNotificationObserver()
         
         colorCollectionView.delegate = self
         colorCollectionView.dataSource = self
@@ -56,10 +64,16 @@ class ColorSearchTableViewCell: UITableViewCell {
     
     @IBAction func clearButtonPressed(_ sender: Any) {
         searchViewModels.removeAll()
+        for cell in self.colorCollectionView.visibleCells {
+            if cell.isSelected {
+                cell.isSelected = false
+                cell.contentView.backgroundColor = .none
+            }
+        }
         
         DispatchQueue.main.async {
             self.termCollectionView.reloadData()
-            self.tableDelegate.reload()
+            self.tableViewDelegate.reload()
         }
     }
     
@@ -85,7 +99,7 @@ class ColorSearchTableViewCell: UITableViewCell {
         
         DispatchQueue.main.async {
             self.termCollectionView.reloadData()
-            self.tableDelegate.reload()
+            self.tableViewDelegate.reload()
         }
     }
 }
@@ -214,7 +228,26 @@ extension ColorSearchTableViewCell: AdvancedCardSearchCollectionViewCellDelegate
         
         DispatchQueue.main.async {
             self.termCollectionView.reloadData()
-            self.tableDelegate.reload()
+            self.tableViewDelegate.reload()
+        }
+    }
+}
+
+extension ColorSearchTableViewCell {
+    func addNotificationObserver() {
+        NotificationCenter.default.addObserver(forName: clearAllNotification, object: nil, queue: .main) { [weak self] _ in
+            self?.searchViewModels.removeAll()
+            for cell in self!.colorCollectionView.visibleCells {
+                if cell.isSelected {
+                    cell.isSelected = false
+                    cell.contentView.backgroundColor = .none
+                }
+            }
+            
+            DispatchQueue.main.async {
+                self?.termCollectionView.reloadData()
+                self?.tableViewDelegate.reload()
+            }
         }
     }
 }

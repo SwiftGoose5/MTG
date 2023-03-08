@@ -51,6 +51,8 @@
 		8B984961299BFCC800819DAC /* Subtype.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B984960299BFCC800819DAC /* Subtype.swift */; };
 		8B984964299C0D9700819DAC /* ColorSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B984962299C0D9700819DAC /* ColorSearchTableViewCell.swift */; };
 		8B984965299C0D9700819DAC /* ColorSearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B984963299C0D9700819DAC /* ColorSearchTableViewCell.xib */; };
+		8BBEC0D529B104FF00EF657F /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBEC0D429B104FF00EF657F /* Notifications.swift */; };
+		8BBEC0D729B7E0D000EF657F /* Cards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBEC0D629B7E0D000EF657F /* Cards.swift */; };
 		8BC5F3CC29941C4E0040F49C /* CardSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC5F3CB29941C4E0040F49C /* CardSearchViewController.swift */; };
 		8BCC0715299C126700F4CF43 /* ColorSearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCC0713299C126700F4CF43 /* ColorSearchCollectionViewCell.swift */; };
 		8BCC0716299C126700F4CF43 /* ColorSearchCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BCC0714299C126700F4CF43 /* ColorSearchCollectionViewCell.xib */; };
@@ -105,6 +107,8 @@
 		8B984960299BFCC800819DAC /* Subtype.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subtype.swift; sourceTree = "<group>"; };
 		8B984962299C0D9700819DAC /* ColorSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSearchTableViewCell.swift; sourceTree = "<group>"; };
 		8B984963299C0D9700819DAC /* ColorSearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorSearchTableViewCell.xib; sourceTree = "<group>"; };
+		8BBEC0D429B104FF00EF657F /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		8BBEC0D629B7E0D000EF657F /* Cards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cards.swift; sourceTree = "<group>"; };
 		8BC5F3CB29941C4E0040F49C /* CardSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSearchViewController.swift; sourceTree = "<group>"; };
 		8BCC0713299C126700F4CF43 /* ColorSearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSearchCollectionViewCell.swift; sourceTree = "<group>"; };
 		8BCC0714299C126700F4CF43 /* ColorSearchCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorSearchCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -235,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				8B982FB92991563600A60D7E /* Card.swift */,
+				8BBEC0D629B7E0D000EF657F /* Cards.swift */,
 				8BCC0717299D397200F4CF43 /* CardColors.swift */,
 				8B98495E299BEDF000819DAC /* Types.swift */,
 				8B984960299BFCC800819DAC /* Subtype.swift */,
@@ -243,6 +248,7 @@
 				8B17101129AD2CE900EC1D34 /* Rarity.swift */,
 				8B17101329AD2DAF00EC1D34 /* SingleSet.swift */,
 				8B17101529AD2FA800EC1D34 /* Sets.swift */,
+				8BBEC0D429B104FF00EF657F /* Notifications.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -486,6 +492,7 @@
 				8B98495F299BEDF000819DAC /* Types.swift in Sources */,
 				8B170FFA29A6B38800EC1D34 /* SliderTableViewCell.swift in Sources */,
 				8BC5F3CC29941C4E0040F49C /* CardSearchViewController.swift in Sources */,
+				8BBEC0D729B7E0D000EF657F /* Cards.swift in Sources */,
 				8B9849342995A25600819DAC /* AdvancedCardSearchCollectionViewCell.swift in Sources */,
 				8B17101929AD3F6500EC1D34 /* CustomDropdownTableViewCell.swift in Sources */,
 				8B984957299AA5AD00819DAC /* UICollectionViewFlowLayout+Extension.swift in Sources */,
@@ -501,6 +508,7 @@
 				8B7F60E02994B2B900D54CF7 /* CardSearchViewModels.swift in Sources */,
 				8B9849302995A03000819DAC /* TextSearchTableViewCell.swift in Sources */,
 				8B982FA02991540100A60D7E /* SceneDelegate.swift in Sources */,
+				8BBEC0D529B104FF00EF657F /* Notifications.swift in Sources */,
 				8B982FBA2991563600A60D7E /* Card.swift in Sources */,
 				8B982FD42991A86900A60D7E /* ManaCostCollectionViewCell.swift in Sources */,
 				8B984961299BFCC800819DAC /* Subtype.swift in Sources */,

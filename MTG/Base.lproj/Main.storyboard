@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -18,24 +19,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="BPF-wN-Tbr">
-                                <rect key="frame" x="16" y="103" width="361" height="32"/>
-                                <segments>
-                                    <segment title="Simple Search"/>
-                                    <segment title="Advanced Search"/>
-                                </segments>
-                                <connections>
-                                    <action selector="segmentedControlChanged:" destination="PWU-vk-CSB" eventType="valueChanged" id="pyE-x5-VQu"/>
-                                </connections>
-                            </segmentedControl>
-                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m8n-Qr-6JC">
-                                <rect key="frame" x="-1" y="156" width="393" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="PWU-vk-CSB" id="x68-Yn-R6M"/>
-                                </connections>
-                            </searchBar>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="1oP-oM-WAF">
                                 <rect key="frame" x="0.0" y="156" width="393" height="613"/>
                                 <subviews>
@@ -63,6 +46,38 @@
                                     </tableView>
                                 </subviews>
                             </stackView>
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m8n-Qr-6JC">
+                                <rect key="frame" x="-3" y="156" width="394" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="PWU-vk-CSB" id="x68-Yn-R6M"/>
+                                </connections>
+                            </searchBar>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="BPF-wN-Tbr">
+                                <rect key="frame" x="16" y="103" width="361" height="32"/>
+                                <segments>
+                                    <segment title="Simple Search"/>
+                                    <segment title="Advanced Search"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentedControlChanged:" destination="PWU-vk-CSB" eventType="valueChanged" id="pyE-x5-VQu"/>
+                                </connections>
+                            </segmentedControl>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Z7-EE-6bv">
+                                <rect key="frame" x="313" y="705" width="48" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="Zwq-KW-hIF"/>
+                                    <constraint firstAttribute="height" constant="48" id="pZ1-N4-b1S"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled">
+                                    <imageReference key="image" image="magnifyingglass" catalog="system" symbolScale="large"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="searchButtonPressed:" destination="PWU-vk-CSB" eventType="touchUpInside" id="RcW-J0-N4B"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hhU-3f-dzS"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -72,7 +87,9 @@
                             <constraint firstItem="hhU-3f-dzS" firstAttribute="bottom" secondItem="1oP-oM-WAF" secondAttribute="bottom" id="PPa-rz-Eoc"/>
                             <constraint firstItem="BPF-wN-Tbr" firstAttribute="top" secondItem="hhU-3f-dzS" secondAttribute="top" id="WV4-rO-Mj6"/>
                             <constraint firstItem="BPF-wN-Tbr" firstAttribute="leading" secondItem="hhU-3f-dzS" secondAttribute="leading" constant="16" id="X2F-V2-fSb"/>
+                            <constraint firstItem="hhU-3f-dzS" firstAttribute="trailing" secondItem="3Z7-EE-6bv" secondAttribute="trailing" constant="32" id="XTN-HU-CtL"/>
                             <constraint firstItem="hhU-3f-dzS" firstAttribute="trailing" secondItem="1oP-oM-WAF" secondAttribute="trailing" id="eGY-tm-vU0"/>
+                            <constraint firstItem="hhU-3f-dzS" firstAttribute="bottom" secondItem="3Z7-EE-6bv" secondAttribute="bottom" constant="16" id="qvS-n3-oJT"/>
                             <constraint firstItem="1oP-oM-WAF" firstAttribute="leading" secondItem="hhU-3f-dzS" secondAttribute="leading" id="vdu-Xn-6OM"/>
                         </constraints>
                     </view>
@@ -80,6 +97,7 @@
                     <connections>
                         <outlet property="clearAllButton" destination="muG-rw-HQY" id="A83-8B-QdZ"/>
                         <outlet property="searchBar" destination="m8n-Qr-6JC" id="fv4-LQ-10G"/>
+                        <outlet property="searchButton" destination="3Z7-EE-6bv" id="G1k-ly-pOr"/>
                         <outlet property="segmentedControl" destination="BPF-wN-Tbr" id="mO0-pK-NYO"/>
                         <outlet property="stackView" destination="1oP-oM-WAF" id="Q5R-tc-3bA"/>
                         <outlet property="tableView" destination="roH-Jh-KRJ" id="mUS-ac-Tqe"/>
@@ -538,6 +556,7 @@
     <resources>
         <image name="chart.line.uptrend.xyaxis" catalog="system" width="128" height="102"/>
         <image name="exclamationmark.triangle.fill" catalog="system" width="128" height="109"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="rectangle.portrait.fill" catalog="system" width="115" height="128"/>
         <image name="square.stack.3d.down.forward.fill" catalog="system" width="123" height="128"/>
         <systemColor name="systemBackgroundColor">

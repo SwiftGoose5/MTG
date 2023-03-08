@@ -10,9 +10,5 @@
 
 import Foundation
 
-enum Rarity: String, CaseIterable, Codable {
-    case Common = "common"
-    case Uncommon = "uncommon"
-    case Rare = "rare"
-    case MythicRare = "mythic"
-}
+let clearAllNotificationKey = "com.clearAllPressed"
+let clearAllNotification = NSNotification.Name(clearAllNotificationKey)

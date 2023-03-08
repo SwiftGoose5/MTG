@@ -10,6 +10,10 @@
 
 import UIKit
 
+protocol CheckboxSearchModelDelegate {
+    func updateCheckboxSearchModel(for titleText: String, models: [String])
+}
+
 struct CheckboxTableViewCellModel {
     var titleText: String
     var terms: [String]
@@ -22,10 +26,13 @@ class CheckboxTableViewCell: UITableViewCell {
     @IBOutlet weak var clearButton: UIButton!
     
     var cellViewModel: CheckboxTableViewCellModel!
+    var tableViewDelegate: TableViewDelegate!
+    var checkboxSearchModelDelegate: CheckboxSearchModelDelegate!
     
-    var searchViewModel: [String] = [] {
+    var searchViewModels: [String] = [] {
         didSet {
-            searchViewModel.isEmpty ? (clearButton.isHidden = true) : (clearButton.isHidden = false)
+            searchViewModels.isEmpty ? (clearButton.isHidden = true) : (clearButton.isHidden = false)
+            checkboxSearchModelDelegate.updateCheckboxSearchModel(for: cellViewModel.titleText, models: searchViewModels)
         }
     }
     
@@ -38,6 +45,8 @@ class CheckboxTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
+        addNotificationObserver()
+        
         clearButton.isHidden = true
         
         collectionView.delegate = self
@@ -47,9 +56,8 @@ class CheckboxTableViewCell: UITableViewCell {
     }
 
     @IBAction func clearButtonPressed(_ sender: Any) {
-        searchViewModel.removeAll()
+        searchViewModels.removeAll()
         
-        // TODO: Delegate back to CollectionView to deselect all
         for cell in collectionView.visibleCells as! [CheckboxCollectionViewCell] {
             cell.checkboxButton.isSelected = false
         }
@@ -108,10 +116,27 @@ extension CheckboxTableViewCell: UICollectionViewDelegate, UICollectionViewDataS
 
 extension CheckboxTableViewCell: CheckboxDelegate {
     func checkboxTapped(title: String, state: Bool) {
-        if searchViewModel.contains(title) {
-            searchViewModel.removeAll(where: { $0.contains(title) })
+        if searchViewModels.contains(title) {
+            searchViewModels.removeAll(where: { $0.contains(title) })
         } else {
-            searchViewModel.append(title)
+            searchViewModels.append(title)
+        }
+    }
+}
+
+extension CheckboxTableViewCell {
+    func addNotificationObserver() {
+        NotificationCenter.default.addObserver(forName: clearAllNotification, object: nil, queue: .main) { [weak self] _ in
+            self?.searchViewModels.removeAll()
+            
+            for cell in self?.collectionView.visibleCells as! [CheckboxCollectionViewCell] {
+                cell.checkboxButton.isSelected = false
+            }
+            
+            DispatchQueue.main.async {
+                self?.collectionView.reloadData()
+                self?.tableViewDelegate.reload()
+            }
         }
     }
 }

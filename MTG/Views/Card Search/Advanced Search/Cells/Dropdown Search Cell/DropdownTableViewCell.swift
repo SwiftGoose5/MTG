@@ -16,6 +16,10 @@ struct DropdownTableViewCellViewModel {
     var terms: [String]
 }
 
+protocol DropdownSearchModelDelegate {
+    func updateDropdownSearchModel(for titleText: String, models: [AdvancedCardSearchCollectionViewModel])
+}
+
 class DropdownTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
@@ -32,10 +36,12 @@ class DropdownTableViewCell: UITableViewCell {
     var searchViewModels: [AdvancedCardSearchCollectionViewModel] = [] {
         didSet {
             searchViewModels.isEmpty ? (clearButton.isHidden = true) : (clearButton.isHidden = false)
+            dropdownSearchModelDelegate.updateDropdownSearchModel(for: cellViewModel != nil ? (cellViewModel.titleText) : (customCellViewModel.titleText), models: searchViewModels)
         }
     }
     
     var tableViewDelegate: TableViewDelegate!
+    var dropdownSearchModelDelegate: DropdownSearchModelDelegate!
     
     static let identifier = "DropdownTableViewCell"
     
@@ -46,6 +52,7 @@ class DropdownTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
+        addNotificationObserver()
         clearButton.isHidden = true
         
         collectionView.dataSource = self
@@ -167,3 +174,15 @@ extension DropdownTableViewCell: ModalFilterSelectionDelegate {
     }
 }
 
+extension DropdownTableViewCell {
+    func addNotificationObserver() {
+        NotificationCenter.default.addObserver(forName: clearAllNotification, object: nil, queue: .main) { [weak self] _ in
+            self?.searchViewModels.removeAll()
+            
+            DispatchQueue.main.async {
+                self?.collectionView.reloadData()
+                self?.tableViewDelegate.reload()
+            }
+        }
+    }
+}

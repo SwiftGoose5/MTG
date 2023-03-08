@@ -18,6 +18,7 @@ let SVG_URL = "https://svgs.scryfall.io"
 enum CardPaths: String {
     case RandomCard = "/cards/random"
     case CardsNamed = "/cards/named?fuzzy="
+    case CardsSearch = "/cards/search?"
     
     case Symbols = "/symbology/"
     case CardSymbols = "/card-symbols/"
@@ -65,6 +66,51 @@ public struct ScryfallAPI {
             let (data, _) = try await URLSession.shared.data(from: url)
             let card = try JSONDecoder().decode(Card.self, from: data)
             return .success(card)
+            
+        } catch {
+            print("ERROR: \(error.localizedDescription)")
+            return .failure(APIError.failedToCreateData)
+        }
+    }
+    
+    static func getManyCards(from searchModels: AdvancedCardSearchModel) async -> Result<Cards, Error> {
+        
+        var query = "order=name&q="
+        
+        // TODO: Build Query from Model
+        if !searchModels.cardNameSearchModel.isEmpty {
+            for (index, model) in searchModels.cardNameSearchModel.enumerated() {
+                
+                if index != 0 {
+                    query.append(contentsOf: "+")
+                }
+                
+                switch model.searchFilter {
+                case "IS", "OR":
+                    query.append(contentsOf: model.searchTerm.trimmingCharacters(in: .whitespaces).replacingOccurrences(of: " ", with: "+"))
+                    
+                case "NOT":
+                    query.append(contentsOf: String("-" + model.searchTerm.trimmingCharacters(in: .whitespaces).replacingOccurrences(of: " ", with: "+-")))
+                    
+                default:
+                    break
+                }
+            }
+        }
+        
+        print(query)
+        
+        
+        
+        guard let url = URL(string: BASE_URL + CardPaths.CardsSearch.rawValue + query) else { return .failure(APIError.failedToCreateURL) }
+        
+        print("url:")
+        print(url)
+        
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            let cards = try JSONDecoder().decode(Cards.self, from: data)
+            return .success(cards)
             
         } catch {
             print("ERROR: \(error.localizedDescription)")
