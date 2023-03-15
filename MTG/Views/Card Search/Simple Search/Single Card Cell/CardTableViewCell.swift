@@ -24,23 +24,36 @@ class CardTableViewCell: UITableViewCell {
     @IBOutlet weak var cardSet: UILabel!
     @IBOutlet weak var cardRarity: UILabel!
     
-    var cardManaSymbols: [UIImage?]!
+    var cardManaSymbols: [UIImage]!
     
     var cardManaCost: String?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        selectionStyle = .none
         
         cardCostCollectionView.dataSource = self
         cardCostCollectionView.delegate = self
         cardCostCollectionView.register(ManaCostCollectionViewCell.nib(), forCellWithReuseIdentifier: ManaCostCollectionViewCell.identifier)
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        cardCostCollectionView.reloadData()
+    
+    func configure(with card: Card) {
+        cardName.text = card.name
+        cardType.text = card.typeLine
+        cardSet.text = card.setName
+        cardRarity.text = card.rarity?.capitalized
+        cardManaCost = card.manaCost
+        
+        if let manaCost = cardManaCost {
+            cardManaCost = manaCost.parseManaSymbols()
+            
+            cardManaSymbols = [UIImage].init(repeating: UIImage(), count: manaCost.parseManaSymbols().count)
+            
+            Task {
+                cardManaSymbols = await ScryfallInteractor.getCardManaSymbols(from: card)
+                cardCostCollectionView.reloadData()
+            }
+        }
     }
 }
 
@@ -58,7 +71,7 @@ extension CardTableViewCell: UICollectionViewDelegate, UICollectionViewDataSourc
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ManaCostCollectionViewCell.identifier, for: indexPath) as! ManaCostCollectionViewCell
         
-        cell.configure(with: cardManaSymbols[indexPath.row]!)
+        cell.configure(with: cardManaSymbols[indexPath.row])
         
         return cell
     }

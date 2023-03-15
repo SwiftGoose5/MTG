@@ -61,7 +61,7 @@ class CardSearchViewController: UIViewController {
         super.viewDidLoad()
                                
         superTypesModel = DropdownTableViewCellViewModel(titleText: "Super Types", cellIdentifier: "ModalCell", terms: Types.allCases.map { $0.rawValue })
-        subTypesModel = DropdownTableViewCellViewModel(titleText: "Sub Types", cellIdentifier: "", terms: [])
+        subTypesModel = DropdownTableViewCellViewModel(titleText: "Subtypes", cellIdentifier: "", terms: [])
         formatsModel = CheckboxTableViewCellModel(titleText: "Formats", terms: Format.allCases.map { $0.rawValue })
         rarityModel = CheckboxTableViewCellModel(titleText: "Rarity", terms: Rarity.allCases.map { $0.rawValue })
         
@@ -106,16 +106,6 @@ class CardSearchViewController: UIViewController {
     }
     
     @IBAction func searchButtonPressed(_ sender: Any) {
-        print(cardNameSearchModel.description)
-        print(superTypesSearchModel.description)
-        print(subTypesSearchModel.description)
-        print(colorSearchModel.description)
-        print(manaValueSearchModel)
-        print(powerSearchModel)
-        print(toughnessSearchModel)
-        print(setsSearchModel.description)
-        print(formatsSearchModel.description)
-        print(raritySearchModel.description)
         
         let advancedCardSearchModel = AdvancedCardSearchModel(cardNameSearchModel: cardNameSearchModel,
                                                               superTypesSearchModel: superTypesSearchModel,
@@ -130,8 +120,22 @@ class CardSearchViewController: UIViewController {
         
         Task {
             let cards = await ScryfallInteractor.getManyCards(from: advancedCardSearchModel)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
             
             print("cards found: \(cards?.totalCards)")
+            
+            if let cards = cards {
+                let vc = storyboard.instantiateViewController(withIdentifier: "CardListViewController") as! CardListViewController
+                vc.configure(with: cards)
+                navigationController?.pushViewController(vc, animated: true)
+                
+            } else {
+                let vc = storyboard.instantiateViewController(withIdentifier: "NoCardsFoundSearchViewController") as! NoCardsFoundSearchViewController
+                vc.modalPresentationStyle = .overFullScreen
+                present(vc, animated: true)
+            }
+            
+            
         }
     }
 }
@@ -191,26 +195,44 @@ extension CardSearchViewController: UISearchBarDelegate {
         
         searchBar.text = ""
         searchBar.resignFirstResponder()
-
+        
         Task {
-            let card = await ScryfallInteractor.getOneCard(from: trimmed)
+            let cards = await ScryfallInteractor.getManyCards(from: trimmed)
+            
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             
-            if let card = card {
-                let cardManaSymbols = await ScryfallInteractor.getCardManaSymbols(from: card)
-                let cardViewModel = OneCardSearchViewModel(card: card, cardManaCost: card.manaCost, cardManaCostSymbols: cardManaSymbols)
+            if let cards = cards {
                 let vc = storyboard.instantiateViewController(withIdentifier: "CardListViewController") as! CardListViewController
-                vc.cardViewModel = cardViewModel
-                
+                _ = vc.view
+                vc.configure(with: cards)
                 navigationController?.pushViewController(vc, animated: true)
                 
             } else {
-                
                 let vc = storyboard.instantiateViewController(withIdentifier: "NoCardsFoundSearchViewController") as! NoCardsFoundSearchViewController
                 vc.modalPresentationStyle = .overFullScreen
                 present(vc, animated: true)
             }
         }
+
+//        Task {
+//            let card = await ScryfallInteractor.getOneCard(from: trimmed)
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//
+//            if let card = card {
+//                let cardManaSymbols = await ScryfallInteractor.getCardManaSymbols(from: card)
+//                let cardViewModel = OneCardSearchViewModel(card: card, cardManaCost: card.manaCost, cardManaCostSymbols: cardManaSymbols)
+//                let vc = storyboard.instantiateViewController(withIdentifier: "CardListViewController") as! CardListViewController
+//                vc.cardViewModel = cardViewModel
+//
+//                navigationController?.pushViewController(vc, animated: true)
+//
+//            } else {
+//
+//                let vc = storyboard.instantiateViewController(withIdentifier: "NoCardsFoundSearchViewController") as! NoCardsFoundSearchViewController
+//                vc.modalPresentationStyle = .overFullScreen
+//                present(vc, animated: true)
+//            }
+//        }
     }
     
     func checkIfClearButtonShouldHide() {
@@ -393,10 +415,10 @@ extension CardSearchViewController: TextSearchModelDelegate {
 extension CardSearchViewController: DropdownSearchModelDelegate {
     func updateDropdownSearchModel(for titleText: String, models: [AdvancedCardSearchCollectionViewModel]) {
         switch titleText {
-        case "Card Type":
+        case "Super Types":
             superTypesSearchModel = models
             
-        case "Card Subtype":
+        case "Subtypes":
             subTypesSearchModel = models
             
         case "Sets":
@@ -413,6 +435,9 @@ extension CardSearchViewController: DropdownSearchModelDelegate {
 extension CardSearchViewController: ColorSearchModelDelegate {
     func updateColorSearchModel(models: [AdvancedCardSearchCollectionViewModel]) {
         colorSearchModel = models
+        for model in models {
+            print(String("Color " + model.searchFilter + ": " + model.searchTerm))
+        }
 
         checkIfClearButtonShouldHide()
     }

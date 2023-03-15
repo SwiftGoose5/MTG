@@ -86,14 +86,33 @@ class ColorSearchTableViewCell: UITableViewCell {
     
     func addSearchQuery() {
         guard let searchTerm = segmentedControl.titleForSegment(at: segmentedControl.selectedSegmentIndex) else { return }
+        var searchTermModified = ""
+        
+        switch searchTerm {
+        case "Include", "Exclude":
+            searchTermModified = searchTerm + "s"
+            
+        default:
+            break
+        }
+        
+        searchTermModified = searchTermModified.uppercased()
         
         var colors: String = ""
         
-        for color in selectedColors {
-            colors.append(String(color + " "))
+        if selectedColors.count > 1 {
+            for (index, color) in selectedColors.enumerated() {
+                if index != selectedColors.count - 1 {
+                    colors.append(String(color + ", "))
+                } else {
+                    colors.append(color)
+                }
+            }
+        } else {
+            colors.append(selectedColors.first ?? "")
         }
         
-        let searchModel = AdvancedCardSearchCollectionViewModel(tag: searchViewModels.count, searchFilter: searchTerm, searchTerm: colors)
+        let searchModel = AdvancedCardSearchCollectionViewModel(tag: searchViewModels.count, searchFilter: searchTermModified, searchTerm: colors)
         
         searchViewModels.append(searchModel)
         

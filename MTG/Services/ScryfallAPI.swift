@@ -73,15 +73,35 @@ public struct ScryfallAPI {
         }
     }
     
+    static func getManyCards(from query: String) async -> Result<Cards, Error> {
+        
+        let queryProcessed = query.trimmingCharacters(in: .whitespaces).replacingOccurrences(of: " ", with: "+")
+        let fullQuery = "order=name&q=\(queryProcessed)"
+        
+        guard let url = URL(string: BASE_URL + CardPaths.CardsSearch.rawValue + fullQuery) else { return .failure(APIError.failedToCreateURL) }
+        
+        print(url)
+        
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            let card = try JSONDecoder().decode(Cards.self, from: data)
+            return .success(card)
+            
+        } catch {
+            print("ERROR: \(error.localizedDescription)")
+            return .failure(APIError.failedToCreateData)
+        }
+    }
+    
     static func getManyCards(from searchModels: AdvancedCardSearchModel) async -> Result<Cards, Error> {
         
+        var firstParameter = true
         var query = "order=name&q="
         
-        // TODO: Build Query from Model
+        // MARK: - Card name
         if !searchModels.cardNameSearchModel.isEmpty {
-            for (index, model) in searchModels.cardNameSearchModel.enumerated() {
-                
-                if index != 0 {
+            for model in searchModels.cardNameSearchModel {
+                if query.last != "+" && !firstParameter {
                     query.append(contentsOf: "+")
                 }
                 
@@ -96,15 +116,95 @@ public struct ScryfallAPI {
                     break
                 }
             }
+            firstParameter = true
         }
         
-        print(query)
+        // MARK: - Super types
+        if !searchModels.superTypesSearchModel.isEmpty {
+            for model in searchModels.superTypesSearchModel {
+                if query.last != "+" && !firstParameter {
+                    query.append(contentsOf: "+")
+                }
+                
+                switch model.searchFilter {
+                case "IS", "OR":
+                    query.append(contentsOf: String("type:" + model.searchTerm))
+                    
+                case "NOT":
+                    query.append(contentsOf: String("-type:" + model.searchTerm))
+                    
+                default:
+                    break
+                }
+            }
+            firstParameter = true
+        }
         
+        // MARK: - Subtypes
+        if !searchModels.subTypesSearchModel.isEmpty {
+            for model in searchModels.subTypesSearchModel {
+                if query.last != "+" && !firstParameter {
+                    query.append(contentsOf: "+")
+                }
+                
+                switch model.searchFilter {
+                case "IS", "OR":
+                    query.append(contentsOf: String("type:" + model.searchTerm))
+                    
+                case "NOT":
+                    query.append(contentsOf: String("-type:" + model.searchTerm))
+                    
+                default:
+                    break
+                }
+            }
+            firstParameter = true
+        }
         
+        // MARK: - Color
+        if !searchModels.colorSearchModel.isEmpty {
+            for model in searchModels.colorSearchModel {
+                print("api search: \(model.searchTerm)")
+                if query.last != "+" && !firstParameter {
+                    query.append(contentsOf: "+")
+                }
+                
+                var searchTerm = model.searchTerm
+                    .replacingOccurrences(of: "White", with: "W")
+                    .replacingOccurrences(of: "Blue", with: "U")
+                    .replacingOccurrences(of: "Black", with: "B")
+                    .replacingOccurrences(of: "Red", with: "R")
+                    .replacingOccurrences(of: "Green", with: "G")
+                    .replacingOccurrences(of: "Colorless", with: "C")
+                    .replacingOccurrences(of: ", ", with: "")
+                
+                switch model.searchFilter {
+                case "INCLUDES":
+                    query.append(contentsOf: String("color>=" + searchTerm))
+                    
+                case "EXCLUDES":
+                    query.append(contentsOf: String("-color=" + searchTerm))
+                    
+                case "EXACTLY":
+                    query.append(contentsOf: String("color=" + searchTerm))
+                    
+                default:
+                    break
+                }
+            }
+            firstParameter = true
+        }
+        // MARK: - Mana
+        // MARK: - Power
+        // MARK: - Toughness
+        // MARK: - Sets
+        // MARK: - Format
+        // MARK: - Rarity
+        
+        print("query: \(query)")
         
         guard let url = URL(string: BASE_URL + CardPaths.CardsSearch.rawValue + query) else { return .failure(APIError.failedToCreateURL) }
         
-        print("url:")
         print(url)
         
         do {
@@ -117,21 +217,10 @@ public struct ScryfallAPI {
             return .failure(APIError.failedToCreateData)
         }
     }
-    
-    static func getCardsNamed(_ name: String) async -> Result<Card, Error> {
-        
-        guard let url = URL(string: BASE_URL + CardPaths.CardsNamed.rawValue + name) else { return .failure(APIError.failedToCreateURL) }
-        
-        do {
-            let (data, _) = try await URLSession.shared.data(from: url)
-            let card = try JSONDecoder().decode(Card.self, from: data)
-            return .success(card)
-        } catch {
-            print("ERROR: \(error.localizedDescription)")
-            return .failure(APIError.failedToCreateData)
-        }
-    }
-    
+}
+
+// MARK: - Images API Calls
+extension ScryfallAPI {
     static func getCardImage(from url: String) async -> Result<UIImage, Error> {
         
         guard let url = URL(string: url) else { return .failure(APIError.failedToCreateURL) }
@@ -148,7 +237,7 @@ public struct ScryfallAPI {
         }
     }
     
-    static func getOneSymbol(symbol: String) async -> Result<UIImage, Error> {
+    static func getOneManaSymbol(symbol: String) async -> Result<UIImage, Error> {
         
         let symbolBase = symbol.parseManaSymbols()
         
@@ -156,20 +245,15 @@ public struct ScryfallAPI {
         
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
-            
             guard let receivedImage: SVGKImage = SVGKImage(data: data) else { return .failure(APIError.failedToGenerateImage) }
-            
-//            guard let image = UIImage(data: data) else { return .failure(APIError.failedToGenerateImage) }
-            
             return .success(receivedImage.uiImage)
-            
         } catch {
             print("ERROR: \(error.localizedDescription)")
             return .failure(APIError.failedToCreateData)
         }
     }
     
-    static func getAllSymbols() async -> Result<Symbols, Error> {
+    static func getAllManaSymbols() async -> Result<Symbols, Error> {
         
         guard let url = URL(string: BASE_URL + CardPaths.Symbols.rawValue) else { return .failure(APIError.failedToCreateURL) }
         
@@ -183,7 +267,6 @@ public struct ScryfallAPI {
         }
     }
 }
-
 
 // MARK: - Types API Calls
 extension ScryfallAPI {

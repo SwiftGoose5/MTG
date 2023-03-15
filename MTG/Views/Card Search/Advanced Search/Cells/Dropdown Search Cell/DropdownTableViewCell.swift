@@ -65,14 +65,12 @@ class DropdownTableViewCell: UITableViewCell {
     
     func configure(with cellViewModel: DropdownTableViewCellViewModel) {
         self.cellViewModel = cellViewModel
-        self.titleLabel.text = cellViewModel.titleText.uppercased()
         self.dropdownButton.setTitle("Enter " + cellViewModel.titleText, for: .normal)
         self.custom = false
     }
     
     func configure(with customCellViewModel: CustomDropdownTableViewCellViewModel) {
         self.customCellViewModel = customCellViewModel
-        self.titleLabel.text = customCellViewModel.titleText.uppercased()
         self.dropdownButton.setTitle("Enter " + customCellViewModel.titleText, for: .normal)
         self.custom = true
     }

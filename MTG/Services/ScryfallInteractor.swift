@@ -51,6 +51,23 @@ struct ScryfallInteractor {
         return card
     }
     
+    static func getManyCards(from searchText: String) async -> Cards? {
+        
+        var cards: Cards?
+        
+        let result = await ScryfallAPI.getManyCards(from: searchText)
+        
+        switch result {
+            case .success(let tempCards):
+                cards = tempCards
+                
+            case .failure(_):
+                cards = nil
+        }
+        
+        return cards
+    }
+    
     static func getManyCards(from advancedSearchModels: AdvancedCardSearchModel) async -> Cards? {
         
         var cards: Cards?
@@ -85,14 +102,31 @@ struct ScryfallInteractor {
         return card
     }
     
-    static func getCardManaSymbols(from card: Card) async -> [UIImage?] {
+    
+}
+// MARK: - Image Calls
+extension ScryfallInteractor {
+    static func getCardImage(from url: String) async -> UIImage {
+        let result = await ScryfallAPI.getCardImage(from: url)
         
-        var manaImages: [UIImage?] = []
+        switch result {
+        case .success(let image):
+            return image
+            
+        case .failure(let error):
+            print("Card Image Error: \(error.localizedDescription)")
+            return UIImage()
+        }
+    }
+    
+    static func getCardManaSymbols(from card: Card) async -> [UIImage] {
+        
+        var manaImages: [UIImage] = []
         
         guard let manaCost = card.manaCost else { return manaImages }
         
         for manaSymbol in manaCost.parseManaSymbols() {
-            let result = await ScryfallAPI.getOneSymbol(symbol: String(manaSymbol))
+            let result = await ScryfallAPI.getOneManaSymbol(symbol: String(manaSymbol))
             
             switch result {
             case .success(let image):
@@ -106,7 +140,6 @@ struct ScryfallInteractor {
         return manaImages
     }
 }
-
 
 // MARK: - Types Calls
 extension ScryfallInteractor {

@@ -116,7 +116,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ccQ-ub-YUt">
-                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                                <rect key="frame" x="0.0" y="197" width="393" height="621"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Card" textLabel="M3r-2a-IgF" style="IBUITableViewCellStyleDefault" id="ETg-Pt-vKA" customClass="CardTableViewCell" customModule="MTG" customModuleProvider="target">
@@ -138,11 +138,53 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="DJe-UY-bW7">
+                                <rect key="frame" x="8" y="103" width="377" height="40"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ujM-iq-POR">
+                                        <rect key="frame" x="0.0" y="0.0" width="184.66666666666666" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="x4H-D9-wIj"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="tinted" image="line.3.horizontal" catalog="system" title="Name"/>
+                                        <connections>
+                                            <action selector="tableSortStyleTapped:" destination="nrq-fK-Y99" eventType="touchUpInside" id="8OI-Qz-dgZ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Zv-4u-4k5">
+                                        <rect key="frame" x="192.66666666666663" y="0.0" width="184.33333333333337" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="ogi-1S-3bJ"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="tinted" image="line.3.horizontal" catalog="system" title="Text - List"/>
+                                        <connections>
+                                            <action selector="tableViewStyleTapped:" destination="nrq-fK-Y99" eventType="touchUpInside" id="GtL-Zj-kdd"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Displaying x cards out of x" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aiu-bd-W4y">
+                                <rect key="frame" x="8" y="155" width="377" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Cjp-oY-IN7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Gq1-hI-TOb"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="ccQ-ub-YUt" firstAttribute="top" secondItem="Gq1-hI-TOb" secondAttribute="top" id="Anp-Y9-IHD"/>
+                            <constraint firstItem="DJe-UY-bW7" firstAttribute="leading" secondItem="Gq1-hI-TOb" secondAttribute="leading" constant="8" id="6US-ax-prw"/>
+                            <constraint firstItem="Aiu-bd-W4y" firstAttribute="leading" secondItem="Gq1-hI-TOb" secondAttribute="leading" constant="8" id="9mK-e3-Eql"/>
+                            <constraint firstItem="ccQ-ub-YUt" firstAttribute="top" secondItem="Aiu-bd-W4y" secondAttribute="bottom" constant="12" id="JWb-Ob-cvG"/>
+                            <constraint firstItem="Aiu-bd-W4y" firstAttribute="top" secondItem="DJe-UY-bW7" secondAttribute="bottom" constant="12" id="Lw8-Ae-vJi"/>
+                            <constraint firstItem="Gq1-hI-TOb" firstAttribute="trailing" secondItem="DJe-UY-bW7" secondAttribute="trailing" constant="8" id="YN7-u3-jMA"/>
+                            <constraint firstItem="Gq1-hI-TOb" firstAttribute="top" secondItem="DJe-UY-bW7" secondAttribute="top" id="ZPd-Bh-GuO"/>
+                            <constraint firstItem="Gq1-hI-TOb" firstAttribute="trailing" secondItem="Aiu-bd-W4y" secondAttribute="trailing" constant="8" id="dam-a4-afs"/>
                             <constraint firstItem="ccQ-ub-YUt" firstAttribute="leading" secondItem="Gq1-hI-TOb" secondAttribute="leading" id="hG7-Ne-Vxt"/>
                             <constraint firstItem="Gq1-hI-TOb" firstAttribute="trailing" secondItem="ccQ-ub-YUt" secondAttribute="trailing" id="kN8-l3-jlO"/>
                             <constraint firstItem="Gq1-hI-TOb" firstAttribute="bottom" secondItem="ccQ-ub-YUt" secondAttribute="bottom" id="xDB-7K-cb6"/>
@@ -150,12 +192,15 @@
                     </view>
                     <navigationItem key="navigationItem" id="Uz6-n9-ZVf"/>
                     <connections>
+                        <outlet property="cardCountLabel" destination="Aiu-bd-W4y" id="IOh-CQ-KaF"/>
+                        <outlet property="sortStyleButton" destination="ujM-iq-POR" id="gz1-KX-rD0"/>
                         <outlet property="tableView" destination="ccQ-ub-YUt" id="ewb-tO-5Ky"/>
+                        <outlet property="viewStyleButton" destination="3Zv-4u-4k5" id="5Iy-XX-KXL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D8y-K4-ryt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6144" y="-121"/>
+            <point key="canvasLocation" x="6142.7480916030536" y="-121.12676056338029"/>
         </scene>
         <!--No Cards Found Search View Controller-->
         <scene sceneID="LFq-5a-MfG">
@@ -556,6 +601,7 @@
     <resources>
         <image name="chart.line.uptrend.xyaxis" catalog="system" width="128" height="102"/>
         <image name="exclamationmark.triangle.fill" catalog="system" width="128" height="109"/>
+        <image name="line.3.horizontal" catalog="system" width="128" height="65"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="rectangle.portrait.fill" catalog="system" width="115" height="128"/>
         <image name="square.stack.3d.down.forward.fill" catalog="system" width="123" height="128"/>
