@@ -201,7 +201,7 @@ extension CardSearchViewController: UISearchBarDelegate {
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             
-            if let cards = cards {
+            if let cards = cards, cards.totalCards != nil {
                 let vc = storyboard.instantiateViewController(withIdentifier: "CardListViewController") as! CardListViewController
                 _ = vc.view
                 vc.configure(with: cards)

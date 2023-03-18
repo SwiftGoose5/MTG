@@ -9,6 +9,7 @@
 
 
 import Foundation
+import UIKit
 
 enum PickerOptions: String {
     case ManaValue = "Mana Value"
@@ -17,8 +18,8 @@ enum PickerOptions: String {
     case Power = "Power"
     case Toughness = "Toughness"
     
-    case CardSmall = "Cards - Small"
-    case CardFull = "Cards - Full"
+    case CardsSmall = "Cards - Small"
+    case CardsFull = "Cards - Full"
     case TextCard = "Text - Card"
     case TextList = "Text - List"
     
@@ -40,4 +41,67 @@ enum PickerIcons: String {
 enum PickerIdentifier {
     case SortStyle
     case ViewStyle
+}
+
+
+enum PickerNames: String {
+    case ManaValue = "Mana Value"
+    case Name = "Name"
+    case Color = "Color"
+    case Power = "Power"
+    case Toughness = "Toughness"
+    
+    case CardsSmall = "Cards - Small"
+    case CardsFull = "Cards - Full"
+    case TextCard = "Text - Card"
+    case TextList = "Text - List"
+}
+
+enum AttributedPickerOptions {
+    case NameAscending(NSAttributedString)
+    case NameDescending(NSAttributedString)
+    case ColorAscending(NSAttributedString)
+    case ColorDescending(NSAttributedString)
+    case ManaValueAscending(NSAttributedString)
+    case ManaValueDescending(NSAttributedString)
+    case PowerAscending(NSAttributedString)
+    case PowerDescending(NSAttributedString)
+    case ToughnessAscending(NSAttributedString)
+    case ToughnessDescending(NSAttributedString)
+    
+    var attributedString: NSAttributedString {
+        switch self {
+        case .NameAscending:
+            return generateAttributedString(icon: .Ascending, name: .Name)
+        case .NameDescending:
+            return generateAttributedString(icon: .Descending, name: .Name)
+        case .ColorAscending:
+            return generateAttributedString(icon: .Ascending, name: .Color)
+        case .ColorDescending:
+            return generateAttributedString(icon: .Descending, name: .Color)
+        case .ManaValueAscending:
+            return generateAttributedString(icon: .Ascending, name: .ManaValue)
+        case .ManaValueDescending:
+            return generateAttributedString(icon: .Descending, name: .ManaValue)
+        case .PowerAscending:
+            return generateAttributedString(icon: .Ascending, name: .Power)
+        case .PowerDescending:
+            return generateAttributedString(icon: .Descending, name: .Power)
+        case .ToughnessAscending:
+            return generateAttributedString(icon: .Ascending, name: .Toughness)
+        case .ToughnessDescending:
+            return generateAttributedString(icon: .Descending, name: .Toughness)
+        }
+    }
+    
+    func generateAttributedString(icon: PickerIcons, name: PickerNames) -> NSAttributedString {
+        let imageAttachment = NSTextAttachment()
+        imageAttachment.image = UIImage(systemName: icon.rawValue)
+        let imageString = NSAttributedString(attachment: imageAttachment)
+        let titleWithImage = NSMutableAttributedString(string: "")
+        titleWithImage.append(imageString)
+        titleWithImage.append(NSAttributedString(string: "  "))
+        titleWithImage.append(NSAttributedString(string: name.rawValue))
+        return titleWithImage
+    }
 }
