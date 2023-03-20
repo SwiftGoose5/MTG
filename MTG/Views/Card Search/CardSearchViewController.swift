@@ -126,6 +126,7 @@ class CardSearchViewController: UIViewController {
             
             if let cards = cards {
                 let vc = storyboard.instantiateViewController(withIdentifier: "CardListViewController") as! CardListViewController
+                _ = vc.view
                 vc.configure(with: cards)
                 navigationController?.pushViewController(vc, animated: true)
                 

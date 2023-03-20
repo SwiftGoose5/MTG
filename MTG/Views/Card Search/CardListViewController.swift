@@ -197,9 +197,55 @@ extension CardListViewController: PickerDelegate {
             case .Color:
                 switch icon {
                 case .Ascending:
-                    cards.sort(by: { $0.colorIdentity?.first ?? "" < $1.colorIdentity?.first ?? "" })
+                    cards.sort(by: { firstCard, secondCard in
+                        guard let firstColor = firstCard.colorIdentity, let secondColor = secondCard.colorIdentity else { return true }
+                        
+                        if firstColor.isEmpty && !secondColor.isEmpty { return false }
+                        if !firstColor.isEmpty && secondColor.isEmpty { return true }
+                        if firstColor.isEmpty { return false }
+                        if secondColor.isEmpty { return true }
+                        
+                        if firstColor.count == 1 && secondColor.count == 1 {
+                            return firstColor.first! < secondColor.first!
+                        }
+                        else if firstColor.count == 1 && secondColor.count > 1 {
+                            return true
+                        }
+                        else if firstColor.count > 1 && secondColor.count == 1 {
+                            return false
+                        }
+                        else if firstColor.count > 1 && secondColor.count > 1 {
+                            return firstColor.first! < secondColor.first!
+                        }
+                        else {
+                            return false
+                        }
+                    })
                 case .Descending:
-                    cards.sort(by: { $0.colorIdentity?.first ?? "" > $1.colorIdentity?.first ?? "" })
+                    cards.sort(by: { firstCard, secondCard in
+                        guard let firstColor = firstCard.colorIdentity, let secondColor = secondCard.colorIdentity else { return true }
+                        
+                        if firstColor.isEmpty && !secondColor.isEmpty { return true }
+                        if !firstColor.isEmpty && secondColor.isEmpty { return false }
+                        if firstColor.isEmpty { return true }
+                        if secondColor.isEmpty { return false }
+                        
+                        if firstColor.count == 1 && secondColor.count == 1 {
+                            return firstColor.first! > secondColor.first!
+                        }
+                        else if firstColor.count == 1 && secondColor.count > 1 {
+                            return false
+                        }
+                        else if firstColor.count > 1 && secondColor.count == 1 {
+                            return true
+                        }
+                        else if firstColor.count > 1 && secondColor.count > 1 {
+                            return firstColor.first! > secondColor.first!
+                        }
+                        else {
+                            return true
+                        }
+                    })
                 case .CardsSmall, .CardsFull, .TextCard, .TextList:
                     break
                 }
