@@ -164,7 +164,6 @@ public struct ScryfallAPI {
         // MARK: - Color
         if !searchModels.colorSearchModel.isEmpty {
             for model in searchModels.colorSearchModel {
-                print("\(model.searchFilter): \(model.searchTerm)")
                 if query.last != "+" && !firstParameter {
                     query.append(contentsOf: "+")
                 }
@@ -180,7 +179,7 @@ public struct ScryfallAPI {
                 
                 switch model.searchFilter {
                 case "INCLUDES":
-                    query.append(contentsOf: String("color>=" + searchTerm))
+                    query.append(contentsOf: String("color%3E%3D" + searchTerm))
                     
                 case "EXCLUDES":
                     query.append(contentsOf: String("-color=" + searchTerm))
@@ -191,14 +190,63 @@ public struct ScryfallAPI {
                 default:
                     break
                 }
-                
-                print(query)
             }
             firstParameter = false
         }
         // MARK: - Mana
+        if !searchModels.manaValueSearchModel.isEmpty {
+            if query.last != "+" && !firstParameter {
+                query.append(contentsOf: "+")
+            }
+            
+            let leftSide = searchModels.manaValueSearchModel[0].replacingOccurrences(of: "+", with: "")
+            let rightSide = searchModels.manaValueSearchModel[1].replacingOccurrences(of: "+", with: "")
+            
+            if leftSide == rightSide {
+                query.append(contentsOf: String("cmc%3D" + leftSide))
+            } else {
+                query.append(contentsOf: String("cmc%3E%3D" + leftSide + "+"))
+                query.append(contentsOf: String("cmc%3C%3D" + rightSide))
+            }
+
+            firstParameter = false
+        }
         // MARK: - Power
+        if !searchModels.powerSearchModel.isEmpty {
+            if query.last != "+" && !firstParameter {
+                query.append(contentsOf: "+")
+            }
+            
+            let leftSide = searchModels.powerSearchModel[0].replacingOccurrences(of: "+", with: "")
+            let rightSide = searchModels.powerSearchModel[1].replacingOccurrences(of: "+", with: "")
+            
+            if leftSide == rightSide {
+                query.append(contentsOf: String("cmc%3D" + leftSide))
+            } else {
+                query.append(contentsOf: String("cmc%3E%3D" + leftSide + "+"))
+                query.append(contentsOf: String("cmc%3C%3D" + rightSide))
+            }
+
+            firstParameter = false
+        }
         // MARK: - Toughness
+        if !searchModels.toughnessSearchModel.isEmpty {
+            if query.last != "+" && !firstParameter {
+                query.append(contentsOf: "+")
+            }
+            
+            let leftSide = searchModels.toughnessSearchModel[0].replacingOccurrences(of: "+", with: "")
+            let rightSide = searchModels.toughnessSearchModel[1].replacingOccurrences(of: "+", with: "")
+            
+            if leftSide == rightSide {
+                query.append(contentsOf: String("cmc%3D" + leftSide))
+            } else {
+                query.append(contentsOf: String("cmc%3E%3D" + leftSide + "+"))
+                query.append(contentsOf: String("cmc%3C%3D" + rightSide))
+            }
+
+            firstParameter = false
+        }
         // MARK: - Sets
         // MARK: - Format
         // MARK: - Rarity
