@@ -221,10 +221,10 @@ public struct ScryfallAPI {
             let rightSide = searchModels.powerSearchModel[1].replacingOccurrences(of: "+", with: "")
             
             if leftSide == rightSide {
-                query.append(contentsOf: String("cmc%3D" + leftSide))
+                query.append(contentsOf: String("pow%3D" + leftSide))
             } else {
-                query.append(contentsOf: String("cmc%3E%3D" + leftSide + "+"))
-                query.append(contentsOf: String("cmc%3C%3D" + rightSide))
+                query.append(contentsOf: String("pow%3E%3D" + leftSide + "+"))
+                query.append(contentsOf: String("pow%3C%3D" + rightSide))
             }
 
             firstParameter = false
@@ -239,10 +239,10 @@ public struct ScryfallAPI {
             let rightSide = searchModels.toughnessSearchModel[1].replacingOccurrences(of: "+", with: "")
             
             if leftSide == rightSide {
-                query.append(contentsOf: String("cmc%3D" + leftSide))
+                query.append(contentsOf: String("tou%3D" + leftSide))
             } else {
-                query.append(contentsOf: String("cmc%3E%3D" + leftSide + "+"))
-                query.append(contentsOf: String("cmc%3C%3D" + rightSide))
+                query.append(contentsOf: String("tou%3E%3D" + leftSide + "+"))
+                query.append(contentsOf: String("tou%3C%3D" + rightSide))
             }
 
             firstParameter = false
