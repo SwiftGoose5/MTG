@@ -119,14 +119,53 @@ extension ScryfallInteractor {
         }
     }
     
+    static func parseManaCostForCount(from card: Card) -> Int {
+        var characterCount = 0
+        
+        let regex = try! NSRegularExpression(pattern: #"\{(.*?)\}"#, options: [])
+        
+        guard let rawInput = card.manaCost else { return characterCount }
+        
+        let input = rawInput.components(separatedBy: " // ")[0]
+
+        let matches = regex.matches(in: input, options: [], range: NSRange(input.startIndex..., in: input))
+            
+        characterCount = matches.count
+        
+        return characterCount
+    }
+    
+    static func parseManaCostForSymbols(from card: Card) -> [String] {
+        var extractedCharacters: [String] = []
+        
+        let regex = try! NSRegularExpression(pattern: #"\{(.*?)\}"#, options: [])
+        
+        guard let rawInput = card.manaCost else { return [] }
+        
+        let input = rawInput.components(separatedBy: " // ")[0]
+
+        regex.enumerateMatches(in: input, options: [], range: NSRange(input.startIndex..., in: input)) { (match, _, _) in
+            if let match = match {
+                let matchedString = String(input[Range(match.range, in: input)!])
+                let characters = matchedString.replacingOccurrences(of: "{", with: "")
+                                              .replacingOccurrences(of: "}", with: "")
+                extractedCharacters.append(characters)
+            }
+        }
+        
+        return extractedCharacters
+    }
+    
     static func getCardManaSymbols(from card: Card) async -> [UIImage] {
         
         var manaImages: [UIImage] = []
         
-        guard let manaCost = card.manaCost else { return manaImages }
+        guard card.manaCost != nil else { return manaImages }
         
-        for manaSymbol in manaCost.parseManaSymbols() {
-            let result = await ScryfallAPI.getOneManaSymbol(symbol: String(manaSymbol))
+        let manaSymbols = ScryfallInteractor.parseManaCostForSymbols(from: card)
+        
+        for manaSymbol in manaSymbols {
+            let result = await ScryfallAPI.getOneManaSymbol(symbol: manaSymbol)
             
             switch result {
             case .success(let image):

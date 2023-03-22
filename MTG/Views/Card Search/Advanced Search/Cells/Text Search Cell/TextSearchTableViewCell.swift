@@ -24,6 +24,9 @@ class AdvancedCardSearchCollectionViewModel {
     var tag: Int!
     var searchFilter: String!
     var searchTerm: String!
+    var description: String {
+        return "\(searchFilter): \(searchTerm)"
+    }
     
     init(tag: Int!, searchFilter: String!, searchTerm: String!) {
         self.tag = tag
@@ -34,6 +37,7 @@ class AdvancedCardSearchCollectionViewModel {
     func adjustTag(to index: Int) {
         tag = index
     }
+    
 }
 
 protocol TableViewDelegate {

@@ -116,7 +116,7 @@ public struct ScryfallAPI {
                     break
                 }
             }
-            firstParameter = true
+            firstParameter = false
         }
         
         // MARK: - Super types
@@ -137,7 +137,7 @@ public struct ScryfallAPI {
                     break
                 }
             }
-            firstParameter = true
+            firstParameter = false
         }
         
         // MARK: - Subtypes
@@ -158,13 +158,13 @@ public struct ScryfallAPI {
                     break
                 }
             }
-            firstParameter = true
+            firstParameter = false
         }
         
         // MARK: - Color
         if !searchModels.colorSearchModel.isEmpty {
             for model in searchModels.colorSearchModel {
-                print("api search: \(model.searchTerm)")
+                print("\(model.searchFilter): \(model.searchTerm)")
                 if query.last != "+" && !firstParameter {
                     query.append(contentsOf: "+")
                 }
@@ -191,8 +191,10 @@ public struct ScryfallAPI {
                 default:
                     break
                 }
+                
+                print(query)
             }
-            firstParameter = true
+            firstParameter = false
         }
         // MARK: - Mana
         // MARK: - Power

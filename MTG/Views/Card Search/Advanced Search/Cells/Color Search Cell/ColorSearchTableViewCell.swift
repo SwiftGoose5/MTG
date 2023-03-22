@@ -91,9 +91,8 @@ class ColorSearchTableViewCell: UITableViewCell {
         switch searchTerm {
         case "Include", "Exclude":
             searchTermModified = searchTerm + "s"
-            
         default:
-            break
+            searchTermModified = searchTerm
         }
         
         searchTermModified = searchTermModified.uppercased()

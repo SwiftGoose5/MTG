@@ -25,8 +25,7 @@ class CardTableViewCell: UITableViewCell {
     @IBOutlet weak var cardRarity: UILabel!
     
     var cardManaSymbols: [UIImage]!
-    
-    var cardManaCost: String?
+    var cardManaCost: [String] = []
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -42,12 +41,11 @@ class CardTableViewCell: UITableViewCell {
         cardType.text = card.typeLine
         cardSet.text = card.setName
         cardRarity.text = card.rarity?.capitalized
-        cardManaCost = card.manaCost
-        
-        if let manaCost = cardManaCost {
-            cardManaCost = manaCost.parseManaSymbols()
+
+        if card.manaCost != nil {
+            cardManaCost = ScryfallInteractor.parseManaCostForSymbols(from: card)
             
-            cardManaSymbols = [UIImage].init(repeating: UIImage(), count: manaCost.parseManaSymbols().count)
+            cardManaSymbols = [UIImage].init(repeating: UIImage(), count: cardManaCost.count)
             
             Task {
                 cardManaSymbols = await ScryfallInteractor.getCardManaSymbols(from: card)
@@ -64,8 +62,7 @@ extension CardTableViewCell: UICollectionViewDelegate, UICollectionViewDataSourc
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let cardManaCost = cardManaCost else { return 0 }
-        return cardManaCost.parseManaSymbols().count
+        return cardManaCost.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

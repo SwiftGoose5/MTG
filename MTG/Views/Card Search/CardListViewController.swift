@@ -167,9 +167,6 @@ extension CardListViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension CardListViewController: PickerDelegate {
     func pickerOptionSelected(option: PickerOptions, icon: PickerIcons, identifier: PickerIdentifier) {
-        
-        // TODO: - Imeplement sorting
-        
         switch identifier {
         case .SortStyle:
             sortStyleButton.setTitle(option.rawValue, for: .normal)
@@ -276,10 +273,10 @@ extension CardListViewController: PickerDelegate {
             }
             
             
+        // TODO: - Implement View Style changes
         case .ViewStyle:
             viewStyleButton.setTitle(option.rawValue, for: .normal)
             viewStyleButton.setImage(UIImage(systemName: icon.rawValue), for: .normal)
         }
-        
     }
 }
