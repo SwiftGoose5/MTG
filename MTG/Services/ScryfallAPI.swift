@@ -76,11 +76,9 @@ public struct ScryfallAPI {
     static func getManyCards(from query: String) async -> Result<Cards, Error> {
         
         let queryProcessed = query.trimmingCharacters(in: .whitespaces).replacingOccurrences(of: " ", with: "+")
-        let fullQuery = "order=name&q=\(queryProcessed)"
+        let fullQuery = "order=name&q=\(queryProcessed)&unique=art"
         
         guard let url = URL(string: BASE_URL + CardPaths.CardsSearch.rawValue + fullQuery) else { return .failure(APIError.failedToCreateURL) }
-        
-        print(url)
         
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
@@ -118,7 +116,6 @@ public struct ScryfallAPI {
             }
             firstParameter = false
         }
-        
         // MARK: - Super types
         if !searchModels.superTypesSearchModel.isEmpty {
             for model in searchModels.superTypesSearchModel {
@@ -139,7 +136,6 @@ public struct ScryfallAPI {
             }
             firstParameter = false
         }
-        
         // MARK: - Subtypes
         if !searchModels.subTypesSearchModel.isEmpty {
             for model in searchModels.subTypesSearchModel {
@@ -160,7 +156,6 @@ public struct ScryfallAPI {
             }
             firstParameter = false
         }
-        
         // MARK: - Color
         if !searchModels.colorSearchModel.isEmpty {
             for model in searchModels.colorSearchModel {
@@ -168,7 +163,7 @@ public struct ScryfallAPI {
                     query.append(contentsOf: "+")
                 }
                 
-                var searchTerm = model.searchTerm
+                let searchTerm = model.searchTerm
                     .replacingOccurrences(of: "White", with: "W")
                     .replacingOccurrences(of: "Blue", with: "U")
                     .replacingOccurrences(of: "Black", with: "B")
@@ -248,14 +243,52 @@ public struct ScryfallAPI {
             firstParameter = false
         }
         // MARK: - Sets
+        if !searchModels.setsSearchModel.isEmpty {
+            for model in searchModels.setsSearchModel {
+                if query.last != "+" && !firstParameter {
+                    query.append(contentsOf: "+")
+                }
+                
+                let setCode = model.searchTerm.components(separatedBy: ": ")[0]
+                
+                switch model.searchFilter {
+                case "IS", "OR":
+                    query.append(contentsOf: String("set:" + setCode))
+                    
+                case "NOT":
+                    query.append(contentsOf: String("-set:" + setCode))
+                    
+                default:
+                    break
+                }
+            }
+            firstParameter = false
+        }
         // MARK: - Format
+        if !searchModels.formatsSearchModel.isEmpty {
+            for model in searchModels.formatsSearchModel {
+                if query.last != "+" && !firstParameter {
+                    query.append(contentsOf: "+")
+                }
+                
+                query.append(contentsOf: String("legal:" + model))
+            }
+            firstParameter = false
+        }
         // MARK: - Rarity
-        
-        print("query: \(query)")
+        if !searchModels.raritySearchModel.isEmpty {
+            for model in searchModels.raritySearchModel {
+                if query.last != "+" && !firstParameter {
+                    query.append(contentsOf: "+")
+                }
+                
+                query.append(contentsOf: String("rarity:" + model))
+            }
+            firstParameter = false
+        }
+        query.append(contentsOf: String("&unique=art"))
         
         guard let url = URL(string: BASE_URL + CardPaths.CardsSearch.rawValue + query) else { return .failure(APIError.failedToCreateURL) }
-        
-        print(url)
         
         do {
             let (data, _) = try await URLSession.shared.data(from: url)

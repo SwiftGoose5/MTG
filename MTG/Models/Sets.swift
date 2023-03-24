@@ -24,22 +24,19 @@ struct Sets: Codable {
 }
 
 // MARK: - Datum
-struct Datas: Codable, Comparable {
-    static func < (lhs: Datas, rhs: Datas) -> Bool { lhs.name! < rhs.name! }
+struct Datas: Codable {
+//    static func < (lhs: Datas, rhs: Datas) -> Bool { lhs.name! < rhs.name! }
     
-    let object: Obj?
-    let id, code, mtgoCode, arenaCode: String?
+    let object, id, code, mtgoCode: String?
+    let arenaCode: String?
     let tcgplayerID: Int?
     let name: String?
     let uri, scryfallURI, searchURI: String?
-    let releasedAt: String?
-    let setType: SetType?
+    let releasedAt, setType: String?
     let cardCount: Int?
     let digital, nonfoilOnly, foilOnly: Bool?
     let iconSVGURI: String?
-    let parentSetCode, blockCode, block: String?
-    let printedSize: Int?
-
+    
     enum CodingKeys: String, CodingKey {
         case object, id, code
         case mtgoCode = "mtgo_code"
@@ -55,15 +52,7 @@ struct Datas: Codable, Comparable {
         case nonfoilOnly = "nonfoil_only"
         case foilOnly = "foil_only"
         case iconSVGURI = "icon_svg_uri"
-        case parentSetCode = "parent_set_code"
-        case blockCode = "block_code"
-        case block
-        case printedSize = "printed_size"
     }
-}
-
-enum Obj: String, Codable {
-    case objectSet = "set"
 }
 
 enum SetType: String, Codable {
