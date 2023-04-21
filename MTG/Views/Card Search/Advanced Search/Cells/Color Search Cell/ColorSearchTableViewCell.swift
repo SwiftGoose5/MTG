@@ -10,6 +10,10 @@
 
 import UIKit
 
+protocol ColorSearchModelDelegate {
+    func updateColorSearchModel(models: [AdvancedCardSearchCollectionViewModel])
+}
+
 class ColorSearchTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
@@ -21,11 +25,13 @@ class ColorSearchTableViewCell: UITableViewCell {
     var searchViewModels: [AdvancedCardSearchCollectionViewModel] = [] {
         didSet {
             searchViewModels.isEmpty ? (clearButton.isHidden = true) : (clearButton.isHidden = false)
+            colorSearchModelDelegate.updateColorSearchModel(models: searchViewModels)
         }
     }
     
     var selectedColors: [String] = []
-    var tableDelegate: TableViewDelegate!
+    var tableViewDelegate: TableViewDelegate!
+    var colorSearchModelDelegate: ColorSearchModelDelegate!
     
     static let identifier = "ColorSearchTableViewCell"
     
@@ -37,6 +43,8 @@ class ColorSearchTableViewCell: UITableViewCell {
         super.awakeFromNib()
         selectionStyle = .none
         clearButton.isHidden = true
+        
+        addNotificationObserver()
         
         colorCollectionView.delegate = self
         colorCollectionView.dataSource = self
@@ -56,10 +64,22 @@ class ColorSearchTableViewCell: UITableViewCell {
     
     @IBAction func clearButtonPressed(_ sender: Any) {
         searchViewModels.removeAll()
+        clearColorCollectionView()
         
         DispatchQueue.main.async {
             self.termCollectionView.reloadData()
-            self.tableDelegate.reload()
+            self.tableViewDelegate.reload()
+        }
+    }
+    
+    private func clearColorCollectionView() {
+        selectedColors.removeAll()
+        
+        for cell in self.colorCollectionView.visibleCells {
+            if cell.isSelected {
+                cell.isSelected = false
+                cell.contentView.backgroundColor = .none
+            }
         }
     }
     
@@ -71,21 +91,43 @@ class ColorSearchTableViewCell: UITableViewCell {
     }
     
     func addSearchQuery() {
+        if selectedColors.isEmpty { return }
+        
         guard let searchTerm = segmentedControl.titleForSegment(at: segmentedControl.selectedSegmentIndex) else { return }
+        var searchTermModified = ""
+        
+        switch searchTerm {
+        case "Include", "Exclude":
+            searchTermModified = searchTerm + "s"
+        default:
+            searchTermModified = searchTerm
+        }
+        
+        searchTermModified = searchTermModified.uppercased()
         
         var colors: String = ""
         
-        for color in selectedColors {
-            colors.append(String(color + " "))
+        if selectedColors.count > 1 {
+            for (index, color) in selectedColors.enumerated() {
+                if index != selectedColors.count - 1 {
+                    colors.append(String(color + ", "))
+                } else {
+                    colors.append(color)
+                }
+            }
+        } else {
+            colors.append(selectedColors.first ?? "")
         }
         
-        let searchModel = AdvancedCardSearchCollectionViewModel(tag: searchViewModels.count, searchFilter: searchTerm, searchTerm: colors)
+        let searchModel = AdvancedCardSearchCollectionViewModel(tag: searchViewModels.count, searchFilter: searchTermModified, searchTerm: colors)
         
         searchViewModels.append(searchModel)
         
+        clearColorCollectionView()
+        
         DispatchQueue.main.async {
             self.termCollectionView.reloadData()
-            self.tableDelegate.reload()
+            self.tableViewDelegate.reload()
         }
     }
 }
@@ -214,7 +256,26 @@ extension ColorSearchTableViewCell: AdvancedCardSearchCollectionViewCellDelegate
         
         DispatchQueue.main.async {
             self.termCollectionView.reloadData()
-            self.tableDelegate.reload()
+            self.tableViewDelegate.reload()
+        }
+    }
+}
+
+extension ColorSearchTableViewCell {
+    func addNotificationObserver() {
+        NotificationCenter.default.addObserver(forName: clearAllNotification, object: nil, queue: .main) { [weak self] _ in
+            self?.searchViewModels.removeAll()
+            for cell in self!.colorCollectionView.visibleCells {
+                if cell.isSelected {
+                    cell.isSelected = false
+                    cell.contentView.backgroundColor = .none
+                }
+            }
+            
+            DispatchQueue.main.async {
+                self?.termCollectionView.reloadData()
+                self?.tableViewDelegate.reload()
+            }
         }
     }
 }

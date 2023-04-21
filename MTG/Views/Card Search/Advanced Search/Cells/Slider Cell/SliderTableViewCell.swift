@@ -10,9 +10,8 @@
 
 import UIKit
 
-struct SliderTableViewModel {
-    var lhs: String
-    var rhs: String
+protocol SliderSearchModelDelegate {
+    func updateSliderSearchModel(for titleText: String, model: [String])
 }
 
 class SliderTableViewCell: UITableViewCell {
@@ -49,7 +48,12 @@ class SliderTableViewCell: UITableViewCell {
         }
     }
     
-    var sliderTableViewModel: SliderTableViewModel? = nil
+    var sliderTableViewModel: [String] = [] {
+        didSet {
+            sliderSearchModelDelegate.updateSliderSearchModel(for: titleLabel.text!.capitalized, model: sliderTableViewModel)
+        }
+    }
+    var sliderSearchModelDelegate: SliderSearchModelDelegate!
     
     static let identifier = "SliderTableViewCell"
     
@@ -60,6 +64,7 @@ class SliderTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
+        addNotificationObserver()
         
         let panLeftGesture = UIPanGestureRecognizer(target: self, action: #selector(handleLeftPan(_:)))
         dragLeftButton.addGestureRecognizer(panLeftGesture)
@@ -236,7 +241,7 @@ class SliderTableViewCell: UITableViewCell {
             filterLabel.text = String(leftSide + " - " + rightSide)
         }
         
-        sliderTableViewModel = SliderTableViewModel(lhs: leftSide, rhs: rightSide)
+        sliderTableViewModel = [leftSide, rightSide]
     }
     
     private func resetSliders() {
@@ -244,7 +249,7 @@ class SliderTableViewCell: UITableViewCell {
         rightSliderTagValue = 6
         resetLabel()
         
-        sliderTableViewModel = nil
+        sliderTableViewModel = []
         
         dragLeftButton.center.x = getClosestView(by: leftSliderTagValue).x + stackViewLeftPadding
         dragRightButton.center.x = getClosestView(by: rightSliderTagValue).x + stackViewLeftPadding
@@ -291,3 +296,14 @@ class SliderTableViewCell: UITableViewCell {
         }
     }
 }
+
+extension SliderTableViewCell {
+    func addNotificationObserver() {
+        NotificationCenter.default.addObserver(forName: clearAllNotification, object: nil, queue: .main) { [weak self] _ in
+            DispatchQueue.main.async {
+                self?.resetSliders()
+            }
+        }
+    }
+}
+

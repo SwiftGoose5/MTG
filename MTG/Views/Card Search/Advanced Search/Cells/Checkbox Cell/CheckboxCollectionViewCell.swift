@@ -32,7 +32,7 @@ class CheckboxCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(with text: String) {
-        checkboxButton.setTitle(text, for: .normal)
+        checkboxButton.setTitle(text.capitalized, for: .normal)
         
         checkboxButton.setImage(UIImage(systemName: "square"), for: .normal)
         checkboxButton.setImage(UIImage(systemName: "square.fill"), for: .selected)

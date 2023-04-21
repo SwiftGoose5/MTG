@@ -16,10 +16,17 @@ enum SearchFilters: String {
     case NOT = "NOT"
 }
 
+protocol TextSearchModelDelegate {
+    func updateTextSearchModel(models: [AdvancedCardSearchCollectionViewModel])
+}
+
 class AdvancedCardSearchCollectionViewModel {
     var tag: Int!
     var searchFilter: String!
     var searchTerm: String!
+    var description: String {
+        return "\(searchFilter): \(searchTerm)"
+    }
     
     init(tag: Int!, searchFilter: String!, searchTerm: String!) {
         self.tag = tag
@@ -30,6 +37,7 @@ class AdvancedCardSearchCollectionViewModel {
     func adjustTag(to index: Int) {
         tag = index
     }
+    
 }
 
 protocol TableViewDelegate {
@@ -47,10 +55,12 @@ class TextSearchTableViewCell: UITableViewCell {
     var searchViewModels: [AdvancedCardSearchCollectionViewModel] = [] {
         didSet {
             searchViewModels.isEmpty ? (clearButton.isHidden = true) : (clearButton.isHidden = false)
+            textSearchModelDelegate.updateTextSearchModel(models: searchViewModels)
         }
     }
     
     var tableViewDelegate: TableViewDelegate!
+    var textSearchModelDelegate: TextSearchModelDelegate!
     
     static let identifier = "TextSearchTableViewCell"
     
@@ -62,6 +72,8 @@ class TextSearchTableViewCell: UITableViewCell {
         super.awakeFromNib()
         selectionStyle = .none
         clearButton.isHidden = true
+        
+        addNotificationObserver()
         
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -164,6 +176,19 @@ extension TextSearchTableViewCell: AdvancedCardSearchCollectionViewCellDelegate 
         DispatchQueue.main.async {
             self.collectionView.reloadData()
             self.tableViewDelegate.reload()
+        }
+    }
+}
+
+extension TextSearchTableViewCell {
+    func addNotificationObserver() {
+        NotificationCenter.default.addObserver(forName: clearAllNotification, object: nil, queue: .main) { [weak self] _ in
+            self?.searchViewModels.removeAll()
+            
+            DispatchQueue.main.async {
+                self?.collectionView.reloadData()
+                self?.tableViewDelegate.reload()
+            }
         }
     }
 }

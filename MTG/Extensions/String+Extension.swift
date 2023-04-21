@@ -13,8 +13,11 @@ import Foundation
 extension String {
     public func parseManaSymbols() -> String {
         return self
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .replacingOccurrences(of: " ", with: "")
             .replacingOccurrences(of: "{", with: "")
             .replacingOccurrences(of: "}", with: "")
             .replacingOccurrences(of: "/", with: "")
+            .replacingOccurrences(of: "//", with: "")
     }
 }

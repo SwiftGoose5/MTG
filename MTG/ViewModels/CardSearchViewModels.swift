@@ -15,9 +15,9 @@ struct OneCardSearchViewModel {
     
     var card: Card?
     var cardManaCost: String?
-    var cardManaCostSymbols: [UIImage?]
+    var cardManaCostSymbols: [UIImage]
     
-    init(card: Card?, cardManaCost: String?, cardManaCostSymbols: [UIImage?]) {
+    init(card: Card?, cardManaCost: String?, cardManaCostSymbols: [UIImage]) {
         self.card = card
         self.cardManaCost = cardManaCost
         self.cardManaCostSymbols = cardManaCostSymbols
@@ -29,9 +29,9 @@ struct ManyCardSearchViewModel {
     
     var cards: [Card?]
     var cardManaCost: String?
-    var cardManaCostSymbols: [UIImage?]
+    var cardManaCostSymbols: [UIImage]
     
-    init(cards: [Card?], cardManaCost: String?, cardManaCostSymbols: [UIImage?]) {
+    init(cards: [Card?], cardManaCost: String?, cardManaCostSymbols: [UIImage]) {
         self.cards = cards
         self.cardManaCost = cardManaCost
         self.cardManaCostSymbols = cardManaCostSymbols

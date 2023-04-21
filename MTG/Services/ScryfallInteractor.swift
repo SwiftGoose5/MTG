@@ -51,6 +51,40 @@ struct ScryfallInteractor {
         return card
     }
     
+    static func getManyCards(from searchText: String) async -> Cards? {
+        
+        var cards: Cards?
+        
+        let result = await ScryfallAPI.getManyCards(from: searchText)
+        
+        switch result {
+            case .success(let tempCards):
+                cards = tempCards
+                
+            case .failure(_):
+                cards = nil
+        }
+        
+        return cards
+    }
+    
+    static func getManyCards(from advancedSearchModels: AdvancedCardSearchModel) async -> Cards? {
+        
+        var cards: Cards?
+        
+        let result = await ScryfallAPI.getManyCards(from: advancedSearchModels)
+        
+        switch result {
+        case .success(let tempCards):
+            cards = tempCards
+            
+        case .failure(_):
+            cards = nil
+        }
+        
+        return cards
+    }
+    
     static func getRandomCard() async -> Card? {
         
         var card: Card?
@@ -68,14 +102,70 @@ struct ScryfallInteractor {
         return card
     }
     
-    static func getCardManaSymbols(from card: Card) async -> [UIImage?] {
+    
+}
+// MARK: - Image Calls
+extension ScryfallInteractor {
+    static func getCardImage(from url: String) async -> UIImage {
+        let result = await ScryfallAPI.getCardImage(from: url)
         
-        var manaImages: [UIImage?] = []
+        switch result {
+        case .success(let image):
+            return image
+            
+        case .failure(let error):
+            print("Card Image Error: \(error.localizedDescription)")
+            return UIImage()
+        }
+    }
+    
+    static func parseManaCostForCount(from card: Card) -> Int {
+        var characterCount = 0
         
-        guard let manaCost = card.manaCost else { return manaImages }
+        let regex = try! NSRegularExpression(pattern: #"\{(.*?)\}"#, options: [])
         
-        for manaSymbol in manaCost.parseManaSymbols() {
-            let result = await ScryfallAPI.getOneSymbol(symbol: String(manaSymbol))
+        guard let rawInput = card.manaCost else { return characterCount }
+        
+        let input = rawInput.components(separatedBy: " // ")[0]
+
+        let matches = regex.matches(in: input, options: [], range: NSRange(input.startIndex..., in: input))
+            
+        characterCount = matches.count
+        
+        return characterCount
+    }
+    
+    static func parseManaCostForSymbols(from card: Card) -> [String] {
+        var extractedCharacters: [String] = []
+        
+        let regex = try! NSRegularExpression(pattern: #"\{(.*?)\}"#, options: [])
+        
+        guard let rawInput = card.manaCost else { return [] }
+        
+        let input = rawInput.components(separatedBy: " // ")[0]
+
+        regex.enumerateMatches(in: input, options: [], range: NSRange(input.startIndex..., in: input)) { (match, _, _) in
+            if let match = match {
+                let matchedString = String(input[Range(match.range, in: input)!])
+                let characters = matchedString.replacingOccurrences(of: "{", with: "")
+                                              .replacingOccurrences(of: "}", with: "")
+                extractedCharacters.append(characters)
+            }
+        }
+        
+        return extractedCharacters
+    }
+    
+    static func getCardManaSymbols(from card: Card) async -> [UIImage] {
+        
+        var manaImages: [UIImage] = []
+        
+        guard card.manaCost != nil else { return manaImages }
+        
+        let manaSymbols = ScryfallInteractor.parseManaCostForSymbols(from: card)
+        
+        for manaSymbol in manaSymbols {
+            let result = await ScryfallAPI.getOneManaSymbol(symbol: manaSymbol)
             
             switch result {
             case .success(let image):
@@ -89,7 +179,6 @@ struct ScryfallInteractor {
         return manaImages
     }
 }
-
 
 // MARK: - Types Calls
 extension ScryfallInteractor {

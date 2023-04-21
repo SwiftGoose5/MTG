@@ -16,6 +16,10 @@ struct DropdownTableViewCellViewModel {
     var terms: [String]
 }
 
+protocol DropdownSearchModelDelegate {
+    func updateDropdownSearchModel(for titleText: String, models: [AdvancedCardSearchCollectionViewModel])
+}
+
 class DropdownTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
@@ -32,10 +36,12 @@ class DropdownTableViewCell: UITableViewCell {
     var searchViewModels: [AdvancedCardSearchCollectionViewModel] = [] {
         didSet {
             searchViewModels.isEmpty ? (clearButton.isHidden = true) : (clearButton.isHidden = false)
+            dropdownSearchModelDelegate.updateDropdownSearchModel(for: cellViewModel != nil ? (cellViewModel.titleText) : (customCellViewModel.titleText), models: searchViewModels)
         }
     }
     
     var tableViewDelegate: TableViewDelegate!
+    var dropdownSearchModelDelegate: DropdownSearchModelDelegate!
     
     static let identifier = "DropdownTableViewCell"
     
@@ -46,6 +52,7 @@ class DropdownTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         selectionStyle = .none
+        addNotificationObserver()
         clearButton.isHidden = true
         
         collectionView.dataSource = self
@@ -58,14 +65,12 @@ class DropdownTableViewCell: UITableViewCell {
     
     func configure(with cellViewModel: DropdownTableViewCellViewModel) {
         self.cellViewModel = cellViewModel
-        self.titleLabel.text = cellViewModel.titleText.uppercased()
         self.dropdownButton.setTitle("Enter " + cellViewModel.titleText, for: .normal)
         self.custom = false
     }
     
     func configure(with customCellViewModel: CustomDropdownTableViewCellViewModel) {
         self.customCellViewModel = customCellViewModel
-        self.titleLabel.text = customCellViewModel.titleText.uppercased()
         self.dropdownButton.setTitle("Enter " + customCellViewModel.titleText, for: .normal)
         self.custom = true
     }
@@ -167,3 +172,15 @@ extension DropdownTableViewCell: ModalFilterSelectionDelegate {
     }
 }
 
+extension DropdownTableViewCell {
+    func addNotificationObserver() {
+        NotificationCenter.default.addObserver(forName: clearAllNotification, object: nil, queue: .main) { [weak self] _ in
+            self?.searchViewModels.removeAll()
+            
+            DispatchQueue.main.async {
+                self?.collectionView.reloadData()
+                self?.tableViewDelegate.reload()
+            }
+        }
+    }
+}

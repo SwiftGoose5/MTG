@@ -25,13 +25,13 @@ struct Symbols: Codable {
 
 // MARK: - Datum
 struct Datum: Codable {
-    let object: Object?
+    let object: String?
     let symbol: String?
     let svgURI: String?
     let looseVariant: String?
     let english: String?
     let transposable, representsMana, appearsInManaCosts: Bool?
-    let cmc: Double?
+    let manaValue, cmc: Double?
     let funny: Bool?
     let colors: [Color]?
     let gathererAlternates: [String]?
@@ -43,6 +43,7 @@ struct Datum: Codable {
         case english, transposable
         case representsMana = "represents_mana"
         case appearsInManaCosts = "appears_in_mana_costs"
+        case manaValue = "mana_value"
         case cmc, funny, colors
         case gathererAlternates = "gatherer_alternates"
     }
@@ -54,8 +55,4 @@ enum Color: String, Codable {
     case r = "R"
     case u = "U"
     case w = "W"
-}
-
-enum Object: String, Codable {
-    case cardSymbol = "card_symbol"
 }

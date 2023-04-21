@@ -121,7 +121,7 @@ extension AdvancedCardSearchModalFilterViewController: UITableViewDelegate, UITa
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if isCustom {
-            modalFilterDelegate.filterTermSelected(term: setsFiltered[indexPath.row].setName)
+            modalFilterDelegate.filterTermSelected(term: String(setsFiltered[indexPath.row].setCode.uppercased() + ": " + setsFiltered[indexPath.row].setName))
         } else {
             modalFilterDelegate.filterTermSelected(term: termsFiltered[indexPath.row])
         }
