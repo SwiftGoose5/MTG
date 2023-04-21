@@ -64,16 +64,22 @@ class ColorSearchTableViewCell: UITableViewCell {
     
     @IBAction func clearButtonPressed(_ sender: Any) {
         searchViewModels.removeAll()
+        clearColorCollectionView()
+        
+        DispatchQueue.main.async {
+            self.termCollectionView.reloadData()
+            self.tableViewDelegate.reload()
+        }
+    }
+    
+    private func clearColorCollectionView() {
+        selectedColors.removeAll()
+        
         for cell in self.colorCollectionView.visibleCells {
             if cell.isSelected {
                 cell.isSelected = false
                 cell.contentView.backgroundColor = .none
             }
-        }
-        
-        DispatchQueue.main.async {
-            self.termCollectionView.reloadData()
-            self.tableViewDelegate.reload()
         }
     }
     
@@ -85,6 +91,8 @@ class ColorSearchTableViewCell: UITableViewCell {
     }
     
     func addSearchQuery() {
+        if selectedColors.isEmpty { return }
+        
         guard let searchTerm = segmentedControl.titleForSegment(at: segmentedControl.selectedSegmentIndex) else { return }
         var searchTermModified = ""
         
@@ -114,6 +122,8 @@ class ColorSearchTableViewCell: UITableViewCell {
         let searchModel = AdvancedCardSearchCollectionViewModel(tag: searchViewModels.count, searchFilter: searchTermModified, searchTerm: colors)
         
         searchViewModels.append(searchModel)
+        
+        clearColorCollectionView()
         
         DispatchQueue.main.async {
             self.termCollectionView.reloadData()

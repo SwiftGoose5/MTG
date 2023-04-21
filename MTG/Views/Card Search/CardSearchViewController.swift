@@ -436,9 +436,6 @@ extension CardSearchViewController: DropdownSearchModelDelegate {
 extension CardSearchViewController: ColorSearchModelDelegate {
     func updateColorSearchModel(models: [AdvancedCardSearchCollectionViewModel]) {
         colorSearchModel = models
-        for model in models {
-            print(String("Color " + model.searchFilter + ": " + model.searchTerm))
-        }
 
         checkIfClearButtonShouldHide()
     }
