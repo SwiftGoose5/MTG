@@ -23,6 +23,10 @@
 		8B7F60DB299433F300D54CF7 /* ScryfallInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7F60DA299433F300D54CF7 /* ScryfallInteractor.swift */; };
 		8B7F60E02994B2B900D54CF7 /* CardSearchViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7F60DF2994B2B900D54CF7 /* CardSearchViewModels.swift */; };
 		8B7F60E229956E5A00D54CF7 /* NoCardsFoundSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7F60E129956E5A00D54CF7 /* NoCardsFoundSearchViewController.swift */; };
+		8B8417B729F2E3D50040FF03 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8417B529F2E3D50040FF03 /* ListTableViewCell.swift */; };
+		8B8417B829F2E3D50040FF03 /* ListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B8417B629F2E3D50040FF03 /* ListTableViewCell.xib */; };
+		8B8417C329F6ED340040FF03 /* SmallCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8417C129F6ED340040FF03 /* SmallCardCollectionViewCell.swift */; };
+		8B8417C429F6ED340040FF03 /* SmallCardCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B8417C229F6ED340040FF03 /* SmallCardCollectionViewCell.xib */; };
 		8B982F9E2991540100A60D7E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B982F9D2991540100A60D7E /* AppDelegate.swift */; };
 		8B982FA02991540100A60D7E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B982F9F2991540100A60D7E /* SceneDelegate.swift */; };
 		8B982FA52991540100A60D7E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B982FA32991540100A60D7E /* Main.storyboard */; };
@@ -79,6 +83,10 @@
 		8B7F60DA299433F300D54CF7 /* ScryfallInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScryfallInteractor.swift; sourceTree = "<group>"; };
 		8B7F60DF2994B2B900D54CF7 /* CardSearchViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardSearchViewModels.swift; sourceTree = "<group>"; };
 		8B7F60E129956E5A00D54CF7 /* NoCardsFoundSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoCardsFoundSearchViewController.swift; sourceTree = "<group>"; };
+		8B8417B529F2E3D50040FF03 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
+		8B8417B629F2E3D50040FF03 /* ListTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListTableViewCell.xib; sourceTree = "<group>"; };
+		8B8417C129F6ED340040FF03 /* SmallCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallCardCollectionViewCell.swift; sourceTree = "<group>"; };
+		8B8417C229F6ED340040FF03 /* SmallCardCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SmallCardCollectionViewCell.xib; sourceTree = "<group>"; };
 		8B982F9A2991540100A60D7E /* MTG.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MTG.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B982F9D2991540100A60D7E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B982F9F2991540100A60D7E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -347,8 +355,12 @@
 		8BCC071B299D39F700F4CF43 /* Single Card Cell */ = {
 			isa = PBXGroup;
 			children = (
+				8B8417C129F6ED340040FF03 /* SmallCardCollectionViewCell.swift */,
+				8B8417C229F6ED340040FF03 /* SmallCardCollectionViewCell.xib */,
 				8B982FC42991751500A60D7E /* CardTableViewCell.swift */,
 				8B982FC52991751500A60D7E /* CardTableViewCell.xib */,
+				8B8417B529F2E3D50040FF03 /* ListTableViewCell.swift */,
+				8B8417B629F2E3D50040FF03 /* ListTableViewCell.xib */,
 			);
 			path = "Single Card Cell";
 			sourceTree = "<group>";
@@ -427,12 +439,14 @@
 				8B2744D129AEA62E00BC1CB0 /* CheckboxCollectionViewCell.xib in Resources */,
 				8B982FD52991A86900A60D7E /* ManaCostCollectionViewCell.xib in Resources */,
 				8B17100029A7FED400EC1D34 /* SliderTableViewCell.xib in Resources */,
+				8B8417B829F2E3D50040FF03 /* ListTableViewCell.xib in Resources */,
 				8B982FAA2991540200A60D7E /* LaunchScreen.storyboard in Resources */,
 				8B982FBD29915FA500A60D7E /* Sample.json in Resources */,
 				8B98495B299AD29300819DAC /* DropdownTableViewCell.xib in Resources */,
 				8B982FC72991751500A60D7E /* CardTableViewCell.xib in Resources */,
 				8B9849312995A03000819DAC /* TextSearchTableViewCell.xib in Resources */,
 				8B17101A29AD3F6500EC1D34 /* CustomDropdownTableViewCell.xib in Resources */,
+				8B8417C429F6ED340040FF03 /* SmallCardCollectionViewCell.xib in Resources */,
 				8B982FA72991540200A60D7E /* Assets.xcassets in Resources */,
 				8B984965299C0D9700819DAC /* ColorSearchTableViewCell.xib in Resources */,
 				8B9849352995A25600819DAC /* AdvancedCardSearchCollectionViewCell.xib in Resources */,
@@ -491,6 +505,7 @@
 			files = (
 				8BBEC0DB29C2558E00EF657F /* PickerOptions.swift in Sources */,
 				8B2744D429AEA6D000BC1CB0 /* CheckboxTableViewCell.swift in Sources */,
+				8B8417B729F2E3D50040FF03 /* ListTableViewCell.swift in Sources */,
 				8B98495D299AE96200819DAC /* AdvancedCardSearchModalFilterViewController.swift in Sources */,
 				8B982FBF2991646C00A60D7E /* CardListViewController.swift in Sources */,
 				8B17101029AD2C4000EC1D34 /* Format.swift in Sources */,
@@ -521,6 +536,7 @@
 				8B982FD42991A86900A60D7E /* ManaCostCollectionViewCell.swift in Sources */,
 				8B984961299BFCC800819DAC /* Subtype.swift in Sources */,
 				8B982FB72991561E00A60D7E /* ScryfallAPI.swift in Sources */,
+				8B8417C329F6ED340040FF03 /* SmallCardCollectionViewCell.swift in Sources */,
 				8B982FD02991A60000A60D7E /* String+Extension.swift in Sources */,
 				8B982FC62991751500A60D7E /* CardTableViewCell.swift in Sources */,
 				8B984964299C0D9700819DAC /* ColorSearchTableViewCell.swift in Sources */,

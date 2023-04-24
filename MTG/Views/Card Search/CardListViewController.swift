@@ -15,6 +15,7 @@ class CardListViewController: UIViewController {
     
     @IBOutlet weak var cardCountLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     @IBOutlet weak var sortStyleButton: UIButton!
     @IBOutlet weak var viewStyleButton: UIButton!
@@ -31,13 +32,20 @@ class CardListViewController: UIViewController {
     var cardsShowing: Int = 0
     var totalCards: Int = 0
     
+    var cellIdentifierToUse: PickerOptionsViewStyle = .TextCard
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.register(CardTableViewCell.nib(), forCellReuseIdentifier: CardTableViewCell.identifier)
+        tableView.register(ListTableViewCell.nib(), forCellReuseIdentifier: ListTableViewCell.identifier)
         tableView.delegate = self
         tableView.dataSource = self
+        
+        collectionView.register(SmallCardCollectionViewCell.nib(), forCellWithReuseIdentifier: SmallCardCollectionViewCell.identifier)
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.isHidden = true
     }
     
     func configure(with viewModel: Cards) {
@@ -78,6 +86,23 @@ class CardListViewController: UIViewController {
         present(vc, animated: true)
     }
     
+//    private func adCollectionViewFooter() {
+//        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: collectionView.frame.width, height: 100))
+//        footerButton = UIButton(frame: CGRect(x: collectionView.frame.width / 4, y: 30, width: collectionView.frame.width / 2, height: 40), primaryAction: UIAction(handler: loadMoreResultsTapped))
+//        footerButton.setTitle("Show more results", for: .normal)
+//        footerButton.backgroundColor = .systemBlue
+//        footerButton.layer.cornerRadius = 8
+//        footerView.addSubview(footerButton)
+//
+//        footerButton.isHidden = true
+//
+//        if totalCards > 10 {
+//            footerButton.isHidden = false
+//        }
+//
+//        collectionView.collectionViewLayout. = footerView
+//    }
+    
     private func addTableFooter() {
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 100))
         footerButton = UIButton(frame: CGRect(x: tableView.frame.width / 4, y: 30, width: tableView.frame.width / 2, height: 40), primaryAction: UIAction(handler: loadMoreResultsTapped))
@@ -111,6 +136,28 @@ class CardListViewController: UIViewController {
     
 }
 
+extension CardListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        cardsShowing > totalCards ? totalCards : cardsShowing
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        return UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let card = cards[indexPath.row]
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        let vc = storyboard.instantiateViewController(withIdentifier: "CardDetailViewController") as! CardDetailViewController
+        vc.card = card
+        
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+}
+
 extension CardListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -125,7 +172,28 @@ extension CardListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CardTableViewCell.identifier, for: indexPath) as! CardTableViewCell
+        
+        
+        switch cellIdentifierToUse {
+            
+        case .CardsSmall:
+            let cell = tableView.dequeueReusableCell(withIdentifier: CardTableViewCell.identifier, for: indexPath) as! CardTableViewCell
+            cell.configure(with: cards[indexPath.row])
+            return cell
+        case .CardsFull:
+            let cell = tableView.dequeueReusableCell(withIdentifier: CardTableViewCell.identifier, for: indexPath) as! CardTableViewCell
+            cell.configure(with: cards[indexPath.row])
+            return cell
+        case .TextCard:
+            let cell = tableView.dequeueReusableCell(withIdentifier: CardTableViewCell.identifier, for: indexPath) as! CardTableViewCell
+            cell.configure(with: cards[indexPath.row])
+            return cell
+        case .TextList:
+            let cell = tableView.dequeueReusableCell(withIdentifier: ListTableViewCell.identifier, for: indexPath) as! ListTableViewCell
+            cell.configure(with: cards[indexPath.row])
+            return cell
+        }
+        
 
 //        cell.cardName.text = cards[indexPath.row].name
 //        cell.cardType.text = cards[indexPath.row].typeLine
@@ -141,9 +209,9 @@ extension CardListViewController: UITableViewDelegate, UITableViewDataSource {
 //        cell.cardManaCost = cardViewModel.cardManaCost
 //        cell.cardManaSymbols = cardViewModel.cardManaCostSymbols
         
-        cell.configure(with: cards[indexPath.row])
         
-        return cell
+        
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -270,6 +338,7 @@ extension CardListViewController: PickerDelegate {
             
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+                self.collectionView.reloadData()
             }
             
             
@@ -277,6 +346,33 @@ extension CardListViewController: PickerDelegate {
         case .ViewStyle:
             viewStyleButton.setTitle(option.rawValue, for: .normal)
             viewStyleButton.setImage(UIImage(systemName: icon.rawValue), for: .normal)
+            
+            switch option {
+            case .CardsSmall:
+                tableView.isHidden = true
+                collectionView.isHidden = false
+                cellIdentifierToUse = .CardsSmall
+            case .CardsFull:
+                tableView.isHidden = true
+                collectionView.isHidden = false
+                cellIdentifierToUse = .CardsFull
+            case .TextCard:
+                tableView.isHidden = false
+                collectionView.isHidden = true
+                cellIdentifierToUse = .TextCard
+            case .TextList:
+                tableView.isHidden = false
+                collectionView.isHidden = true
+                cellIdentifierToUse = .TextList
+                
+            case .ManaValue, .Name, .Color, .Power, .Toughness, .Is, .Or, .Not:
+                break
+            }
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.collectionView.reloadData()
+            }
         }
     }
 }

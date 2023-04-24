@@ -34,3 +34,42 @@ class LeftAlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
         return attributes
     }
 }
+
+class RightAlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
+    
+    override init() {
+        super.init()
+        minimumInteritemSpacing = 2.0
+        itemSize = CGSize(width: 26, height: 26)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        minimumInteritemSpacing = 2.0
+        itemSize = CGSize(width: 26, height: 26)
+    }
+
+    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        let attributes = super.layoutAttributesForElements(in: rect)
+
+        // Reverse the order of the attributes array
+        let reversedAttributes = attributes?.reversed()
+
+        var rightMargin = collectionViewContentSize.width - sectionInset.right
+        var maxY: CGFloat = -1.0
+
+        reversedAttributes?.forEach { layoutAttribute in
+            guard layoutAttribute.representedElementCategory == .cell else { return }
+
+            if layoutAttribute.frame.origin.y >= maxY {
+                rightMargin = collectionViewContentSize.width - sectionInset.right
+            }
+
+            rightMargin -= layoutAttribute.frame.width + minimumInteritemSpacing
+            layoutAttribute.frame.origin.x = rightMargin
+            maxY = max(layoutAttribute.frame.maxY, maxY)
+        }
+
+        return reversedAttributes?.reversed()
+    }
+}

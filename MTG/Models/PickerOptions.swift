@@ -43,6 +43,13 @@ enum PickerIdentifier {
     case ViewStyle
 }
 
+enum PickerOptionsViewStyle: String {
+    case CardsSmall = "Cards - Small"
+    case CardsFull = "Cards - Full"
+    case TextCard = "Text - Card"
+    case TextList = "Text - List"
+}
+
 
 enum PickerNames: String {
     case ManaValue = "Mana Value"

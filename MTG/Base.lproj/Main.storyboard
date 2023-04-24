@@ -136,7 +136,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="5Te-or-Gmx" style="IBUITableViewCellStyleDefault" id="NXo-on-9GI" customClass="CardTableViewCell" customModule="MTG" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="List" textLabel="5Te-or-Gmx" style="IBUITableViewCellStyleDefault" id="NXo-on-9GI" customClass="CardTableViewCell" customModule="MTG" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="93.666667938232422" width="393" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NXo-on-9GI" id="6In-TV-8fp">
@@ -144,6 +144,40 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5Te-or-Gmx">
+                                                    <rect key="frame" x="20" y="0.0" width="334.66666666666669" height="43.666667938232422"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Small" textLabel="HSO-Tq-eli" style="IBUITableViewCellStyleDefault" id="VZA-Ap-sSq" customClass="CardTableViewCell" customModule="MTG" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="137.33333587646484" width="393" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VZA-Ap-sSq" id="ZVK-OK-Nos">
+                                            <rect key="frame" x="0.0" y="0.0" width="362.66666666666669" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HSO-Tq-eli">
+                                                    <rect key="frame" x="20" y="0.0" width="334.66666666666669" height="43.666667938232422"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Full" textLabel="hcx-Mq-hUZ" style="IBUITableViewCellStyleDefault" id="OWi-hT-P2l" customClass="CardTableViewCell" customModule="MTG" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="181.00000381469727" width="393" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OWi-hT-P2l" id="16Z-AU-9Sy">
+                                            <rect key="frame" x="0.0" y="0.0" width="362.66666666666669" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hcx-Mq-hUZ">
                                                     <rect key="frame" x="20" y="0.0" width="334.66666666666669" height="43.666667938232422"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
@@ -191,25 +225,56 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WdI-vf-ImF">
+                                <rect key="frame" x="0.0" y="201" width="393" height="617"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="4" id="4pT-26-9kk">
+                                    <size key="itemSize" width="180" height="260"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Y0X-lZ-Ybl">
+                                        <rect key="frame" x="8" y="0.0" width="180" height="260"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="j47-kA-Ao3">
+                                            <rect key="frame" x="0.0" y="0.0" width="180" height="260"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PVy-Kw-hhK">
+                                <rect key="frame" x="159" y="783" width="75" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Gq1-hI-TOb"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Gq1-hI-TOb" firstAttribute="trailing" secondItem="WdI-vf-ImF" secondAttribute="trailing" id="3Vd-rF-RDZ"/>
+                            <constraint firstItem="WdI-vf-ImF" firstAttribute="top" secondItem="Aiu-bd-W4y" secondAttribute="bottom" constant="8" id="4Nn-2k-PuH"/>
                             <constraint firstItem="DJe-UY-bW7" firstAttribute="leading" secondItem="Gq1-hI-TOb" secondAttribute="leading" constant="8" id="6US-ax-prw"/>
                             <constraint firstItem="Aiu-bd-W4y" firstAttribute="leading" secondItem="Gq1-hI-TOb" secondAttribute="leading" constant="8" id="9mK-e3-Eql"/>
                             <constraint firstItem="ccQ-ub-YUt" firstAttribute="top" secondItem="Aiu-bd-W4y" secondAttribute="bottom" constant="12" id="JWb-Ob-cvG"/>
                             <constraint firstItem="Aiu-bd-W4y" firstAttribute="top" secondItem="DJe-UY-bW7" secondAttribute="bottom" constant="12" id="Lw8-Ae-vJi"/>
+                            <constraint firstItem="Gq1-hI-TOb" firstAttribute="bottom" secondItem="WdI-vf-ImF" secondAttribute="bottom" id="QTs-4p-oPj"/>
                             <constraint firstItem="Gq1-hI-TOb" firstAttribute="trailing" secondItem="DJe-UY-bW7" secondAttribute="trailing" constant="8" id="YN7-u3-jMA"/>
                             <constraint firstItem="Gq1-hI-TOb" firstAttribute="top" secondItem="DJe-UY-bW7" secondAttribute="top" constant="-8" id="ZPd-Bh-GuO"/>
                             <constraint firstItem="Gq1-hI-TOb" firstAttribute="trailing" secondItem="Aiu-bd-W4y" secondAttribute="trailing" constant="8" id="dam-a4-afs"/>
                             <constraint firstItem="ccQ-ub-YUt" firstAttribute="leading" secondItem="Gq1-hI-TOb" secondAttribute="leading" id="hG7-Ne-Vxt"/>
                             <constraint firstItem="Gq1-hI-TOb" firstAttribute="trailing" secondItem="ccQ-ub-YUt" secondAttribute="trailing" id="kN8-l3-jlO"/>
+                            <constraint firstItem="WdI-vf-ImF" firstAttribute="leading" secondItem="Gq1-hI-TOb" secondAttribute="leading" id="kgE-1e-i1o"/>
                             <constraint firstItem="Gq1-hI-TOb" firstAttribute="bottom" secondItem="ccQ-ub-YUt" secondAttribute="bottom" id="xDB-7K-cb6"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Uz6-n9-ZVf"/>
                     <connections>
                         <outlet property="cardCountLabel" destination="Aiu-bd-W4y" id="IOh-CQ-KaF"/>
+                        <outlet property="collectionView" destination="WdI-vf-ImF" id="b1u-Ay-VnX"/>
                         <outlet property="sortStyleButton" destination="ujM-iq-POR" id="gz1-KX-rD0"/>
                         <outlet property="tableView" destination="ccQ-ub-YUt" id="ewb-tO-5Ky"/>
                         <outlet property="viewStyleButton" destination="3Zv-4u-4k5" id="5Iy-XX-KXL"/>
