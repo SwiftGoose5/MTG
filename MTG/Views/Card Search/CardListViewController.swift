@@ -43,6 +43,10 @@ class CardListViewController: UIViewController {
         tableView.dataSource = self
         
         collectionView.register(SmallCardCollectionViewCell.nib(), forCellWithReuseIdentifier: SmallCardCollectionViewCell.identifier)
+        collectionView.register(FullCardCollectionViewCell.nib(), forCellWithReuseIdentifier: FullCardCollectionViewCell.identifier)
+        collectionView.register(FooterCollectionReusableView.nib(),
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
+                                withReuseIdentifier: FooterCollectionReusableView.identifier)
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.isHidden = true
@@ -61,6 +65,7 @@ class CardListViewController: UIViewController {
         }
         
         addTableFooter()
+        addCollectionViewFooter()
         cardCountLabel.text = String("Displaying \(cardsShowing) out of \(totalCards) cards")
     }
     
@@ -86,22 +91,21 @@ class CardListViewController: UIViewController {
         present(vc, animated: true)
     }
     
-//    private func adCollectionViewFooter() {
-//        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: collectionView.frame.width, height: 100))
-//        footerButton = UIButton(frame: CGRect(x: collectionView.frame.width / 4, y: 30, width: collectionView.frame.width / 2, height: 40), primaryAction: UIAction(handler: loadMoreResultsTapped))
-//        footerButton.setTitle("Show more results", for: .normal)
-//        footerButton.backgroundColor = .systemBlue
-//        footerButton.layer.cornerRadius = 8
-//        footerView.addSubview(footerButton)
+    private func addCollectionViewFooter() {
+//        let footerView = FooterCollectionReusableView(frame: CGRect(x: 0, y: 0, width: collectionView.frame.width, height: 100))
 //
-//        footerButton.isHidden = true
+//        collectionViewFooterButton = UIButton(frame: CGRect(x: collectionView.frame.width / 4, y: 30, width: collectionView.frame.width / 2, height: 40), primaryAction: UIAction(handler: loadMoreResultsTapped))
+//        collectionViewFooterButton.setTitle("Show more results", for: .normal)
+//        collectionViewFooterButton.backgroundColor = .systemBlue
+//        collectionViewFooterButton.layer.cornerRadius = 8
+//        footerView.addSubview(collectionViewFooterButton)
 //
+//        collectionViewFooterButton.isHidden = true
+//        
 //        if totalCards > 10 {
-//            footerButton.isHidden = false
+//            collectionViewFooterButton.isHidden = false
 //        }
-//
-//        collectionView.collectionViewLayout. = footerView
-//    }
+    }
     
     private func addTableFooter() {
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 100))
@@ -131,9 +135,26 @@ class CardListViewController: UIViewController {
         DispatchQueue.main.async {
             self.cardCountLabel.text = String("Displaying \(self.cardsShowing) out of \(self.totalCards) cards")
             self.tableView.reloadData()
+            self.collectionView.reloadData()
         }
     }
-    
+}
+
+extension CardListViewController: FooterCollectionDelegate {
+    func showMoreResultsTapped() {
+        cardsShowing += 10
+        
+        if cardsShowing >= totalCards {
+            cardsShowing = totalCards
+            footerButton.isHidden = true
+        }
+        
+        DispatchQueue.main.async {
+            self.cardCountLabel.text = String("Displaying \(self.cardsShowing) out of \(self.totalCards) cards")
+            self.tableView.reloadData()
+            self.collectionView.reloadData()
+        }
+    }
 }
 
 extension CardListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -142,7 +163,22 @@ extension CardListViewController: UICollectionViewDelegate, UICollectionViewData
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+        switch cellIdentifierToUse {
+        case .CardsSmall:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SmallCardCollectionViewCell", for: indexPath) as! SmallCardCollectionViewCell
+            cell.configure(with: (cards[indexPath.row].imageUris?.small)!)
+            return cell
+        case .CardsFull:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FullCardCollectionViewCell", for: indexPath) as! FullCardCollectionViewCell
+            cell.configure(with: (cards[indexPath.row].imageUris?.large)!)
+            return cell
+            
+        // Not used, but need placeholder
+        case .TextCard, .TextList:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SmallCardCollectionViewCell", for: indexPath) as! SmallCardCollectionViewCell
+            cell.configure(with: (cards[indexPath.row].imageUris?.small)!)
+            return cell
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -156,6 +192,14 @@ extension CardListViewController: UICollectionViewDelegate, UICollectionViewData
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let footer = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: FooterCollectionReusableView.identifier, for: indexPath) as! FooterCollectionReusableView
+        
+        footer.footerDelegate = self
+        footer.configure(with: cardsShowing, and: totalCards)
+        
+        return footer
+    }
 }
 
 extension CardListViewController: UITableViewDelegate, UITableViewDataSource {
@@ -176,14 +220,6 @@ extension CardListViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch cellIdentifierToUse {
             
-        case .CardsSmall:
-            let cell = tableView.dequeueReusableCell(withIdentifier: CardTableViewCell.identifier, for: indexPath) as! CardTableViewCell
-            cell.configure(with: cards[indexPath.row])
-            return cell
-        case .CardsFull:
-            let cell = tableView.dequeueReusableCell(withIdentifier: CardTableViewCell.identifier, for: indexPath) as! CardTableViewCell
-            cell.configure(with: cards[indexPath.row])
-            return cell
         case .TextCard:
             let cell = tableView.dequeueReusableCell(withIdentifier: CardTableViewCell.identifier, for: indexPath) as! CardTableViewCell
             cell.configure(with: cards[indexPath.row])
@@ -192,6 +228,13 @@ extension CardListViewController: UITableViewDelegate, UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: ListTableViewCell.identifier, for: indexPath) as! ListTableViewCell
             cell.configure(with: cards[indexPath.row])
             return cell
+            
+        // Not used, but need placeholder
+        case .CardsSmall, .CardsFull:
+            let cell = tableView.dequeueReusableCell(withIdentifier: CardTableViewCell.identifier, for: indexPath) as! CardTableViewCell
+            cell.configure(with: cards[indexPath.row])
+            return cell
+        
         }
         
 

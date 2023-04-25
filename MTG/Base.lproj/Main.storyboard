@@ -47,7 +47,7 @@
                                 </subviews>
                             </stackView>
                             <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m8n-Qr-6JC">
-                                <rect key="frame" x="-3" y="156" width="394" height="44"/>
+                                <rect key="frame" x="-5" y="156" width="394" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -115,8 +115,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="DJe-UY-bW7">
+                                <rect key="frame" x="8" y="111" width="377" height="40"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ujM-iq-POR">
+                                        <rect key="frame" x="0.0" y="0.0" width="184.66666666666666" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="x4H-D9-wIj"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="tinted" image="text.line.first.and.arrowtriangle.forward" catalog="system" title="Name" imagePadding="8"/>
+                                        <connections>
+                                            <action selector="tableSortStyleTapped:" destination="nrq-fK-Y99" eventType="touchUpInside" id="8OI-Qz-dgZ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Zv-4u-4k5">
+                                        <rect key="frame" x="192.66666666666663" y="0.0" width="184.33333333333337" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="ogi-1S-3bJ"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="tinted" image="square.fill.text.grid.1x2" catalog="system" title="Text - Card" imagePadding="8"/>
+                                        <connections>
+                                            <action selector="tableViewStyleTapped:" destination="nrq-fK-Y99" eventType="touchUpInside" id="GtL-Zj-kdd"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Displaying x cards out of x" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aiu-bd-W4y">
+                                <rect key="frame" x="8" y="163" width="377" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Cjp-oY-IN7"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ccQ-ub-YUt">
-                                <rect key="frame" x="0.0" y="205" width="393" height="613"/>
+                                <rect key="frame" x="0.0" y="201" width="393" height="617"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Card" textLabel="M3r-2a-IgF" style="IBUITableViewCellStyleDefault" id="ETg-Pt-vKA" customClass="CardTableViewCell" customModule="MTG" customModuleProvider="target">
@@ -189,54 +225,18 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="DJe-UY-bW7">
-                                <rect key="frame" x="8" y="111" width="377" height="40"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ujM-iq-POR">
-                                        <rect key="frame" x="0.0" y="0.0" width="184.66666666666666" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="x4H-D9-wIj"/>
-                                        </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="tinted" image="text.line.first.and.arrowtriangle.forward" catalog="system" title="Name" imagePadding="8"/>
-                                        <connections>
-                                            <action selector="tableSortStyleTapped:" destination="nrq-fK-Y99" eventType="touchUpInside" id="8OI-Qz-dgZ"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Zv-4u-4k5">
-                                        <rect key="frame" x="192.66666666666663" y="0.0" width="184.33333333333337" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="ogi-1S-3bJ"/>
-                                        </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="tinted" image="square.fill.text.grid.1x2" catalog="system" title="Text - Card" imagePadding="8"/>
-                                        <connections>
-                                            <action selector="tableViewStyleTapped:" destination="nrq-fK-Y99" eventType="touchUpInside" id="GtL-Zj-kdd"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Displaying x cards out of x" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aiu-bd-W4y">
-                                <rect key="frame" x="8" y="163" width="377" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="Cjp-oY-IN7"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WdI-vf-ImF">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WdI-vf-ImF">
                                 <rect key="frame" x="0.0" y="201" width="393" height="617"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="4" id="4pT-26-9kk">
                                     <size key="itemSize" width="180" height="260"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="8" minY="0.0" maxX="8" maxY="0.0"/>
+                                    <size key="footerReferenceSize" width="360" height="100"/>
+                                    <inset key="sectionInset" minX="32" minY="0.0" maxX="32" maxY="8"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Y0X-lZ-Ybl">
-                                        <rect key="frame" x="8" y="0.0" width="180" height="260"/>
+                                        <rect key="frame" x="106.66666666666667" y="0.0" width="180" height="260"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="j47-kA-Ao3">
                                             <rect key="frame" x="0.0" y="0.0" width="180" height="260"/>
@@ -244,31 +244,29 @@
                                         </collectionViewCellContentView>
                                     </collectionViewCell>
                                 </cells>
+                                <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="FooterCollectionReusableView" id="tea-pj-KRH">
+                                    <rect key="frame" x="0.0" y="268" width="393" height="100"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </collectionReusableView>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PVy-Kw-hhK">
-                                <rect key="frame" x="159" y="783" width="75" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Gq1-hI-TOb"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Gq1-hI-TOb" firstAttribute="trailing" secondItem="WdI-vf-ImF" secondAttribute="trailing" id="3Vd-rF-RDZ"/>
-                            <constraint firstItem="WdI-vf-ImF" firstAttribute="top" secondItem="Aiu-bd-W4y" secondAttribute="bottom" constant="8" id="4Nn-2k-PuH"/>
                             <constraint firstItem="DJe-UY-bW7" firstAttribute="leading" secondItem="Gq1-hI-TOb" secondAttribute="leading" constant="8" id="6US-ax-prw"/>
                             <constraint firstItem="Aiu-bd-W4y" firstAttribute="leading" secondItem="Gq1-hI-TOb" secondAttribute="leading" constant="8" id="9mK-e3-Eql"/>
-                            <constraint firstItem="ccQ-ub-YUt" firstAttribute="top" secondItem="Aiu-bd-W4y" secondAttribute="bottom" constant="12" id="JWb-Ob-cvG"/>
+                            <constraint firstItem="WdI-vf-ImF" firstAttribute="top" secondItem="Aiu-bd-W4y" secondAttribute="bottom" constant="8" id="KGh-Nf-vLA"/>
+                            <constraint firstItem="ccQ-ub-YUt" firstAttribute="top" secondItem="Aiu-bd-W4y" secondAttribute="bottom" constant="8" id="Kjm-cr-GmN"/>
                             <constraint firstItem="Aiu-bd-W4y" firstAttribute="top" secondItem="DJe-UY-bW7" secondAttribute="bottom" constant="12" id="Lw8-Ae-vJi"/>
-                            <constraint firstItem="Gq1-hI-TOb" firstAttribute="bottom" secondItem="WdI-vf-ImF" secondAttribute="bottom" id="QTs-4p-oPj"/>
+                            <constraint firstItem="ccQ-ub-YUt" firstAttribute="trailing" secondItem="Gq1-hI-TOb" secondAttribute="trailing" id="Qv0-Ch-Hmz"/>
+                            <constraint firstItem="WdI-vf-ImF" firstAttribute="trailing" secondItem="Gq1-hI-TOb" secondAttribute="trailing" id="RHJ-bA-uBy"/>
+                            <constraint firstItem="ccQ-ub-YUt" firstAttribute="leading" secondItem="Gq1-hI-TOb" secondAttribute="leading" id="UYQ-TQ-uaH"/>
                             <constraint firstItem="Gq1-hI-TOb" firstAttribute="trailing" secondItem="DJe-UY-bW7" secondAttribute="trailing" constant="8" id="YN7-u3-jMA"/>
                             <constraint firstItem="Gq1-hI-TOb" firstAttribute="top" secondItem="DJe-UY-bW7" secondAttribute="top" constant="-8" id="ZPd-Bh-GuO"/>
+                            <constraint firstItem="Gq1-hI-TOb" firstAttribute="bottom" secondItem="WdI-vf-ImF" secondAttribute="bottom" id="alu-w7-WjN"/>
                             <constraint firstItem="Gq1-hI-TOb" firstAttribute="trailing" secondItem="Aiu-bd-W4y" secondAttribute="trailing" constant="8" id="dam-a4-afs"/>
-                            <constraint firstItem="ccQ-ub-YUt" firstAttribute="leading" secondItem="Gq1-hI-TOb" secondAttribute="leading" id="hG7-Ne-Vxt"/>
-                            <constraint firstItem="Gq1-hI-TOb" firstAttribute="trailing" secondItem="ccQ-ub-YUt" secondAttribute="trailing" id="kN8-l3-jlO"/>
-                            <constraint firstItem="WdI-vf-ImF" firstAttribute="leading" secondItem="Gq1-hI-TOb" secondAttribute="leading" id="kgE-1e-i1o"/>
-                            <constraint firstItem="Gq1-hI-TOb" firstAttribute="bottom" secondItem="ccQ-ub-YUt" secondAttribute="bottom" id="xDB-7K-cb6"/>
+                            <constraint firstItem="WdI-vf-ImF" firstAttribute="leading" secondItem="Gq1-hI-TOb" secondAttribute="leading" id="ewi-Pw-rYO"/>
+                            <constraint firstItem="Gq1-hI-TOb" firstAttribute="bottom" secondItem="ccQ-ub-YUt" secondAttribute="bottom" id="ujA-rd-7qm"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Uz6-n9-ZVf"/>

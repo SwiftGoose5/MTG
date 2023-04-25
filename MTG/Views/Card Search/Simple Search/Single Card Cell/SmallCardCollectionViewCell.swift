@@ -24,8 +24,9 @@ class SmallCardCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    func configure(with image: UIImage) {
-        imageView.image = image
+    func configure(with imageURL: String) {
+        Task {
+            imageView.image = await ScryfallInteractor.getCardImage(from: imageURL)
+        }
     }
-
 }

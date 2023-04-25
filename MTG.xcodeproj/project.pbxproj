@@ -55,6 +55,10 @@
 		8B984961299BFCC800819DAC /* Subtype.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B984960299BFCC800819DAC /* Subtype.swift */; };
 		8B984964299C0D9700819DAC /* ColorSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B984962299C0D9700819DAC /* ColorSearchTableViewCell.swift */; };
 		8B984965299C0D9700819DAC /* ColorSearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B984963299C0D9700819DAC /* ColorSearchTableViewCell.xib */; };
+		8BBC7CB729F8645A0014111B /* FooterCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBC7CB529F8645A0014111B /* FooterCollectionReusableView.swift */; };
+		8BBC7CB829F8645A0014111B /* FooterCollectionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BBC7CB629F8645A0014111B /* FooterCollectionReusableView.xib */; };
+		8BBC7CBB29F86D030014111B /* FullCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBC7CB929F86D030014111B /* FullCardCollectionViewCell.swift */; };
+		8BBC7CBC29F86D030014111B /* FullCardCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BBC7CBA29F86D030014111B /* FullCardCollectionViewCell.xib */; };
 		8BBEC0D529B104FF00EF657F /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBEC0D429B104FF00EF657F /* Notifications.swift */; };
 		8BBEC0D729B7E0D000EF657F /* Cards.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBEC0D629B7E0D000EF657F /* Cards.swift */; };
 		8BBEC0D929C2546000EF657F /* CardListPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BBEC0D829C2546000EF657F /* CardListPickerViewController.swift */; };
@@ -117,6 +121,10 @@
 		8B984960299BFCC800819DAC /* Subtype.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subtype.swift; sourceTree = "<group>"; };
 		8B984962299C0D9700819DAC /* ColorSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSearchTableViewCell.swift; sourceTree = "<group>"; };
 		8B984963299C0D9700819DAC /* ColorSearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorSearchTableViewCell.xib; sourceTree = "<group>"; };
+		8BBC7CB529F8645A0014111B /* FooterCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterCollectionReusableView.swift; sourceTree = "<group>"; };
+		8BBC7CB629F8645A0014111B /* FooterCollectionReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FooterCollectionReusableView.xib; sourceTree = "<group>"; };
+		8BBC7CB929F86D030014111B /* FullCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullCardCollectionViewCell.swift; sourceTree = "<group>"; };
+		8BBC7CBA29F86D030014111B /* FullCardCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FullCardCollectionViewCell.xib; sourceTree = "<group>"; };
 		8BBEC0D429B104FF00EF657F /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		8BBEC0D629B7E0D000EF657F /* Cards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cards.swift; sourceTree = "<group>"; };
 		8BBEC0D829C2546000EF657F /* CardListPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListPickerViewController.swift; sourceTree = "<group>"; };
@@ -355,8 +363,12 @@
 		8BCC071B299D39F700F4CF43 /* Single Card Cell */ = {
 			isa = PBXGroup;
 			children = (
+				8BBC7CB529F8645A0014111B /* FooterCollectionReusableView.swift */,
+				8BBC7CB629F8645A0014111B /* FooterCollectionReusableView.xib */,
 				8B8417C129F6ED340040FF03 /* SmallCardCollectionViewCell.swift */,
 				8B8417C229F6ED340040FF03 /* SmallCardCollectionViewCell.xib */,
+				8BBC7CB929F86D030014111B /* FullCardCollectionViewCell.swift */,
+				8BBC7CBA29F86D030014111B /* FullCardCollectionViewCell.xib */,
 				8B982FC42991751500A60D7E /* CardTableViewCell.swift */,
 				8B982FC52991751500A60D7E /* CardTableViewCell.xib */,
 				8B8417B529F2E3D50040FF03 /* ListTableViewCell.swift */,
@@ -442,6 +454,8 @@
 				8B8417B829F2E3D50040FF03 /* ListTableViewCell.xib in Resources */,
 				8B982FAA2991540200A60D7E /* LaunchScreen.storyboard in Resources */,
 				8B982FBD29915FA500A60D7E /* Sample.json in Resources */,
+				8BBC7CBC29F86D030014111B /* FullCardCollectionViewCell.xib in Resources */,
+				8BBC7CB829F8645A0014111B /* FooterCollectionReusableView.xib in Resources */,
 				8B98495B299AD29300819DAC /* DropdownTableViewCell.xib in Resources */,
 				8B982FC72991751500A60D7E /* CardTableViewCell.xib in Resources */,
 				8B9849312995A03000819DAC /* TextSearchTableViewCell.xib in Resources */,
@@ -509,6 +523,7 @@
 				8B98495D299AE96200819DAC /* AdvancedCardSearchModalFilterViewController.swift in Sources */,
 				8B982FBF2991646C00A60D7E /* CardListViewController.swift in Sources */,
 				8B17101029AD2C4000EC1D34 /* Format.swift in Sources */,
+				8BBC7CBB29F86D030014111B /* FullCardCollectionViewCell.swift in Sources */,
 				8B2744D029AEA62E00BC1CB0 /* CheckboxCollectionViewCell.swift in Sources */,
 				8B98495A299AD29300819DAC /* DropdownTableViewCell.swift in Sources */,
 				8B98495F299BEDF000819DAC /* Types.swift in Sources */,
@@ -531,6 +546,7 @@
 				8BBEC0D929C2546000EF657F /* CardListPickerViewController.swift in Sources */,
 				8B9849302995A03000819DAC /* TextSearchTableViewCell.swift in Sources */,
 				8B982FA02991540100A60D7E /* SceneDelegate.swift in Sources */,
+				8BBC7CB729F8645A0014111B /* FooterCollectionReusableView.swift in Sources */,
 				8BBEC0D529B104FF00EF657F /* Notifications.swift in Sources */,
 				8B982FBA2991563600A60D7E /* Card.swift in Sources */,
 				8B982FD42991A86900A60D7E /* ManaCostCollectionViewCell.swift in Sources */,
