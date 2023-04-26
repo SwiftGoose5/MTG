@@ -22,11 +22,15 @@ class SmallCardCollectionViewCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        imageView.contentMode = .scaleAspectFit
     }
     
-    func configure(with imageURL: String) {
+    func configure(with imageURL: String?) {
         Task {
+            guard let imageURL = imageURL else { return }
             imageView.image = await ScryfallInteractor.getCardImage(from: imageURL)
+            imageView.sizeToFit()
         }
     }
 }

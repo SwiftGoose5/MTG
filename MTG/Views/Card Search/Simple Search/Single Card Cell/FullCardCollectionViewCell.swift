@@ -24,13 +24,14 @@ class FullCardCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    func configure(with imageURL: String) {
-        let maxSize = self.contentView.bounds.size
+    func configure(with imageURL: String?) {
+//        let maxSize = self.contentView.bounds.size
         
         Task {
-            let image = await ScryfallInteractor.getCardImage(from: imageURL)
-            let scaledImage = image.scaleToFit(size: maxSize)
-            imageView.image = scaledImage
+            guard let imageURL = imageURL else { return }
+            imageView.image = await ScryfallInteractor.getCardImage(from: imageURL)
+//            let scaledImage = image.scaleToFit(size: maxSize)
+//            imageView.image = scaledImage
         }
     }
 }

@@ -228,24 +228,24 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WdI-vf-ImF">
                                 <rect key="frame" x="0.0" y="201" width="393" height="617"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="4" id="4pT-26-9kk">
-                                    <size key="itemSize" width="180" height="260"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="4" id="4pT-26-9kk">
+                                    <size key="itemSize" width="300" height="400"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="360" height="100"/>
                                     <inset key="sectionInset" minX="32" minY="0.0" maxX="32" maxY="8"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Y0X-lZ-Ybl">
-                                        <rect key="frame" x="106.66666666666667" y="0.0" width="180" height="260"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="Y0X-lZ-Ybl">
+                                        <rect key="frame" x="46.666666666666664" y="0.0" width="300" height="400"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="j47-kA-Ao3">
-                                            <rect key="frame" x="0.0" y="0.0" width="180" height="260"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="400"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </collectionViewCellContentView>
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="FooterCollectionReusableView" id="tea-pj-KRH">
-                                    <rect key="frame" x="0.0" y="268" width="393" height="100"/>
+                                    <rect key="frame" x="0.0" y="408" width="393" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </collectionReusableView>
                             </collectionView>

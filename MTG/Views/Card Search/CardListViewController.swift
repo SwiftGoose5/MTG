@@ -157,7 +157,7 @@ extension CardListViewController: FooterCollectionDelegate {
     }
 }
 
-extension CardListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension CardListViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         cardsShowing > totalCards ? totalCards : cardsShowing
     }
@@ -166,17 +166,17 @@ extension CardListViewController: UICollectionViewDelegate, UICollectionViewData
         switch cellIdentifierToUse {
         case .CardsSmall:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SmallCardCollectionViewCell", for: indexPath) as! SmallCardCollectionViewCell
-            cell.configure(with: (cards[indexPath.row].imageUris?.small)!)
+            cell.configure(with: cards[indexPath.row].imageUris?.small)
             return cell
         case .CardsFull:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FullCardCollectionViewCell", for: indexPath) as! FullCardCollectionViewCell
-            cell.configure(with: (cards[indexPath.row].imageUris?.large)!)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SmallCardCollectionViewCell", for: indexPath) as! SmallCardCollectionViewCell
+            cell.configure(with: cards[indexPath.row].imageUris?.normal)
             return cell
             
         // Not used, but need placeholder
         case .TextCard, .TextList:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SmallCardCollectionViewCell", for: indexPath) as! SmallCardCollectionViewCell
-            cell.configure(with: (cards[indexPath.row].imageUris?.small)!)
+            cell.configure(with: cards[indexPath.row].imageUris?.normal)
             return cell
         }
     }
@@ -199,6 +199,33 @@ extension CardListViewController: UICollectionViewDelegate, UICollectionViewData
         footer.configure(with: cardsShowing, and: totalCards)
         
         return footer
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let aspectRatio = CGFloat(3.0/4.0)
+        let leftInset = CGFloat(32.0)
+        let rightInset = leftInset
+        let cellSpacing = CGFloat(leftInset / 8)
+        let collectionWidth = collectionView.frame.width
+        var cellWidth: CGFloat!
+        var cellHeight: CGFloat!
+        
+        switch cellIdentifierToUse {
+            
+        case .CardsSmall:
+            cellWidth = CGFloat(collectionWidth - leftInset - rightInset - cellSpacing) / 2
+            
+        case .CardsFull:
+            cellWidth = CGFloat(collectionWidth - leftInset - rightInset)
+
+        // Not used, but need placeholder
+        case .TextCard, .TextList:
+            cellWidth = CGFloat(collectionWidth - leftInset - rightInset)
+        }
+        
+        cellHeight = cellWidth / aspectRatio
+        
+        return CGSize(width: cellWidth, height: cellHeight)
     }
 }
 

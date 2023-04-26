@@ -391,17 +391,41 @@ extension CardSearchViewController {
         searchButton.tintColor = .systemOrange
     }
     @objc func showSimpleSearchView() {
-        searchBar.isHidden = false
-        stackView.isHidden = true
-        clearAllButton.isHidden = true
-        searchButton.isHidden = true
+        UIView.transition(with: searchBar, duration: 0.3, options: [.transitionCrossDissolve, .showHideTransitionViews]) {
+            self.searchBar.isHidden = false
+        }
+        UIView.transition(with: stackView, duration: 0.3, options: [.transitionCrossDissolve, .showHideTransitionViews]) {
+            self.stackView.isHidden = true
+        }
+        UIView.transition(with: clearAllButton, duration: 0.3, options: [.transitionCrossDissolve, .showHideTransitionViews]) {
+            self.clearAllButton.isHidden = true
+        }
+        UIView.transition(with: searchButton, duration: 0.3, options: [.transitionCrossDissolve, .showHideTransitionViews]) {
+            self.searchButton.isHidden = true
+        }
+//        searchBar.isHidden = false
+//        stackView.isHidden = true
+//        clearAllButton.isHidden = true
+//        searchButton.isHidden = true
     }
     
     @objc func showAdvancedSearchView() {
-        searchBar.isHidden = true
-        stackView.isHidden = false
-        clearAllButton.isHidden = true
-        searchButton.isHidden = false
+        UIView.transition(with: searchBar, duration: 0.3, options: [.transitionCrossDissolve, .showHideTransitionViews]) {
+            self.searchBar.isHidden = true
+        }
+        UIView.transition(with: stackView, duration: 0.3, options: [.transitionCrossDissolve, .showHideTransitionViews]) {
+            self.stackView.isHidden = false
+        }
+        UIView.transition(with: clearAllButton, duration: 0.3, options: [.transitionCrossDissolve, .showHideTransitionViews]) {
+            self.clearAllButton.isHidden = true
+        }
+        UIView.transition(with: searchButton, duration: 0.3, options: [.transitionCrossDissolve, .showHideTransitionViews]) {
+            self.searchButton.isHidden = false
+        }
+//        searchBar.isHidden = true
+//        stackView.isHidden = false
+//        clearAllButton.isHidden = true
+//        searchButton.isHidden = false
     }
 }
 
