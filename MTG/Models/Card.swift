@@ -28,7 +28,7 @@ struct Card: Codable {
     let imageUris: ImageUris?
     let manaCost: String?
     let cmc: Int?
-    let typeLine, oracleText: String?
+    let typeLine, oracleText, flavorText: String?
     let power, toughness: String?
     let colors, colorIdentity: [String]?
     let keywords, producedMana: [String]?
@@ -73,6 +73,7 @@ struct Card: Codable {
         case cmc
         case typeLine = "type_line"
         case oracleText = "oracle_text"
+        case flavorText = "flavor_text"
         case colors
         case colorIdentity = "color_identity"
         case keywords

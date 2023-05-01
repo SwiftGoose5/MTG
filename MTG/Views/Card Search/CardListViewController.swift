@@ -43,7 +43,6 @@ class CardListViewController: UIViewController {
         tableView.dataSource = self
         
         collectionView.register(SmallCardCollectionViewCell.nib(), forCellWithReuseIdentifier: SmallCardCollectionViewCell.identifier)
-        collectionView.register(FullCardCollectionViewCell.nib(), forCellWithReuseIdentifier: FullCardCollectionViewCell.identifier)
         collectionView.register(FooterCollectionReusableView.nib(),
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
                                 withReuseIdentifier: FooterCollectionReusableView.identifier)
@@ -187,7 +186,9 @@ extension CardListViewController: UICollectionViewDelegate, UICollectionViewData
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         let vc = storyboard.instantiateViewController(withIdentifier: "CardDetailViewController") as! CardDetailViewController
-        vc.card = card
+        _ = vc.view
+        vc.configure(with: card)
+//        vc.card = card
         
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -292,7 +293,9 @@ extension CardListViewController: UITableViewDelegate, UITableViewDataSource {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         let vc = storyboard.instantiateViewController(withIdentifier: "CardDetailViewController") as! CardDetailViewController
-        vc.card = card
+        _ = vc.view
+        vc.configure(with: card)
+//        vc.card = card
         
         navigationController?.pushViewController(vc, animated: true)
     }
