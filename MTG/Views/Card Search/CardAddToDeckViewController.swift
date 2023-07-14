@@ -41,13 +41,29 @@ class CardAddToDeckViewController: UIViewController {
     @IBAction func decreaseButtonTapped(_ sender: Any) {
         quantityToAdd -= 1
         
-        quantityToAdd == 0 ? (quantityLabel.isEnabled = false) : (quantityLabel.isEnabled = true)
+        quantityLabel.text = String(quantityToAdd)
+        
+        if quantityToAdd <= 0 {
+            decreaseButton.isEnabled = false
+            increaseButton.isEnabled = true
+        } else {
+            decreaseButton.isEnabled = true
+            increaseButton.isEnabled = true
+        }
     }
     
     @IBAction func increaseButtonTapped(_ sender: Any) {
         quantityToAdd += 1
         
-        quantityToAdd >= 1 ? (quantityLabel.isEnabled = false) : (quantityLabel.isEnabled = true)
+        quantityLabel.text = String(quantityToAdd)
+        
+        if quantityToAdd >= 4 {
+            increaseButton.isEnabled = false
+            decreaseButton.isEnabled = true
+        } else {
+            increaseButton.isEnabled = true
+            decreaseButton.isEnabled = true
+        }
     }
     
     @IBAction func cancelButtonTapped(_ sender: Any) {

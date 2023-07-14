@@ -60,7 +60,7 @@ class CardTableViewCell: UITableViewCell {
     }
     
     @objc func handleLongPress(_ gestureRecognizer: UILongPressGestureRecognizer) {
-        print("cookies")
+        print("cardcell")
         if gestureRecognizer.state == .began {
             var tableView = self.superview
             
@@ -72,8 +72,7 @@ class CardTableViewCell: UITableViewCell {
             _ = vc.view
             vc.configure(with: card)
             
-            print(tableView?.window?.rootViewController)
-//                .navigationController?.pushViewController(vc, animated: true)
+//            present(vc, animated: true)
         }
     }
 }

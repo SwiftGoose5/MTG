@@ -142,7 +142,7 @@ class CardListViewController: UIViewController {
     }
     
     @objc func handleLongPress(_ gestureRecognizer: UILongPressGestureRecognizer) {
-        print("ghost")
+        print("cardlist")
         if gestureRecognizer.state == .began {
             let location = gestureRecognizer.location(in: tableView)
             if let indexPath = tableView.indexPathForRow(at: location) {
