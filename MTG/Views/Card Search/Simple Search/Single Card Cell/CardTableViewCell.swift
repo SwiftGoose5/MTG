@@ -36,8 +36,8 @@ class CardTableViewCell: UITableViewCell {
         cardCostCollectionView.delegate = self
         cardCostCollectionView.register(ManaCostCollectionViewCell.nib(), forCellWithReuseIdentifier: ManaCostCollectionViewCell.identifier)
         
-        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
-        addGestureRecognizer(longPressGesture)
+//        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
+//        addGestureRecognizer(longPressGesture)
     }
     
     func configure(with card: Card) {
