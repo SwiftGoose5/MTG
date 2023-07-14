@@ -24,6 +24,7 @@ class CardTableViewCell: UITableViewCell {
     @IBOutlet weak var cardSet: UILabel!
     @IBOutlet weak var cardRarity: UILabel!
     
+    var card: Card!
     var cardManaSymbols: [UIImage]!
     var cardManaCost: [String] = []
     
@@ -34,9 +35,13 @@ class CardTableViewCell: UITableViewCell {
         cardCostCollectionView.dataSource = self
         cardCostCollectionView.delegate = self
         cardCostCollectionView.register(ManaCostCollectionViewCell.nib(), forCellWithReuseIdentifier: ManaCostCollectionViewCell.identifier)
+        
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
+        addGestureRecognizer(longPressGesture)
     }
     
     func configure(with card: Card) {
+        self.card = card
         cardName.text = card.name
         cardType.text = card.typeLine
         cardSet.text = card.setName
@@ -51,6 +56,24 @@ class CardTableViewCell: UITableViewCell {
                 cardManaSymbols = await ScryfallInteractor.getCardManaSymbols(from: card)
                 cardCostCollectionView.reloadData()
             }
+        }
+    }
+    
+    @objc func handleLongPress(_ gestureRecognizer: UILongPressGestureRecognizer) {
+        print("cookies")
+        if gestureRecognizer.state == .began {
+            var tableView = self.superview
+            
+            var rootView = tableView?.superview
+            var rv = rootView?.window
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "CardAddToDeckViewController") as! CardAddToDeckViewController
+            _ = vc.view
+            vc.configure(with: card)
+            
+            print(tableView?.window?.rootViewController)
+//                .navigationController?.pushViewController(vc, animated: true)
         }
     }
 }

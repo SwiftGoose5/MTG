@@ -33,6 +33,7 @@ class CardListViewController: UIViewController {
     var totalCards: Int = 0
     
     var cellIdentifierToUse: PickerOptionsViewStyle = .TextCard
+    var longPressGesture: UILongPressGestureRecognizer!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +50,8 @@ class CardListViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.isHidden = true
+        
+        longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPress(_:)))
     }
     
     func configure(with viewModel: Cards) {
@@ -135,6 +138,22 @@ class CardListViewController: UIViewController {
             self.cardCountLabel.text = String("Displaying \(self.cardsShowing) out of \(self.totalCards) cards")
             self.tableView.reloadData()
             self.collectionView.reloadData()
+        }
+    }
+    
+    @objc func handleLongPress(_ gestureRecognizer: UILongPressGestureRecognizer) {
+        print("ghost")
+        if gestureRecognizer.state == .began {
+            let location = gestureRecognizer.location(in: tableView)
+            if let indexPath = tableView.indexPathForRow(at: location) {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "CardAddToDeckViewController") as! CardAddToDeckViewController
+                _ = vc.view
+                vc.configure(with: cards[indexPath.row])
+                
+                navigationController?.pushViewController(vc, animated: true)
+            }
+            
         }
     }
 }
@@ -251,18 +270,20 @@ extension CardListViewController: UITableViewDelegate, UITableViewDataSource {
         case .TextCard:
             let cell = tableView.dequeueReusableCell(withIdentifier: CardTableViewCell.identifier, for: indexPath) as! CardTableViewCell
             cell.configure(with: cards[indexPath.row])
+            cell.addGestureRecognizer(longPressGesture)
             return cell
         case .TextList:
             let cell = tableView.dequeueReusableCell(withIdentifier: ListTableViewCell.identifier, for: indexPath) as! ListTableViewCell
             cell.configure(with: cards[indexPath.row])
+            cell.addGestureRecognizer(longPressGesture)
             return cell
             
         // Not used, but need placeholder
         case .CardsSmall, .CardsFull:
             let cell = tableView.dequeueReusableCell(withIdentifier: CardTableViewCell.identifier, for: indexPath) as! CardTableViewCell
             cell.configure(with: cards[indexPath.row])
+            cell.addGestureRecognizer(longPressGesture)
             return cell
-        
         }
         
 

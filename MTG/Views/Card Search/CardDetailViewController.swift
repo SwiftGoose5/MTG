@@ -40,7 +40,7 @@ class CardDetailViewController: UIViewController {
     func configure(with card: Card) {
         self.card = card
         cardName.text = card.name
-        cardPower.text = card.power == nil ? (" ") : (String((card.power ?? "") + "/" + (card.toughness ?? "")))
+        cardPower .text = card.power == nil ? (" ") : (String((card.power ?? "") + "/" + (card.toughness ?? "")))
         cardType.text = card.typeLine
         cardRarity.text = card.rarity?.uppercased()
         cardArtist.text = card.artist == nil ? (" ") : (String("Illustrated by " + (card.artist ?? "")))

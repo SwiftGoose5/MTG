@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		538BD98BC104461249EA8DD1 /* Pods_MTG.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E48989CCAFBBCF69DF5FC0 /* Pods_MTG.framework */; };
+		8B0BAFE92A01A64700841527 /* CardAddToDeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0BAFE82A01A64700841527 /* CardAddToDeckViewController.swift */; };
 		8B170FFA29A6B38800EC1D34 /* SliderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B170FF829A6B38800EC1D34 /* SliderTableViewCell.swift */; };
 		8B17100029A7FED400EC1D34 /* SliderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B170FFF29A7FED400EC1D34 /* SliderTableViewCell.xib */; };
 		8B17101029AD2C4000EC1D34 /* Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B17100F29AD2C4000EC1D34 /* Format.swift */; };
@@ -70,6 +71,7 @@
 /* Begin PBXFileReference section */
 		18E48989CCAFBBCF69DF5FC0 /* Pods_MTG.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MTG.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BDEFA78034205AFA5F319DA /* Pods-MTG.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MTG.release.xcconfig"; path = "Target Support Files/Pods-MTG/Pods-MTG.release.xcconfig"; sourceTree = "<group>"; };
+		8B0BAFE82A01A64700841527 /* CardAddToDeckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAddToDeckViewController.swift; sourceTree = "<group>"; };
 		8B170FF829A6B38800EC1D34 /* SliderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderTableViewCell.swift; sourceTree = "<group>"; };
 		8B170FFF29A7FED400EC1D34 /* SliderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SliderTableViewCell.xib; sourceTree = "<group>"; };
 		8B17100F29AD2C4000EC1D34 /* Format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Format.swift; sourceTree = "<group>"; };
@@ -334,6 +336,7 @@
 				8B982FC02991666F00A60D7E /* CardDetailViewController.swift */,
 				8B2744D629AFB06B00BC1CB0 /* Simple Search */,
 				8B2744D729AFB07400BC1CB0 /* Advanced Search */,
+				8B0BAFE82A01A64700841527 /* CardAddToDeckViewController.swift */,
 			);
 			path = "Card Search";
 			sourceTree = "<group>";
@@ -534,6 +537,7 @@
 				8B982FC12991666F00A60D7E /* CardDetailViewController.swift in Sources */,
 				8B982F9E2991540100A60D7E /* AppDelegate.swift in Sources */,
 				8B7F60E229956E5A00D54CF7 /* NoCardsFoundSearchViewController.swift in Sources */,
+				8B0BAFE92A01A64700841527 /* CardAddToDeckViewController.swift in Sources */,
 				8B7F60E02994B2B900D54CF7 /* CardSearchViewModels.swift in Sources */,
 				8BBEC0D929C2546000EF657F /* CardListPickerViewController.swift in Sources */,
 				8B9849302995A03000819DAC /* TextSearchTableViewCell.swift in Sources */,

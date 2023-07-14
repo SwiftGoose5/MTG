@@ -390,7 +390,7 @@
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9wb-AA-0Vm">
                                                         <rect key="frame" x="0.0" y="0.0" width="293" height="26"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="4" id="q6h-5m-lgJ">
+                                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="2" id="q6h-5m-lgJ">
                                                             <size key="itemSize" width="26" height="26"/>
                                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -700,7 +700,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pt3-xe-Jec" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3743" y="881"/>
+            <point key="canvasLocation" x="3743" y="1874"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="fEa-Bf-aGp">
@@ -716,7 +716,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sWo-8X-Q54" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3743" y="1717"/>
+            <point key="canvasLocation" x="3743" y="2710"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="ciX-8z-Bli">
@@ -755,7 +755,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Au-90-B5j" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2818" y="881"/>
+            <point key="canvasLocation" x="2818" y="1874"/>
         </scene>
         <!--Prices-->
         <scene sceneID="ZeS-Sx-x26">
@@ -774,7 +774,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wZe-xi-gKj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2818" y="1717"/>
+            <point key="canvasLocation" x="2818" y="2710"/>
         </scene>
         <!--Cards-->
         <scene sceneID="Lby-Zk-grx">
@@ -813,12 +813,113 @@
             </objects>
             <point key="canvasLocation" x="5216" y="655"/>
         </scene>
+        <!--Card Add To Deck View Controller-->
+        <scene sceneID="HAn-49-drW">
+            <objects>
+                <viewController storyboardIdentifier="CardAddToDeckViewController" id="dqL-KN-ZcT" customClass="CardAddToDeckViewController" customModule="MTG" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7Yf-j5-dAe">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add to deck" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9qF-Fj-hKp">
+                                <rect key="frame" x="55" y="103" width="115" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ORK-Ac-I9B">
+                                <rect key="frame" x="234" y="316" width="80" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Add"/>
+                                <connections>
+                                    <action selector="addButtonTapped:" destination="dqL-KN-ZcT" eventType="touchUpInside" id="ORo-NR-e7h"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wAp-Wa-eIi">
+                                <rect key="frame" x="55" y="315" width="80" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelButtonTapped:" destination="dqL-KN-ZcT" eventType="touchUpInside" id="8Ot-ib-6zj"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="faH-bK-f7U">
+                                <rect key="frame" x="173" y="175" width="47" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zTX-Lg-leP">
+                                <rect key="frame" x="63" y="160" width="64" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="minus.circle.fill" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="20"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="decreaseButtonTapped:" destination="dqL-KN-ZcT" eventType="touchUpInside" id="Dvr-Mk-KHR"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GbU-qa-6wv">
+                                <rect key="frame" x="242" y="159" width="64" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="plus.circle.fill" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="20"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="increaseButtonTapped:" destination="dqL-KN-ZcT" eventType="touchUpInside" id="JpD-aT-3bU"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ih0-Tb-Fx0"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="sg4-va-rNN"/>
+                    <connections>
+                        <outlet property="addButton" destination="ORK-Ac-I9B" id="Aan-dK-Avd"/>
+                        <outlet property="decreaseButton" destination="zTX-Lg-leP" id="rSV-R0-h96"/>
+                        <outlet property="increaseButton" destination="GbU-qa-6wv" id="5Vh-l2-iMW"/>
+                        <outlet property="quantityLabel" destination="faH-bK-f7U" id="14M-Ck-ke6"/>
+                        <outlet property="titleLabel" destination="9qF-Fj-hKp" id="yBy-rl-BGY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="40J-ny-mMr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6139.6946564885493" y="1394.3661971830986"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="RlP-wf-30E">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Odc-8d-hjR" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5G1-DT-I61">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="dqL-KN-ZcT" kind="relationship" relationship="rootViewController" id="gCB-Ye-jbH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yLr-Wj-oye" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5215" y="1395"/>
+        </scene>
     </scenes>
     <resources>
         <image name="chart.line.uptrend.xyaxis" catalog="system" width="128" height="102"/>
         <image name="exclamationmark.triangle.fill" catalog="system" width="128" height="109"/>
         <image name="magic_card_back_transparent" width="745" height="1040"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
+        <image name="minus.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="plus.circle.fill" catalog="system" width="128" height="123"/>
         <image name="rectangle.portrait.fill" catalog="system" width="115" height="128"/>
         <image name="square.fill.text.grid.1x2" catalog="system" width="128" height="99"/>
         <image name="square.stack.3d.down.forward.fill" catalog="system" width="123" height="128"/>
