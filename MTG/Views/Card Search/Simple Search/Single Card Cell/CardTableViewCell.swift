@@ -22,6 +22,7 @@ class CardTableViewCell: UITableViewCell {
     @IBOutlet weak var cardCostCollectionView: UICollectionView!
     @IBOutlet weak var cardType: UILabel!
     @IBOutlet weak var cardSet: UILabel!
+    @IBOutlet weak var cardCost: UILabel!
     @IBOutlet weak var cardRarity: UILabel!
     
     var card: Card!
@@ -46,6 +47,7 @@ class CardTableViewCell: UITableViewCell {
         cardType.text = card.typeLine
         cardSet.text = card.setName
         cardRarity.text = card.rarity?.capitalized
+        cardCost.text = card.prices?.usd != nil ? ("$" + (card.prices?.usd)!) : ("")
 
         if card.manaCost != nil {
             cardManaCost = ScryfallInteractor.parseManaCostForSymbols(from: card)

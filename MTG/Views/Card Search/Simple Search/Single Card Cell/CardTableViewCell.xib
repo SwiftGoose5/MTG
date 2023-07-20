@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,38 +18,42 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="122"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gdb-zW-LBo">
-                        <rect key="frame" x="16" y="70" width="239" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gdb-zW-LBo">
+                        <rect key="frame" x="16" y="76" width="31.666666666666671" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="220" id="va4-7e-VY8"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Set" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dDJ-wi-3RU">
-                        <rect key="frame" x="16" y="91" width="180" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rarity" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKm-7D-5ZS">
-                        <rect key="frame" x="224" y="91" width="80" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dDJ-wi-3RU">
+                        <rect key="frame" x="16" y="97" width="21.666666666666671" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="200" id="ILN-l7-how"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pBu-wh-O2B">
-                        <rect key="frame" x="16" y="14" width="239" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rarity" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gKm-7D-5ZS">
+                        <rect key="frame" x="262.66666666666669" y="97" width="41.333333333333314" height="17"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pBu-wh-O2B">
+                        <rect key="frame" x="16" y="16" width="55" height="24"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="n7z-4A-gua">
-                        <rect key="frame" x="16" y="39" width="288" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" scrollEnabled="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="n7z-4A-gua">
+                        <rect key="frame" x="16" y="42" width="288" height="32"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="32" id="bhW-9K-iiD"/>
+                        </constraints>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="2" id="L9M-34-TKD">
                             <size key="itemSize" width="26" height="26"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -57,10 +61,33 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                     </collectionView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cost" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Jf-sy-RVi" userLabel="Card Cost">
+                        <rect key="frame" x="271" y="76" width="33" height="19"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="n7z-4A-gua" firstAttribute="top" secondItem="pBu-wh-O2B" secondAttribute="bottom" constant="2" id="1Xq-Ct-wbb"/>
+                    <constraint firstAttribute="trailing" secondItem="n7z-4A-gua" secondAttribute="trailing" constant="16" id="1cO-XD-9uJ"/>
+                    <constraint firstItem="pBu-wh-O2B" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="27w-sk-NJW"/>
+                    <constraint firstItem="pBu-wh-O2B" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="5Fc-A4-z40"/>
+                    <constraint firstItem="gKm-7D-5ZS" firstAttribute="top" secondItem="5Jf-sy-RVi" secondAttribute="bottom" constant="2" id="5ug-4i-Sb1"/>
+                    <constraint firstItem="5Jf-sy-RVi" firstAttribute="top" secondItem="n7z-4A-gua" secondAttribute="bottom" constant="2" id="SPK-LR-fNL"/>
+                    <constraint firstItem="gdb-zW-LBo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="UNI-3d-wlp"/>
+                    <constraint firstItem="gKm-7D-5ZS" firstAttribute="top" secondItem="gdb-zW-LBo" secondAttribute="bottom" constant="4" id="VAC-yD-ceh"/>
+                    <constraint firstItem="gdb-zW-LBo" firstAttribute="top" secondItem="n7z-4A-gua" secondAttribute="bottom" constant="2" id="bKe-qm-XJ7"/>
+                    <constraint firstItem="dDJ-wi-3RU" firstAttribute="top" secondItem="gdb-zW-LBo" secondAttribute="bottom" constant="4" id="eiE-tI-K5K"/>
+                    <constraint firstItem="dDJ-wi-3RU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="nAJ-SH-9sL"/>
+                    <constraint firstAttribute="trailing" secondItem="5Jf-sy-RVi" secondAttribute="trailing" constant="16" id="osT-CH-Eoi"/>
+                    <constraint firstAttribute="trailing" secondItem="gKm-7D-5ZS" secondAttribute="trailing" constant="16" id="unu-dU-KNp"/>
+                    <constraint firstItem="n7z-4A-gua" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="w6b-ru-ZZh"/>
+                </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="cardCost" destination="5Jf-sy-RVi" id="8Mn-H2-l78"/>
                 <outlet property="cardCostCollectionView" destination="n7z-4A-gua" id="SbP-pb-2HN"/>
                 <outlet property="cardName" destination="pBu-wh-O2B" id="PdB-Eg-ZLm"/>
                 <outlet property="cardRarity" destination="gKm-7D-5ZS" id="krJ-Kb-bvZ"/>
