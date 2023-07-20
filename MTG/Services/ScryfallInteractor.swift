@@ -156,6 +156,23 @@ extension ScryfallInteractor {
         return extractedCharacters
     }
     
+    static func getOneCardSymbol(from text: String) async -> UIImage {
+        
+        var cardSymbol = UIImage()
+        
+        let result = await ScryfallAPI.getOneManaSymbol(symbol: text)
+        
+        switch result {
+        case .success(let image):
+            cardSymbol = image
+            
+        case .failure(let error):
+            print("Image Conversion Error: \(error.localizedDescription)")
+        }
+        
+        return cardSymbol
+    }
+    
     static func getCardManaSymbols(from card: Card) async -> [UIImage] {
         
         var manaImages: [UIImage] = []

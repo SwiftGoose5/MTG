@@ -44,7 +44,6 @@ class CardDetailViewController: UIViewController {
         cardType.text = card.typeLine
         cardRarity.text = card.rarity?.uppercased()
         cardArtist.text = card.artist == nil ? (" ") : (String("Illustrated by " + (card.artist ?? "")))
-        cardText.text = card.oracleText?.replacingOccurrences(of: "\n", with: "\n\n")
         cardSet.text = card.setName
         cardFlavor.text = card.flavorText
         
@@ -69,9 +68,42 @@ class CardDetailViewController: UIViewController {
         
         Task {
             cardImageView.image = await ScryfallInteractor.getCardImage(from: imageURL)
+            cardText.attributedText = await convertOracleTextToAttributed(card.oracleText?.replacingOccurrences(of: "\n", with: "\n\n") ?? "")
         }
     }
     
+    func convertOracleTextToAttributed(_ flavorText: String) async -> NSMutableAttributedString {
+        let attributedString = NSMutableAttributedString(string: flavorText)
+        
+        let pattern = #"\{(\w)\}"#
+        let regex = try! NSRegularExpression(pattern: pattern, options: [])
+        let matches = regex.matches(in: flavorText, options: [], range: NSRange(location: 0, length: flavorText.utf16.count))
+        
+        for match in matches.reversed() {
+            let fullRange = match.range(at: 0) // Full range of the match, including curly braces
+            let capturedCharacterRange = match.range(at: 1) // Range of the captured character
+            
+            let capturedCharacter = (flavorText as NSString).substring(with: capturedCharacterRange)
+            
+            let symbol = await ScryfallInteractor.getOneCardSymbol(from: capturedCharacter)
+            
+            let textAttachment = NSTextAttachment()
+            textAttachment.image = symbol
+            
+            // Adjust the image size and position within the text
+            let font = UIFont.systemFont(ofSize: 18)
+            let imageSize = CGSize(width: font.capHeight, height: font.capHeight)
+            let imageOffsetY = -(font.capHeight - imageSize.height) / 2
+            textAttachment.bounds = CGRect(x: 0, y: imageOffsetY, width: imageSize.width, height: imageSize.height)
+            
+            let imageString = NSAttributedString(attachment: textAttachment)
+            
+            // Replace the matched pattern with the image
+            attributedString.replaceCharacters(in: fullRange, with: imageString)
+        }
+        
+        return attributedString
+    }
     
     @IBAction func segmentedControlTapped(_ sender: Any) {
         switch segmentedControl.selectedSegmentIndex {
