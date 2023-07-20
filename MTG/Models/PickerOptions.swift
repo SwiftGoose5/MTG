@@ -17,6 +17,7 @@ enum PickerOptions: String {
     case Color = "Color"
     case Power = "Power"
     case Toughness = "Toughness"
+    case Price = "Price"
     
     case CardsSmall = "Cards - Small"
     case CardsFull = "Cards - Full"
@@ -57,6 +58,7 @@ enum PickerNames: String {
     case Color = "Color"
     case Power = "Power"
     case Toughness = "Toughness"
+    case Price = "Price"
     
     case CardsSmall = "Cards - Small"
     case CardsFull = "Cards - Full"
@@ -75,6 +77,8 @@ enum AttributedPickerOptions {
     case PowerDescending(NSAttributedString)
     case ToughnessAscending(NSAttributedString)
     case ToughnessDescending(NSAttributedString)
+    case PriceAscending(NSAttributedString)
+    case PriceDescending(NSAttributedString)
     
     var attributedString: NSAttributedString {
         switch self {
@@ -98,6 +102,10 @@ enum AttributedPickerOptions {
             return generateAttributedString(icon: .Ascending, name: .Toughness)
         case .ToughnessDescending:
             return generateAttributedString(icon: .Descending, name: .Toughness)
+        case .PriceAscending:
+            return generateAttributedString(icon: .Ascending, name: .Price)
+        case .PriceDescending:
+            return generateAttributedString(icon: .Descending, name: .Price)
         }
     }
     

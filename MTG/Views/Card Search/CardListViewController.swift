@@ -72,8 +72,8 @@ class CardListViewController: UIViewController {
     }
     
     @IBAction func tableSortStyleTapped(_ sender: Any) {
-        let pickerModel = PickerModel(options: [.Name, .Name, .Color, .Color, .ManaValue, .ManaValue, .Power, .Power, .Toughness, .Toughness],
-                                      icons: [.Ascending, .Descending, .Ascending, .Descending, .Ascending, .Descending, .Ascending, .Descending, .Ascending, .Descending])
+        let pickerModel = PickerModel(options: [.Name, .Name, .Color, .Color, .ManaValue, .ManaValue, .Power, .Power, .Toughness, .Toughness, .Price, .Price],
+                                      icons: [.Ascending, .Descending, .Ascending, .Descending, .Ascending, .Descending, .Ascending, .Descending, .Ascending, .Descending, .Ascending, .Descending])
         
         let vc = CardListPickerViewController()
         vc.configure(with: pickerModel, identifier: .SortStyle)
@@ -426,6 +426,15 @@ extension CardListViewController: PickerDelegate {
                 case .CardsSmall, .CardsFull, .TextCard, .TextList:
                     break
                 }
+            case .Price:
+                switch icon {
+                case .Ascending:
+                    cards.sort(by: { $0.prices?.usd ?? "" < $1.prices?.usd ?? "" })
+                case .Descending:
+                    cards.sort(by: { $0.prices?.usd ?? "" > $1.prices?.usd ?? "" })
+                case .CardsSmall, .CardsFull, .TextCard, .TextList:
+                    break
+                }
             case .CardsSmall, .CardsFull, .TextList, .TextCard, .Is, .Or, .Not:
                 break
             }
@@ -459,7 +468,7 @@ extension CardListViewController: PickerDelegate {
                 collectionView.isHidden = true
                 cellIdentifierToUse = .TextList
                 
-            case .ManaValue, .Name, .Color, .Power, .Toughness, .Is, .Or, .Not:
+            case .ManaValue, .Name, .Color, .Power, .Toughness, .Price, .Is, .Or, .Not:
                 break
             }
             
