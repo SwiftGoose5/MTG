@@ -298,13 +298,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="exclamationmark.triangle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="9ih-bt-NSF">
-                                <rect key="frame" x="180" y="134.33333333333334" width="21" height="29.666666666666657"/>
+                                <rect key="frame" x="180" y="134.33333333333334" width="33" height="29.666666666666657"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="EfW-gc-eqG"/>
                                     <constraint firstAttribute="width" constant="32" id="PeT-QD-lHx"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sorry but the search criteria yielded zero results to display. Please check your inpiuts and try again." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rZR-0G-AYh">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sorry but the search criteria yielded zero results to display. Please check your inputs and try again." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rZR-0G-AYh">
                                 <rect key="frame" x="49" y="533" width="299" height="95"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="italicSystem" pointSize="17"/>
@@ -312,7 +312,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d1h-e6-1O2">
-                                <rect key="frame" x="150" y="728" width="81" height="40"/>
+                                <rect key="frame" x="150" y="728" width="93" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="hL8-mR-zSr"/>
                                     <constraint firstAttribute="width" constant="60" id="tcS-Fv-O1e"/>

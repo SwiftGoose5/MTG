@@ -66,6 +66,8 @@
 		8BCC0715299C126700F4CF43 /* ColorSearchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCC0713299C126700F4CF43 /* ColorSearchCollectionViewCell.swift */; };
 		8BCC0716299C126700F4CF43 /* ColorSearchCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8BCC0714299C126700F4CF43 /* ColorSearchCollectionViewCell.xib */; };
 		8BCC0718299D397200F4CF43 /* CardColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BCC0717299D397200F4CF43 /* CardColors.swift */; };
+		8BFDD96A2A78088D00A6ED2A /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BFDD9692A78088D00A6ED2A /* CocoaLumberjack.framework */; };
+		8BFDD96C2A78088D00A6ED2A /* SVGKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BFDD96B2A78088D00A6ED2A /* SVGKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -131,6 +133,8 @@
 		8BCC0713299C126700F4CF43 /* ColorSearchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSearchCollectionViewCell.swift; sourceTree = "<group>"; };
 		8BCC0714299C126700F4CF43 /* ColorSearchCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorSearchCollectionViewCell.xib; sourceTree = "<group>"; };
 		8BCC0717299D397200F4CF43 /* CardColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardColors.swift; sourceTree = "<group>"; };
+		8BFDD9692A78088D00A6ED2A /* CocoaLumberjack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CocoaLumberjack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8BFDD96B2A78088D00A6ED2A /* SVGKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SVGKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9237EFCB04453676CE09965 /* Pods-MTG.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MTG.debug.xcconfig"; path = "Target Support Files/Pods-MTG/Pods-MTG.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -139,6 +143,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BFDD96A2A78088D00A6ED2A /* CocoaLumberjack.framework in Frameworks */,
+				8BFDD96C2A78088D00A6ED2A /* SVGKit.framework in Frameworks */,
 				538BD98BC104461249EA8DD1 /* Pods_MTG.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -186,6 +192,8 @@
 		8B6608D92992A4A10040C9FA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8BFDD9692A78088D00A6ED2A /* CocoaLumberjack.framework */,
+				8BFDD96B2A78088D00A6ED2A /* SVGKit.framework */,
 				18E48989CCAFBBCF69DF5FC0 /* Pods_MTG.framework */,
 			);
 			name = Frameworks;
@@ -628,7 +636,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -682,7 +690,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -700,16 +708,16 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Q5C8ADQRUF;
+				DEVELOPMENT_TEAM = 62JXZ3B35T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MTG/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.card-games";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -734,16 +742,16 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Q5C8ADQRUF;
+				DEVELOPMENT_TEAM = 62JXZ3B35T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MTG/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.card-games";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

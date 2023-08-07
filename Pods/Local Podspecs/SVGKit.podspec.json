@@ -1,11 +1,11 @@
 {
   "name": "SVGKit",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "license": "MIT",
   "platforms": {
-    "osx": "10.9",
-    "ios": "5.0",
-    "tvos": "9.0"
+    "osx": "11.0",
+    "ios": "11.0",
+    "tvos": "11.0"
   },
   "summary": "Display and interact with SVG Images on iOS, using native rendering (CoreAnimation).",
   "homepage": "https://github.com/SVGKit/SVGKit",
@@ -20,7 +20,7 @@
   },
   "source": {
     "git": "https://github.com/SVGKit/SVGKit.git",
-    "tag": "3.1.0"
+    "tag": "3.1.1"
   },
   "source_files": [
     "Source/*.{h,m}",
